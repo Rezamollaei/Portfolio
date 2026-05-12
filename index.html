@@ -621,7 +621,7 @@
         setTheme(nextTheme);
       });
 
-      const sanitizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
+      const normalizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
       const sanitizeMultiLine = (value) => value.replace(/\r/g, '').trim();
 
       const contactForm = document.getElementById('contact-form');
@@ -632,10 +632,10 @@
           return;
         }
 
-        const name = sanitizeSingleLine(document.getElementById('contact-name').value);
-        const email = sanitizeSingleLine(document.getElementById('contact-email').value);
+        const name = normalizeSingleLine(document.getElementById('contact-name').value);
+        const email = normalizeSingleLine(document.getElementById('contact-email').value);
         const message = sanitizeMultiLine(document.getElementById('contact-message').value);
-        const dictionary = translations[currentLanguage] || translations.en;
+        const dictionary = translations[currentLanguage];
         const subject = dictionary['contact.form.emailSubject'] || 'New message from portfolio';
         const bodyLines = [
           `${dictionary['contact.form.nameLabel']}: ${name || '-'}`,
