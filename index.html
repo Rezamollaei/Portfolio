@@ -1019,7 +1019,7 @@
           return;
         }
         const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
-        if (currentMotionMode !== null && nextMode === currentMotionMode && motionLayer.childElementCount) {
+        if (currentMotionMode !== null && nextMode === currentMotionMode && motionLayer.childElementCount > 0) {
           return;
         }
         currentMotionMode = nextMode;
