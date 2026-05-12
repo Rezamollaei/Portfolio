@@ -1342,7 +1342,7 @@
         const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
           .map((skill) => skill.textContent.trim())
           .filter(Boolean);
-        const mobileSymbols = skillSymbols.length ? skillSymbols : [];
+        const mobileSymbols = skillSymbols;
         const desktopSymbols = [
           '🐍 Python',
           '🧮 C',
