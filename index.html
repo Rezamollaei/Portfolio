@@ -874,6 +874,8 @@
       if (projectsCarousel && projectsPrev && projectsNext) {
         // ~220px matches the minimum repo pill width so each click reveals at least one new full item.
         const MIN_PROJECTS_SCROLL_AMOUNT = 220;
+        const PROJECTS_SCROLL_PERCENTAGE = 0.9;
+        // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
         const SCROLL_BOUNDARY_TOLERANCE = 1;
 
         const updateProjectsNavState = () => {
@@ -899,7 +901,7 @@
         };
 
         const scrollProjects = (direction) => {
-          const amount = Math.max(projectsCarousel.clientWidth * 0.9, MIN_PROJECTS_SCROLL_AMOUNT);
+          const amount = Math.max(projectsCarousel.clientWidth * PROJECTS_SCROLL_PERCENTAGE, MIN_PROJECTS_SCROLL_AMOUNT);
           projectsCarousel.scrollBy({
             left: direction * amount,
             behavior: 'smooth'
