@@ -199,14 +199,14 @@
               Built responsive interfaces focused on accessibility, animation, and polished UI.
             </p>
           </article>
-          <article class="fade-up delay-3 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+          <article class="fade-up delay-2 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
             <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event2.date">2021</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event2.title">Back-end & APIs</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event2.body">
               Designed REST services, databases, and authentication flows powering real products.
             </p>
           </article>
-          <article class="fade-up delay-2 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+          <article class="fade-up delay-3 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
             <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event3.date">2023</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event3.title">Cloud & DevOps</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event3.body">
@@ -556,7 +556,7 @@
       const langButtons = document.querySelectorAll('[data-lang]');
       let currentLanguage = 'en';
 
-      const resolveLanguage = (lang) => (translations[lang] ? lang : 'en');
+      const getSupportedLanguage = (lang) => (translations[lang] ? lang : 'en');
 
       const updateElements = (elements, dictionary, keySelector, applyValue) => {
         elements.forEach((element) => {
@@ -568,7 +568,7 @@
       };
 
       const setLanguage = (lang) => {
-        currentLanguage = resolveLanguage(lang);
+        currentLanguage = getSupportedLanguage(lang);
         const dictionary = translations[currentLanguage];
 
         updateElements(translatableElements, dictionary, (element) => element.dataset.i18n, (element, value) => {
