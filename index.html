@@ -1,92 +1,653 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Reza Mollaei | Portfolio</title>
+    <script>
+      tailwind.config = {
+        darkMode: 'class'
+      };
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        .fade-up {
+          opacity: 0;
+          transform: translateY(16px);
+          animation: fade-up 0.8s ease forwards;
+        }
+
+        .fade-up.delay-1 {
+          animation-delay: 0.1s;
+        }
+
+        .fade-up.delay-2 {
+          animation-delay: 0.2s;
+        }
+
+        .fade-up.delay-3 {
+          animation-delay: 0.3s;
+        }
+
+        .fade-up.delay-4 {
+          animation-delay: 0.4s;
+        }
+      }
+
+      @keyframes fade-up {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .lang-button {
+        transition: background-color 200ms ease, color 200ms ease;
+      }
+
+      .lang-button[aria-pressed="true"] {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+
+      .dark .lang-button[aria-pressed="true"] {
+        background-color: #38bdf8;
+        color: #0f172a;
+      }
+    </style>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased">
-    <header class="border-b border-slate-800/80 bg-slate-900/70 backdrop-blur">
-      <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <h1 class="text-lg font-semibold tracking-tight">Reza Mollaei</h1>
-        <ul class="flex gap-4 text-sm text-slate-300">
-          <li><a class="hover:text-white" href="#about">About</a></li>
-          <li><a class="hover:text-white" href="#projects">Projects</a></li>
-          <li><a class="hover:text-white" href="#skills">Skills</a></li>
-          <li><a class="hover:text-white" href="#contact">Contact</a></li>
-        </ul>
+  <body class="bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-900/70">
+      <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+        <div>
+          <h1 class="text-lg font-semibold tracking-tight">Reza Mollaei</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="nav.role">Full-Stack Developer</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <ul class="flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
+            <li><a class="transition hover:text-slate-900 dark:hover:text-white" href="#about" data-i18n="nav.about">About</a></li>
+            <li><a class="transition hover:text-slate-900 dark:hover:text-white" href="#journey" data-i18n="nav.journey">Journey</a></li>
+            <li><a class="transition hover:text-slate-900 dark:hover:text-white" href="#projects" data-i18n="nav.projects">Projects</a></li>
+            <li><a class="transition hover:text-slate-900 dark:hover:text-white" href="#skills" data-i18n="nav.skills">Skills</a></li>
+            <li><a class="transition hover:text-slate-900 dark:hover:text-white" href="#contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center rounded-full border border-slate-200 bg-white/70 p-1 text-xs font-semibold uppercase text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+              <span class="sr-only" data-i18n="nav.language">Language</span>
+              <button class="lang-button rounded-full px-3 py-1" type="button" data-lang="en" aria-pressed="true">EN</button>
+              <button class="lang-button rounded-full px-3 py-1" type="button" data-lang="it" aria-pressed="false">IT</button>
+            </div>
+            <button
+              id="theme-toggle"
+              class="rounded-full border border-slate-200 bg-white/70 p-2 shadow-sm transition hover:border-slate-300 dark:border-slate-700 dark:bg-slate-900/70 dark:hover:border-slate-500"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="sr-only" data-i18n="nav.theme">Toggle theme</span>
+              <svg
+                data-theme-icon="light"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-slate-700"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="M4.93 4.93l1.41 1.41"></path>
+                <path d="M17.66 17.66l1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="M4.93 19.07l1.41-1.41"></path>
+                <path d="M17.66 6.34l1.41-1.41"></path>
+              </svg>
+              <svg
+                data-theme-icon="dark"
+                xmlns="http://www.w3.org/2000/svg"
+                class="hidden h-4 w-4 text-slate-100"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
       </nav>
     </header>
 
     <main>
       <section class="mx-auto grid min-h-[70vh] max-w-6xl place-items-center px-6 py-20 text-center" aria-labelledby="hero-title">
         <div>
-          <p class="mb-4 text-sm uppercase tracking-[0.2em] text-sky-300">Welcome to my portfolio</p>
+          <p class="mb-4 text-xs uppercase tracking-[0.35em] text-sky-600 dark:text-sky-300" data-i18n="hero.welcome">Welcome to my portfolio</p>
           <h2 id="hero-title" class="text-4xl font-bold leading-tight sm:text-5xl">Reza Mollaei</h2>
-          <p class="mt-4 text-lg text-slate-300 sm:text-xl">Software Engineering Student</p>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 sm:text-xl" data-i18n="hero.subtitle">Full-Stack Developer</p>
+          <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+            <span class="rounded-full border border-slate-200/80 bg-white/70 px-3 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/70" data-i18n="hero.chip1">Product Engineering</span>
+            <span class="rounded-full border border-slate-200/80 bg-white/70 px-3 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/70" data-i18n="hero.chip2">API Design</span>
+            <span class="rounded-full border border-slate-200/80 bg-white/70 px-3 py-1 shadow-sm dark:border-slate-700 dark:bg-slate-900/70" data-i18n="hero.chip3">UI & UX</span>
+          </div>
+          <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm">
+            <a
+              class="rounded-full bg-slate-900 px-6 py-2 font-semibold text-white shadow-lg shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-900 dark:hover:bg-sky-300"
+              href="#contact"
+              data-i18n="hero.ctaPrimary"
+            >
+              Let's build together
+            </a>
+            <a
+              class="rounded-full border border-slate-300 px-6 py-2 font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-400 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500"
+              href="#projects"
+              data-i18n="hero.ctaSecondary"
+            >
+              View projects
+            </a>
+          </div>
         </div>
       </section>
 
       <section id="about" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="about-title">
-        <h2 id="about-title" class="text-2xl font-semibold">About Me</h2>
-        <p class="mt-4 max-w-3xl text-slate-300">
-          I am a software engineering student passionate about building clean, performant, and user-friendly web applications. I enjoy learning modern technologies and solving real-world problems through code.
-        </p>
+        <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <h2 id="about-title" class="text-2xl font-semibold" data-i18n="about.title">About Me</h2>
+            <p class="mt-4 max-w-3xl text-slate-600 dark:text-slate-300" data-i18n="about.body">
+              I craft end-to-end digital experiences, combining clean interfaces with reliable back-end systems. I love translating ideas into fast, scalable products with a sharp eye for detail.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
+            <h3 class="text-lg font-semibold" data-i18n="about.focusTitle">What I deliver</h3>
+            <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span data-i18n="about.focus1">End-to-end product builds from UX to APIs.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span data-i18n="about.focus2">Performance-first interfaces with modern tooling.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span data-i18n="about.focus3">Reliable back-end services and data design.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="journey" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="journey-title">
+        <div>
+          <h2 id="journey-title" class="text-2xl font-semibold" data-i18n="journey.title">Full-Stack Journey</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="journey.subtitle">Key milestones that show how I build across the stack.</p>
+        </div>
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+          <article class="fade-up delay-1 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event1.date">2019</p>
+            <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event1.title">Front-end foundations</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event1.body">
+              Built responsive interfaces focused on accessibility, animation, and polished UI.
+            </p>
+          </article>
+          <article class="fade-up delay-2 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event2.date">2021</p>
+            <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event2.title">Back-end & APIs</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event2.body">
+              Designed REST services, databases, and authentication flows powering real products.
+            </p>
+          </article>
+          <article class="fade-up delay-3 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event3.date">2023</p>
+            <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event3.title">Cloud & DevOps</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event3.body">
+              Containerized apps, automated deployments, and improved reliability with monitoring.
+            </p>
+          </article>
+          <article class="fade-up delay-4 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event4.date">Today</p>
+            <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event4.title">Full-stack delivery</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event4.body">
+              Ship complete web experiences from idea to production with measurable impact.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section id="projects" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="projects-title">
-        <h2 id="projects-title" class="text-2xl font-semibold">Projects</h2>
+        <div>
+          <h2 id="projects-title" class="text-2xl font-semibold" data-i18n="projects.title">Projects</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="projects.subtitle">A snapshot of recent work and experiments.</p>
+        </div>
         <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-700 bg-slate-800/60"></div>
-            <h3 class="text-lg font-medium">Project One</h3>
-            <p class="mt-2 text-sm text-slate-300">Project description placeholder. Add your project summary and key features here.</p>
-            <a class="mt-4 inline-block text-sm font-medium text-sky-300 hover:text-sky-200" href="https://github.com/Rezamollaei?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="View Project One on GitHub">GitHub Repository</a>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card1.title">Project One</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card1.body">
+              Modern web experience with a focus on speed, clarity, and responsive design.
+            </p>
+            <a
+              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              href="https://github.com/Rezamollaei?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Project One on GitHub"
+              data-i18n="projects.card1.link"
+            >
+              GitHub Repository
+            </a>
           </article>
 
-          <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-700 bg-slate-800/60"></div>
-            <h3 class="text-lg font-medium">Project Two</h3>
-            <p class="mt-2 text-sm text-slate-300">Project description placeholder. Add your project summary and key features here.</p>
-            <a class="mt-4 inline-block text-sm font-medium text-sky-300 hover:text-sky-200" href="https://github.com/Rezamollaei?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="View Project Two on GitHub">GitHub Repository</a>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card2.title">Project Two</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card2.body">
+              Full-stack prototype connecting a clean UI with secure APIs.
+            </p>
+            <a
+              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              href="https://github.com/Rezamollaei?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Project Two on GitHub"
+              data-i18n="projects.card2.link"
+            >
+              GitHub Repository
+            </a>
           </article>
 
-          <article class="rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-700 bg-slate-800/60"></div>
-            <h3 class="text-lg font-medium">Project Three</h3>
-            <p class="mt-2 text-sm text-slate-300">Project description placeholder. Add your project summary and key features here.</p>
-            <a class="mt-4 inline-block text-sm font-medium text-sky-300 hover:text-sky-200" href="https://github.com/Rezamollaei?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="View Project Three on GitHub">GitHub Repository</a>
+          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
+            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card3.title">Project Three</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card3.body">
+              Data-driven application delivering insights with elegant visuals.
+            </p>
+            <a
+              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              href="https://github.com/Rezamollaei?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Project Three on GitHub"
+              data-i18n="projects.card3.link"
+            >
+              GitHub Repository
+            </a>
           </article>
         </div>
       </section>
 
       <section id="skills" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="skills-title">
-        <h2 id="skills-title" class="text-2xl font-semibold">Skills</h2>
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">HTML5</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">CSS3</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">JavaScript</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">Tailwind CSS</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">React</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">Node.js</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">Git</div>
-          <div class="rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-3 text-sm">SQL</div>
+        <div>
+          <h2 id="skills-title" class="text-2xl font-semibold" data-i18n="skills.title">Skills</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="skills.subtitle">Tooling and technologies I use every day.</p>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">HTML5</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">CSS3</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">JavaScript</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">TypeScript</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Tailwind CSS</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">React</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Node.js</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Express</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">SQL</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Docker</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Git</div>
+          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Vercel</div>
         </div>
       </section>
 
       <section id="contact" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="contact-title">
-        <h2 id="contact-title" class="text-2xl font-semibold">Contact</h2>
-        <p class="mt-4 text-slate-300">Let’s connect and collaborate.</p>
-        <div class="mt-4 flex flex-wrap gap-4">
-          <a class="inline-flex items-center rounded-md border border-slate-700 px-4 py-2 text-sm font-medium hover:border-sky-300 hover:text-sky-300" href="https://www.linkedin.com/in/rezamollaei" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="inline-flex items-center rounded-md border border-slate-700 px-4 py-2 text-sm font-medium hover:border-sky-300 hover:text-sky-300" href="https://github.com/Rezamollaei" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div>
+          <h2 id="contact-title" class="text-2xl font-semibold" data-i18n="contact.title">Contact</h2>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="contact.subtitle">Let’s connect and collaborate on your next idea.</p>
+        </div>
+        <div class="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
+            <h3 class="text-lg font-semibold" data-i18n="contact.form.title">Send a message</h3>
+            <form id="contact-form" class="mt-6 space-y-4">
+              <div>
+                <label class="text-sm font-medium text-slate-700 dark:text-slate-200" for="contact-name" data-i18n="contact.form.nameLabel">Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  required
+                  class="mt-2 w-full rounded-lg border border-slate-200 bg-white/70 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:focus:border-sky-400 dark:focus:ring-sky-500/30"
+                  placeholder="Your name"
+                  data-i18n-placeholder="contact.form.namePlaceholder"
+                />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-slate-700 dark:text-slate-200" for="contact-email" data-i18n="contact.form.emailLabel">Email</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  class="mt-2 w-full rounded-lg border border-slate-200 bg-white/70 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:focus:border-sky-400 dark:focus:ring-sky-500/30"
+                  placeholder="you@example.com"
+                  data-i18n-placeholder="contact.form.emailPlaceholder"
+                />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-slate-700 dark:text-slate-200" for="contact-message" data-i18n="contact.form.messageLabel">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="5"
+                  required
+                  class="mt-2 w-full rounded-lg border border-slate-200 bg-white/70 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:focus:border-sky-400 dark:focus:ring-sky-500/30"
+                  placeholder="Tell me about your project..."
+                  data-i18n-placeholder="contact.form.messagePlaceholder"
+                ></textarea>
+              </div>
+              <button
+                class="w-full rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-900 dark:hover:bg-sky-300"
+                type="submit"
+                data-i18n="contact.form.submit"
+              >
+                Send message
+              </button>
+              <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="contact.forwarding">
+                Messages to contact@rezamollaei.dev are delivered to my primary inbox.
+              </p>
+            </form>
+          </div>
+          <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
+            <h3 class="text-lg font-semibold" data-i18n="contact.directTitle">Direct links</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="contact.directBody">Prefer a direct email or social profile? Reach me here.</p>
+            <div class="mt-6 space-y-3">
+              <a
+                class="flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500"
+                href="mailto:contact@rezamollaei.dev"
+              >
+                <div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400" data-i18n="contact.directEmailLabel">Email</p>
+                  <p class="text-sm font-semibold text-slate-800 dark:text-slate-100">contact@rezamollaei.dev</p>
+                </div>
+                <span class="text-xs font-semibold text-sky-500" data-i18n="contact.directEmailAction">Write</span>
+              </a>
+              <a
+                class="flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500"
+                href="https://www.linkedin.com/in/rezamollaei"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="contact.directLinkedIn">LinkedIn</span>
+                <span class="text-xs font-semibold text-sky-500">↗</span>
+              </a>
+              <a
+                class="flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500"
+                href="https://github.com/Rezamollaei"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span data-i18n="contact.directGitHub">GitHub</span>
+                <span class="text-xs font-semibold text-sky-500">↗</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="border-t border-slate-800/80 px-6 py-6 text-center text-sm text-slate-400">
-      <p>&copy; 2026 Reza Mollaei. All rights reserved.</p>
+    <footer class="border-t border-slate-200/80 px-6 py-6 text-center text-sm text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
+      <p data-i18n="footer.rights">&copy; 2026 Reza Mollaei. All rights reserved.</p>
     </footer>
+
+    <script>
+      const translations = {
+        en: {
+          'nav.role': 'Full-Stack Developer',
+          'nav.about': 'About',
+          'nav.journey': 'Journey',
+          'nav.projects': 'Projects',
+          'nav.skills': 'Skills',
+          'nav.contact': 'Contact',
+          'nav.language': 'Language',
+          'nav.theme': 'Toggle theme',
+          'hero.welcome': 'Welcome to my portfolio',
+          'hero.subtitle': 'Full-Stack Developer',
+          'hero.ctaPrimary': "Let's build together",
+          'hero.ctaSecondary': 'View projects',
+          'hero.chip1': 'Product Engineering',
+          'hero.chip2': 'API Design',
+          'hero.chip3': 'UI & UX',
+          'about.title': 'About Me',
+          'about.body':
+            'I craft end-to-end digital experiences, combining clean interfaces with reliable back-end systems. I love translating ideas into fast, scalable products with a sharp eye for detail.',
+          'about.focusTitle': 'What I deliver',
+          'about.focus1': 'End-to-end product builds from UX to APIs.',
+          'about.focus2': 'Performance-first interfaces with modern tooling.',
+          'about.focus3': 'Reliable back-end services and data design.',
+          'journey.title': 'Full-Stack Journey',
+          'journey.subtitle': 'Key milestones that show how I build across the stack.',
+          'journey.event1.date': '2019',
+          'journey.event1.title': 'Front-end foundations',
+          'journey.event1.body': 'Built responsive interfaces focused on accessibility, animation, and polished UI.',
+          'journey.event2.date': '2021',
+          'journey.event2.title': 'Back-end & APIs',
+          'journey.event2.body': 'Designed REST services, databases, and authentication flows powering real products.',
+          'journey.event3.date': '2023',
+          'journey.event3.title': 'Cloud & DevOps',
+          'journey.event3.body': 'Containerized apps, automated deployments, and improved reliability with monitoring.',
+          'journey.event4.date': 'Today',
+          'journey.event4.title': 'Full-stack delivery',
+          'journey.event4.body': 'Ship complete web experiences from idea to production with measurable impact.',
+          'projects.title': 'Projects',
+          'projects.subtitle': 'A snapshot of recent work and experiments.',
+          'projects.card1.title': 'Project One',
+          'projects.card1.body': 'Modern web experience with a focus on speed, clarity, and responsive design.',
+          'projects.card1.link': 'GitHub Repository',
+          'projects.card2.title': 'Project Two',
+          'projects.card2.body': 'Full-stack prototype connecting a clean UI with secure APIs.',
+          'projects.card2.link': 'GitHub Repository',
+          'projects.card3.title': 'Project Three',
+          'projects.card3.body': 'Data-driven application delivering insights with elegant visuals.',
+          'projects.card3.link': 'GitHub Repository',
+          'skills.title': 'Skills',
+          'skills.subtitle': 'Tooling and technologies I use every day.',
+          'contact.title': 'Contact',
+          'contact.subtitle': 'Let’s connect and collaborate on your next idea.',
+          'contact.form.title': 'Send a message',
+          'contact.form.nameLabel': 'Name',
+          'contact.form.namePlaceholder': 'Your name',
+          'contact.form.emailLabel': 'Email',
+          'contact.form.emailPlaceholder': 'you@example.com',
+          'contact.form.messageLabel': 'Message',
+          'contact.form.messagePlaceholder': 'Tell me about your project...',
+          'contact.form.submit': 'Send message',
+          'contact.form.emailSubject': 'New message from portfolio',
+          'contact.forwarding': 'Messages to contact@rezamollaei.dev are delivered to my primary inbox.',
+          'contact.directTitle': 'Direct links',
+          'contact.directBody': 'Prefer a direct email or social profile? Reach me here.',
+          'contact.directEmailLabel': 'Email',
+          'contact.directEmailAction': 'Write',
+          'contact.directLinkedIn': 'LinkedIn',
+          'contact.directGitHub': 'GitHub',
+          'footer.rights': '© 2026 Reza Mollaei. All rights reserved.'
+        },
+        it: {
+          'nav.role': 'Sviluppatore Full-Stack',
+          'nav.about': 'Chi sono',
+          'nav.journey': 'Percorso',
+          'nav.projects': 'Progetti',
+          'nav.skills': 'Competenze',
+          'nav.contact': 'Contatti',
+          'nav.language': 'Lingua',
+          'nav.theme': 'Cambia tema',
+          'hero.welcome': 'Benvenuto nel mio portfolio',
+          'hero.subtitle': 'Sviluppatore Full-Stack',
+          'hero.ctaPrimary': 'Costruiamo insieme',
+          'hero.ctaSecondary': 'Guarda i progetti',
+          'hero.chip1': 'Ingegneria di prodotto',
+          'hero.chip2': 'Design API',
+          'hero.chip3': 'UI & UX',
+          'about.title': 'Su di me',
+          'about.body':
+            'Creo esperienze digitali end-to-end, unendo interfacce curate a sistemi back-end affidabili. Mi piace trasformare idee in prodotti veloci e scalabili con grande attenzione ai dettagli.',
+          'about.focusTitle': 'Cosa porto',
+          'about.focus1': 'Progetti completi dalla UX alle API.',
+          'about.focus2': 'Interfacce performanti con tooling moderno.',
+          'about.focus3': 'Servizi back-end solidi e progettazione dati.',
+          'journey.title': 'Percorso Full-Stack',
+          'journey.subtitle': 'Traguardi chiave che mostrano come lavoro su tutto lo stack.',
+          'journey.event1.date': '2019',
+          'journey.event1.title': 'Fondamenti front-end',
+          'journey.event1.body': 'Interfacce responsive con focus su accessibilità, animazioni e UI raffinata.',
+          'journey.event2.date': '2021',
+          'journey.event2.title': 'Back-end & API',
+          'journey.event2.body': 'Servizi REST, database e autenticazione per prodotti reali.',
+          'journey.event3.date': '2023',
+          'journey.event3.title': 'Cloud & DevOps',
+          'journey.event3.body': 'Container, deploy automatizzati e affidabilità con monitoraggio.',
+          'journey.event4.date': 'Oggi',
+          'journey.event4.title': 'Delivery full-stack',
+          'journey.event4.body': "Esperienze web complete dall'idea alla produzione con impatto misurabile.",
+          'projects.title': 'Progetti',
+          'projects.subtitle': 'Una selezione di lavori recenti e sperimentazioni.',
+          'projects.card1.title': 'Progetto Uno',
+          'projects.card1.body': 'Esperienza web moderna con focus su velocità, chiarezza e design responsive.',
+          'projects.card1.link': 'Repository GitHub',
+          'projects.card2.title': 'Progetto Due',
+          'projects.card2.body': 'Prototipo full-stack che unisce UI pulita e API sicure.',
+          'projects.card2.link': 'Repository GitHub',
+          'projects.card3.title': 'Progetto Tre',
+          'projects.card3.body': 'Applicazione data-driven con insight e visual eleganti.',
+          'projects.card3.link': 'Repository GitHub',
+          'skills.title': 'Competenze',
+          'skills.subtitle': 'Tecnologie e strumenti che uso ogni giorno.',
+          'contact.title': 'Contatti',
+          'contact.subtitle': 'Mettiamoci in contatto e collaboriamo alla tua prossima idea.',
+          'contact.form.title': 'Invia un messaggio',
+          'contact.form.nameLabel': 'Nome',
+          'contact.form.namePlaceholder': 'Il tuo nome',
+          'contact.form.emailLabel': 'Email',
+          'contact.form.emailPlaceholder': 'tu@example.com',
+          'contact.form.messageLabel': 'Messaggio',
+          'contact.form.messagePlaceholder': 'Raccontami il tuo progetto...',
+          'contact.form.submit': 'Invia messaggio',
+          'contact.form.emailSubject': 'Nuovo messaggio dal portfolio',
+          'contact.forwarding': 'I messaggi a contact@rezamollaei.dev arrivano alla mia casella principale.',
+          'contact.directTitle': 'Link diretti',
+          'contact.directBody': 'Preferisci email o profili social? Contattami qui.',
+          'contact.directEmailLabel': 'Email',
+          'contact.directEmailAction': 'Scrivi',
+          'contact.directLinkedIn': 'LinkedIn',
+          'contact.directGitHub': 'GitHub',
+          'footer.rights': '© 2026 Reza Mollaei. Tutti i diritti riservati.'
+        }
+      };
+
+      const translatableElements = document.querySelectorAll('[data-i18n]');
+      const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+      const langButtons = document.querySelectorAll('[data-lang]');
+      let currentLanguage = 'en';
+
+      const getSupportedLanguage = (lang) => (translations[lang] ? lang : 'en');
+
+      const updateElements = (elements, dictionary, keySelector, applyValue) => {
+        elements.forEach((element) => {
+          const key = keySelector(element);
+          if (dictionary[key]) {
+            applyValue(element, dictionary[key]);
+          }
+        });
+      };
+
+      const setLanguage = (lang) => {
+        currentLanguage = getSupportedLanguage(lang);
+        const dictionary = translations[currentLanguage];
+
+        updateElements(translatableElements, dictionary, (element) => element.dataset.i18n, (element, value) => {
+          element.textContent = value;
+        });
+
+        updateElements(
+          placeholderElements,
+          dictionary,
+          (element) => element.dataset.i18nPlaceholder,
+          (element, value) => {
+            element.placeholder = value;
+          }
+        );
+
+        langButtons.forEach((button) => {
+          button.setAttribute('aria-pressed', button.dataset.lang === currentLanguage);
+        });
+
+        document.documentElement.lang = currentLanguage;
+        localStorage.setItem('language', currentLanguage);
+      };
+
+      langButtons.forEach((button) => {
+        button.addEventListener('click', () => setLanguage(button.dataset.lang));
+      });
+
+      const storedLanguage = localStorage.getItem('language') || 'en';
+      setLanguage(storedLanguage);
+
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcons = document.querySelectorAll('[data-theme-icon]');
+
+      const setTheme = (theme) => {
+        const isDark = theme === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
+        themeIcons.forEach((icon) => {
+          icon.classList.toggle('hidden', icon.dataset.themeIcon !== theme);
+        });
+        themeToggle.setAttribute('aria-pressed', isDark);
+        localStorage.setItem('theme', theme);
+      };
+
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(storedTheme || (prefersDark ? 'dark' : 'light'));
+
+      themeToggle.addEventListener('click', () => {
+        const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        setTheme(nextTheme);
+      });
+
+      const normalizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
+      const sanitizeMultiLine = (value) => value.replace(/\r/g, '').trim();
+
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
+        const name = normalizeSingleLine(document.getElementById('contact-name').value);
+        const email = normalizeSingleLine(document.getElementById('contact-email').value);
+        const message = sanitizeMultiLine(document.getElementById('contact-message').value);
+        const dictionary = translations[currentLanguage];
+        const subject = dictionary['contact.form.emailSubject'] || 'New message from portfolio';
+        const bodyLines = [
+          `${dictionary['contact.form.nameLabel']}: ${name || '-'}`,
+          `${dictionary['contact.form.emailLabel']}: ${email || '-'}`,
+          '',
+          `${dictionary['contact.form.messageLabel']}:`,
+          message || '-'
+        ];
+
+        const body = bodyLines.join('\n');
+        window.location.href = `mailto:contact@rezamollaei.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+    </script>
   </body>
 </html>
