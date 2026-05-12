@@ -61,12 +61,20 @@
         --motion-color: rgba(15, 23, 42, 0.16);
         --motion-glow: rgba(56, 189, 248, 0.22);
         --motion-grid: rgba(148, 163, 184, 0.35);
+        --accent-primary: #0ea5e9;
+        --accent-secondary: #7dd3fc;
+        --accent-soft: rgba(14, 165, 233, 0.12);
+        --accent-contrast: #ffffff;
       }
 
       .dark {
         --motion-color: rgba(226, 232, 240, 0.2);
         --motion-glow: rgba(56, 189, 248, 0.35);
         --motion-grid: rgba(30, 41, 59, 0.6);
+        --accent-primary: #38bdf8;
+        --accent-secondary: #bae6fd;
+        --accent-soft: rgba(56, 189, 248, 0.16);
+        --accent-contrast: #0f172a;
       }
 
       .motion-layer {
@@ -110,6 +118,57 @@
         animation: float-chip var(--duration, 16s) ease-in-out infinite;
       }
 
+      .accent-text {
+        color: var(--accent-primary);
+      }
+
+      .accent-text-secondary {
+        color: var(--accent-secondary);
+      }
+
+      .accent-link {
+        color: var(--accent-primary);
+        transition: color 200ms ease;
+      }
+
+      .accent-link:hover {
+        color: var(--accent-secondary);
+      }
+
+      .accent-dot {
+        background-color: var(--accent-primary);
+      }
+
+      .accent-button {
+        background-color: var(--accent-primary);
+        color: var(--accent-contrast);
+        transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+      }
+
+      .accent-button:hover {
+        background-color: var(--accent-secondary);
+        color: #0f172a;
+      }
+
+      .social-link {
+        transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+      }
+
+      .social-link:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+        background-color: var(--accent-soft);
+      }
+
+      .social-link .social-icon {
+        color: var(--accent-primary);
+        transition: color 200ms ease;
+      }
+
+      .social-link:hover .social-icon {
+        color: var(--accent-secondary);
+      }
+
       @keyframes float-chip {
         0%,
         100% {
@@ -130,6 +189,13 @@
         inset: 0;
         width: 100%;
         height: 100%;
+      }
+
+      .project-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
 
       .project-visual::after {
@@ -256,7 +322,7 @@
     <main class="relative z-10">
       <section class="mx-auto grid min-h-[70vh] max-w-6xl place-items-center px-6 py-20 text-center" aria-labelledby="hero-title">
         <div>
-          <p class="mb-4 text-xs uppercase tracking-[0.35em] text-sky-600 dark:text-sky-300" data-i18n="hero.welcome">Welcome to my portfolio</p>
+          <p class="mb-4 text-xs uppercase tracking-[0.35em] accent-text" data-i18n="hero.welcome">Welcome to my portfolio</p>
           <h2 id="hero-title" class="text-4xl font-bold leading-tight sm:text-5xl">Reza Mollaei</h2>
           <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 sm:text-xl" data-i18n="hero.subtitle">Full-Stack Developer</p>
           <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
@@ -266,7 +332,7 @@
           </div>
           <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm">
             <a
-              class="rounded-full bg-slate-900 px-6 py-2 font-semibold text-white shadow-lg shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-sky-400 dark:text-slate-900 dark:hover:bg-sky-300"
+              class="rounded-full accent-button px-6 py-2 font-semibold shadow-lg shadow-slate-900/20 transition hover:-translate-y-0.5"
               href="#contact"
               data-i18n="hero.ctaPrimary"
             >
@@ -295,15 +361,15 @@
             <h3 class="text-lg font-semibold" data-i18n="about.focusTitle">What I deliver</h3>
             <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
               <li class="flex items-start gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span class="mt-1 h-2 w-2 rounded-full accent-dot"></span>
                 <span data-i18n="about.focus1">End-to-end product builds from UX to APIs.</span>
               </li>
               <li class="flex items-start gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span class="mt-1 h-2 w-2 rounded-full accent-dot"></span>
                 <span data-i18n="about.focus2">Performance-first interfaces with modern tooling.</span>
               </li>
               <li class="flex items-start gap-3">
-                <span class="mt-1 h-2 w-2 rounded-full bg-sky-500"></span>
+                <span class="mt-1 h-2 w-2 rounded-full accent-dot"></span>
                 <span data-i18n="about.focus3">Reliable back-end services and data design.</span>
               </li>
             </ul>
@@ -318,28 +384,28 @@
         </div>
         <div class="mt-8 grid gap-6 md:grid-cols-2">
           <article class="fade-up delay-1 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event1.date">2019</p>
+            <p class="text-xs uppercase tracking-[0.3em] accent-text" data-i18n="journey.event1.date">2019</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event1.title">Front-end foundations</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event1.body">
               Built responsive interfaces focused on accessibility, animation, and polished UI.
             </p>
           </article>
           <article class="fade-up delay-2 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event2.date">2021</p>
+            <p class="text-xs uppercase tracking-[0.3em] accent-text" data-i18n="journey.event2.date">2021</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event2.title">Back-end & APIs</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event2.body">
               Designed REST services, databases, and authentication flows powering real products.
             </p>
           </article>
           <article class="fade-up delay-3 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event3.date">2023</p>
+            <p class="text-xs uppercase tracking-[0.3em] accent-text" data-i18n="journey.event3.date">2023</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event3.title">Cloud & DevOps</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event3.body">
               Containerized apps, automated deployments, and improved reliability with monitoring.
             </p>
           </article>
           <article class="fade-up delay-4 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <p class="text-xs uppercase tracking-[0.3em] text-sky-600 dark:text-sky-300" data-i18n="journey.event4.date">Today</p>
+            <p class="text-xs uppercase tracking-[0.3em] accent-text" data-i18n="journey.event4.date">Today</p>
             <h3 class="mt-3 text-lg font-semibold" data-i18n="journey.event4.title">Full-stack delivery</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="journey.event4.body">
               Ship complete web experiences from idea to production with measurable impact.
@@ -355,22 +421,12 @@
         </div>
         <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-              <svg viewBox="0 0 400 240" aria-hidden="true">
-                <defs>
-                  <linearGradient id="ai-gradient-budget" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45" />
-                    <stop offset="55%" stop-color="#818cf8" stop-opacity="0.4" />
-                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
-                  </linearGradient>
-                </defs>
-                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-budget)" />
-                <circle cx="80" cy="70" r="32" fill="rgba(56, 189, 248, 0.35)" />
-                <circle cx="320" cy="170" r="44" fill="rgba(129, 140, 248, 0.35)" />
-                <path d="M60 150c40-30 90-30 140 0s100 30 140 0" stroke="rgba(15, 23, 42, 0.4)" stroke-width="3" fill="none" />
-                <path d="M110 60h120m-60 0v120" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" stroke-linecap="round" />
-                <text x="28" y="210" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
-              </svg>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=800&q=80"
+                alt="Budget tracker dashboard with notes and calculator"
+                loading="lazy"
+              />
               <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
                 Python
               </div>
@@ -380,7 +436,7 @@
               CLI budget manager with JSON storage, expense tracking, and balance snapshots.
             </p>
             <a
-              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              class="mt-4 inline-block text-sm font-medium accent-link"
               href="https://github.com/Rezamollaei/Budget_Tracker"
               target="_blank"
               rel="noopener noreferrer"
@@ -392,22 +448,12 @@
           </article>
 
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-amber-100 via-white to-rose-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-              <svg viewBox="0 0 400 240" aria-hidden="true">
-                <defs>
-                  <linearGradient id="ai-gradient-quiz" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4" />
-                    <stop offset="60%" stop-color="#fb7185" stop-opacity="0.35" />
-                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
-                  </linearGradient>
-                </defs>
-                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-quiz)" />
-                <rect x="60" y="50" width="130" height="80" rx="18" fill="rgba(251, 113, 133, 0.35)" />
-                <rect x="210" y="110" width="130" height="80" rx="18" fill="rgba(245, 158, 11, 0.35)" />
-                <path d="M90 170h220" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" stroke-linecap="round" />
-                <path d="M150 70l30 30-30 30" stroke="rgba(15, 23, 42, 0.45)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                <text x="270" y="70" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
-              </svg>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+                alt="Quiz game controller on a desk"
+                loading="lazy"
+              />
               <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
                 Python
               </div>
@@ -417,7 +463,7 @@
               Multiple-choice quiz engine with answer validation and instant scoring.
             </p>
             <a
-              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              class="mt-4 inline-block text-sm font-medium accent-link"
               href="https://github.com/Rezamollaei/Quiz_Game"
               target="_blank"
               rel="noopener noreferrer"
@@ -429,22 +475,12 @@
           </article>
 
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-emerald-100 via-white to-sky-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-              <svg viewBox="0 0 400 240" aria-hidden="true">
-                <defs>
-                  <linearGradient id="ai-gradient-language" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#34d399" stop-opacity="0.4" />
-                    <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.35" />
-                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
-                  </linearGradient>
-                </defs>
-                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-language)" />
-                <circle cx="110" cy="120" r="46" fill="rgba(52, 211, 153, 0.35)" />
-                <circle cx="260" cy="90" r="34" fill="rgba(56, 189, 248, 0.35)" />
-                <path d="M90 170c30-20 80-20 110 0s70 20 110 0" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" fill="none" />
-                <path d="M210 60h70" stroke="rgba(15, 23, 42, 0.4)" stroke-width="3" stroke-linecap="round" />
-                <text x="36" y="70" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
-              </svg>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
+              <img
+                src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80"
+                alt="Notebook and language learning materials"
+                loading="lazy"
+              />
               <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
                 Python
               </div>
@@ -454,7 +490,7 @@
               Spanish flashcard quiz with randomized prompts and score tracking.
             </p>
             <a
-              class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              class="mt-4 inline-block text-sm font-medium accent-link"
               href="https://github.com/Rezamollaei/Language_Learning_App"
               target="_blank"
               rel="noopener noreferrer"
@@ -469,7 +505,7 @@
           <div class="flex flex-wrap items-center justify-between gap-3">
             <h3 class="text-lg font-semibold" data-i18n="projects.publicTitle">Public repositories</h3>
             <a
-              class="text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              class="text-sm font-medium accent-link"
               href="https://github.com/Rezamollaei?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
@@ -604,25 +640,25 @@
                   <p class="text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400" data-i18n="contact.directEmailLabel">Email</p>
                   <p class="text-sm font-semibold text-slate-800 dark:text-slate-100">contact@rezamollaei.dev</p>
                 </div>
-                <span class="text-xs font-semibold text-sky-500" data-i18n="contact.directEmailAction">Write</span>
+                <span class="text-xs font-semibold accent-text-secondary" data-i18n="contact.directEmailAction">Write</span>
               </a>
               <a
-                class="flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500"
+                class="social-link flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"
                 href="https://www.linkedin.com/in/rezamollaei"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span data-i18n="contact.directLinkedIn">LinkedIn</span>
-                <span class="text-xs font-semibold text-sky-500">↗</span>
+                <span class="social-icon text-xs font-semibold">↗</span>
               </a>
               <a
-                class="flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500"
+                class="social-link flex items-center justify-between rounded-lg border border-slate-200 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200"
                 href="https://github.com/Rezamollaei"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span data-i18n="contact.directGitHub">GitHub</span>
-                <span class="text-xs font-semibold text-sky-500">↗</span>
+                <span class="social-icon text-xs font-semibold">↗</span>
               </a>
             </div>
           </div>
@@ -860,14 +896,35 @@
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (motionLayer && !prefersReducedMotion) {
-        const symbols = ['</>', '{}', '[]', '()', '=>', 'AI', 'ML', '01', 'const', 'let', 'var', '++', '&&', '||', '#', ';'];
-        const chipCount = 18;
+        const symbols = [
+          '🐍 Python',
+          '🧮 C',
+          '⚙️ C++',
+          '✨ JS',
+          '🌐 HTML',
+          '🎨 CSS',
+          '🍃 MongoDB',
+          '⚛️ React',
+          '🐙 GitHub',
+          '🐳 Docker',
+          '🗄️ NoSQL',
+          '</>',
+          '{}',
+          '[]',
+          '()',
+          '=>',
+          '01',
+          'const',
+          'let',
+          'var'
+        ];
+        const chipCount = 30;
 
         for (let i = 0; i < chipCount; i += 1) {
           const chip = document.createElement('span');
           const symbol = symbols[Math.floor(Math.random() * symbols.length)];
           const size = 10 + Math.random() * 12;
-          const duration = 12 + Math.random() * 18;
+          const duration = (12 + Math.random() * 18) * 0.8;
           const delay = Math.random() * -20;
           const rotation = `${Math.random() * 40 - 20}deg`;
           const drift = `${Math.random() * 40 - 20}px`;
