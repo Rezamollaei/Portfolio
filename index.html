@@ -872,7 +872,30 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
+        // Keeps navigation movement meaningful even on very narrow screens.
         const MIN_PROJECTS_SCROLL_AMOUNT = 220;
+
+        const updateProjectsNavState = () => {
+          const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
+          const atStart = projectsCarousel.scrollLeft <= 1;
+          const atEnd = projectsCarousel.scrollLeft >= maxScrollLeft - 1;
+
+          [projectsPrev, projectsNext].forEach((button) => {
+            button.classList.remove('opacity-50', 'cursor-not-allowed');
+          });
+
+          projectsPrev.disabled = atStart;
+          projectsPrev.setAttribute('aria-disabled', String(atStart));
+          if (atStart) {
+            projectsPrev.classList.add('opacity-50', 'cursor-not-allowed');
+          }
+
+          projectsNext.disabled = atEnd;
+          projectsNext.setAttribute('aria-disabled', String(atEnd));
+          if (atEnd) {
+            projectsNext.classList.add('opacity-50', 'cursor-not-allowed');
+          }
+        };
 
         const scrollProjects = (direction) => {
           const amount = Math.max(projectsCarousel.clientWidth * 0.9, MIN_PROJECTS_SCROLL_AMOUNT);
@@ -884,6 +907,9 @@
 
         projectsPrev.addEventListener('click', () => scrollProjects(-1));
         projectsNext.addEventListener('click', () => scrollProjects(1));
+        projectsCarousel.addEventListener('scroll', updateProjectsNavState, { passive: true });
+        window.addEventListener('resize', updateProjectsNavState);
+        updateProjectsNavState();
       }
 
       const motionLayer = document.getElementById('motion-layer');
