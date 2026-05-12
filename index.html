@@ -1047,11 +1047,7 @@
 
       if (motionLayer && !prefersReducedMotion) {
         renderMotionLayer();
-        if (typeof mobileQuery.addEventListener === 'function') {
-          mobileQuery.addEventListener('change', renderMotionLayer);
-        } else if (typeof mobileQuery.addListener === 'function') {
-          mobileQuery.addListener(renderMotionLayer);
-        }
+        mobileQuery.addEventListener('change', renderMotionLayer);
       }
 
       const normalizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
