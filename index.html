@@ -82,9 +82,21 @@
       }
 
       .dark main section[id] {
-        background-color: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(125, 211, 252, 0.2);
+        background-color: rgba(2, 6, 23, 0.82);
+        border: 1px solid rgba(71, 85, 105, 0.7);
         border-radius: 1rem;
+      }
+
+      .dark .motion-layer::before {
+        background:
+          radial-gradient(circle at 20% 20%, rgba(14, 116, 144, 0.2), transparent 45%),
+          radial-gradient(circle at 80% 10%, rgba(8, 47, 73, 0.3), transparent 50%),
+          radial-gradient(circle at 10% 80%, rgba(30, 64, 175, 0.2), transparent 40%);
+        opacity: 0.45;
+      }
+
+      .dark .motion-layer::after {
+        opacity: 0.08;
       }
 
       .motion-layer {
@@ -251,6 +263,37 @@
         color: #f8fafc;
       }
 
+      .project-carousel {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .project-carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      .project-carousel .repo-pill {
+        min-width: 14rem;
+        justify-content: center;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      #contact {
+        cursor: default;
+      }
+
+      #contact input,
+      #contact textarea {
+        cursor: text;
+      }
+
+      #contact button,
+      #contact a,
+      #contact label {
+        cursor: pointer;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .motion-chip {
           animation: none;
@@ -258,9 +301,9 @@
       }
     </style>
   </head>
-  <body class="relative bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100">
+  <body class="relative bg-slate-100 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
     <div id="motion-layer" class="motion-layer" aria-hidden="true"></div>
-    <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-900/70">
+    <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/85">
       <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
         <div>
           <h1 class="text-lg font-semibold tracking-tight">Reza Mollaei</h1>
@@ -427,107 +470,43 @@
       <section id="projects" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="projects-title">
         <div>
           <h2 id="projects-title" class="text-2xl font-semibold" data-i18n="projects.title">Projects</h2>
-          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="projects.subtitle">Featured public repositories and experiments.</p>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="projects.subtitle">Browse all public repositories with left and right navigation.</p>
         </div>
-        <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
-              <img
-                src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=800&q=80"
-                alt="Budget tracker dashboard with notes and calculator"
-                loading="lazy"
-              />
-              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
-                Python
-              </div>
-            </div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card1.title">Budget Tracker</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card1.body">
-              CLI budget manager with JSON storage, expense tracking, and balance snapshots.
-            </p>
-            <a
-              class="mt-4 inline-block text-sm font-medium accent-link"
-              href="https://github.com/Rezamollaei/Budget_Tracker"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Budget Tracker on GitHub"
-              data-i18n="projects.card1.link"
-            >
-              View repository
-            </a>
-          </article>
-
-          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
-              <img
-                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
-                alt="Quiz game controller on a desk"
-                loading="lazy"
-              />
-              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
-                Python
-              </div>
-            </div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card2.title">Quiz Game</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card2.body">
-              Multiple-choice quiz engine with answer validation and instant scoring.
-            </p>
-            <a
-              class="mt-4 inline-block text-sm font-medium accent-link"
-              href="https://github.com/Rezamollaei/Quiz_Game"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Quiz Game on GitHub"
-              data-i18n="projects.card2.link"
-            >
-              View repository
-            </a>
-          </article>
-
-          <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-slate-100 dark:border-slate-700 dark:bg-slate-900">
-              <img
-                src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80"
-                alt="Notebook and language learning materials"
-                loading="lazy"
-              />
-              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
-                Python
-              </div>
-            </div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card3.title">Language Learning App</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card3.body">
-              Spanish flashcard quiz with randomized prompts and score tracking.
-            </p>
-            <a
-              class="mt-4 inline-block text-sm font-medium accent-link"
-              href="https://github.com/Rezamollaei/Language_Learning_App"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Language Learning App on GitHub"
-              data-i18n="projects.card3.link"
-            >
-              View repository
-            </a>
-          </article>
-        </div>
-        <div class="mt-10 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
+        <div class="mt-8 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <h3 class="text-lg font-semibold" data-i18n="projects.publicTitle">Public repositories</h3>
-            <a
-              class="text-sm font-medium accent-link"
-              href="https://github.com/Rezamollaei?tab=repositories"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-i18n="projects.publicAll"
-            >
-              View all on GitHub
-            </a>
+            <div class="flex items-center gap-2">
+              <button
+                id="projects-prev"
+                class="rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+                type="button"
+              >
+                <span aria-hidden="true">←</span>
+                <span class="sr-only" data-i18n="projects.prev">Previous projects</span>
+              </button>
+              <button
+                id="projects-next"
+                class="rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+                type="button"
+              >
+                <span aria-hidden="true">→</span>
+                <span class="sr-only" data-i18n="projects.next">Next projects</span>
+              </button>
+              <a
+                class="text-sm font-medium accent-link"
+                href="https://github.com/Rezamollaei?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="projects.publicAll"
+              >
+                View all on GitHub
+              </a>
+            </div>
           </div>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.publicSubtitle">
             Quick links to every public repo, from scripts to experiments.
           </p>
-          <div class="mt-4 flex flex-wrap gap-2">
+          <div id="projects-carousel" class="project-carousel mt-4 flex gap-3 overflow-x-auto pb-2">
             <a class="repo-pill" href="https://github.com/Rezamollaei/Banking_programm" target="_blank" rel="noopener noreferrer">Banking_programm</a>
             <a class="repo-pill" href="https://github.com/Rezamollaei/Budget_Tracker" target="_blank" rel="noopener noreferrer">Budget_Tracker</a>
             <a class="repo-pill" href="https://github.com/Rezamollaei/Calculator" target="_blank" rel="noopener noreferrer">Calculator</a>
@@ -720,16 +699,9 @@
           'journey.event4.title': 'Full-stack delivery',
           'journey.event4.body': 'Ship complete web experiences from idea to production with measurable impact.',
           'projects.title': 'Projects',
-          'projects.subtitle': 'Featured public repositories and experiments.',
-          'projects.card1.title': 'Budget Tracker',
-          'projects.card1.body': 'CLI budget manager with JSON storage, expense tracking, and balance snapshots.',
-          'projects.card1.link': 'View repository',
-          'projects.card2.title': 'Quiz Game',
-          'projects.card2.body': 'Multiple-choice quiz engine with answer validation and instant scoring.',
-          'projects.card2.link': 'View repository',
-          'projects.card3.title': 'Language Learning App',
-          'projects.card3.body': 'Spanish flashcard quiz with randomized prompts and score tracking.',
-          'projects.card3.link': 'View repository',
+          'projects.subtitle': 'Browse all public repositories with left and right navigation.',
+          'projects.prev': 'Previous projects',
+          'projects.next': 'Next projects',
           'projects.publicTitle': 'Public repositories',
           'projects.publicSubtitle': 'Quick links to every public repo, from scripts to experiments.',
           'projects.publicAll': 'View all on GitHub',
@@ -793,16 +765,9 @@
           'journey.event4.title': 'Delivery full-stack',
           'journey.event4.body': "Esperienze web complete dall'idea alla produzione con impatto misurabile.",
           'projects.title': 'Progetti',
-          'projects.subtitle': 'Repository pubblici in evidenza e sperimentazioni.',
-          'projects.card1.title': 'Budget Tracker',
-          'projects.card1.body': 'Gestore budget da terminale con storage JSON, spese e saldo.',
-          'projects.card1.link': 'Apri repository',
-          'projects.card2.title': 'Quiz Game',
-          'projects.card2.body': 'Quiz a scelta multipla con verifica risposte e punteggio immediato.',
-          'projects.card2.link': 'Apri repository',
-          'projects.card3.title': 'Language Learning App',
-          'projects.card3.body': 'Quiz di flashcard spagnolo con prompt casuali e punteggio.',
-          'projects.card3.link': 'Apri repository',
+          'projects.subtitle': 'Sfoglia tutti i repository pubblici con navigazione a destra e sinistra.',
+          'projects.prev': 'Progetti precedenti',
+          'projects.next': 'Progetti successivi',
           'projects.publicTitle': 'Repository pubblici',
           'projects.publicSubtitle': 'Link rapidi a tutti i repo pubblici, dagli script agli esperimenti.',
           'projects.publicAll': 'Vedi tutto su GitHub',
@@ -901,6 +866,23 @@
         const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
         setTheme(nextTheme);
       });
+
+      const projectsCarousel = document.getElementById('projects-carousel');
+      const projectsPrev = document.getElementById('projects-prev');
+      const projectsNext = document.getElementById('projects-next');
+
+      if (projectsCarousel && projectsPrev && projectsNext) {
+        const scrollProjects = (direction) => {
+          const amount = Math.max(projectsCarousel.clientWidth * 0.9, 220);
+          projectsCarousel.scrollBy({
+            left: direction * amount,
+            behavior: 'smooth'
+          });
+        };
+
+        projectsPrev.addEventListener('click', () => scrollProjects(-1));
+        projectsNext.addEventListener('click', () => scrollProjects(1));
+      }
 
       const motionLayer = document.getElementById('motion-layer');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
