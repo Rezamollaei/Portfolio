@@ -205,7 +205,7 @@
       .project-visual {
         position: relative;
         overflow: hidden;
-        height: 8.5rem;
+        aspect-ratio: 1200 / 630;
       }
 
       .project-visual svg {
@@ -1283,7 +1283,7 @@
           ? parseFloat(window.getComputedStyle(projectCardSample).minWidth)
           : Number.NaN;
         // Fallback keeps behavior stable if computed min-width is unavailable.
-        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth) ? computedProjectCardMinWidth : 220;
+        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth) ? computedProjectCardMinWidth : 256;
         // 90% keeps a small overlap so users maintain visual continuity between clicks.
         const PROJECTS_SCROLL_PERCENTAGE = 0.9;
         // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
@@ -1381,7 +1381,7 @@
           return;
         }
         const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
-        if (currentMotionMode !== null && nextMode === currentMotionMode && motionLayer.childElementCount > 0) {
+        if (currentMotionMode === nextMode) {
           return;
         }
         currentMotionMode = nextMode;
