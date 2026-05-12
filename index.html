@@ -56,9 +56,134 @@
         background-color: #38bdf8;
         color: #0f172a;
       }
+
+      :root {
+        --motion-color: rgba(15, 23, 42, 0.16);
+        --motion-glow: rgba(56, 189, 248, 0.22);
+        --motion-grid: rgba(148, 163, 184, 0.35);
+      }
+
+      .dark {
+        --motion-color: rgba(226, 232, 240, 0.2);
+        --motion-glow: rgba(56, 189, 248, 0.35);
+        --motion-grid: rgba(30, 41, 59, 0.6);
+      }
+
+      .motion-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .motion-layer::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.2), transparent 45%),
+          radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.2), transparent 50%),
+          radial-gradient(circle at 10% 80%, rgba(129, 140, 248, 0.18), transparent 40%);
+        opacity: 0.7;
+      }
+
+      .motion-layer::after {
+        content: '';
+        position: absolute;
+        inset: -10%;
+        background-image:
+          linear-gradient(var(--motion-grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--motion-grid) 1px, transparent 1px);
+        background-size: 140px 140px;
+        opacity: 0.15;
+        transform: rotate(-2deg);
+      }
+
+      .motion-chip {
+        position: absolute;
+        font-family: 'ui-monospace', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-weight: 600;
+        color: var(--motion-color);
+        text-shadow: 0 0 12px var(--motion-glow);
+        opacity: var(--opacity, 0.4);
+        animation: float-chip var(--duration, 16s) ease-in-out infinite;
+      }
+
+      @keyframes float-chip {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) rotate(var(--rotation, 0deg));
+        }
+        50% {
+          transform: translate3d(var(--drift, 0px), -28px, 0) rotate(calc(var(--rotation, 0deg) + 8deg));
+        }
+      }
+
+      .project-visual {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-visual svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .project-visual::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.7), transparent 55%);
+        opacity: 0.6;
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      .dark .project-visual::after {
+        opacity: 0.35;
+      }
+
+      .repo-pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        background: rgba(255, 255, 255, 0.7);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #475569;
+        transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+      }
+
+      .repo-pill:hover {
+        border-color: rgba(148, 163, 184, 0.8);
+        color: #0f172a;
+      }
+
+      .dark .repo-pill {
+        border-color: rgba(51, 65, 85, 0.8);
+        background: rgba(15, 23, 42, 0.7);
+        color: #e2e8f0;
+      }
+
+      .dark .repo-pill:hover {
+        border-color: rgba(100, 116, 139, 0.8);
+        color: #f8fafc;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .motion-chip {
+          animation: none;
+        }
+      }
     </style>
   </head>
-  <body class="bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <body class="relative bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <div id="motion-layer" class="motion-layer" aria-hidden="true"></div>
     <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-900/70">
       <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
         <div>
@@ -128,7 +253,7 @@
       </nav>
     </header>
 
-    <main>
+    <main class="relative z-10">
       <section class="mx-auto grid min-h-[70vh] max-w-6xl place-items-center px-6 py-20 text-center" aria-labelledby="hero-title">
         <div>
           <p class="mb-4 text-xs uppercase tracking-[0.35em] text-sky-600 dark:text-sky-300" data-i18n="hero.welcome">Welcome to my portfolio</p>
@@ -226,62 +351,164 @@
       <section id="projects" class="mx-auto max-w-6xl px-6 py-16" aria-labelledby="projects-title">
         <div>
           <h2 id="projects-title" class="text-2xl font-semibold" data-i18n="projects.title">Projects</h2>
-          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="projects.subtitle">A snapshot of recent work and experiments.</p>
+          <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="projects.subtitle">Featured public repositories and experiments.</p>
         </div>
         <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card1.title">Project One</h3>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-sky-100 via-white to-indigo-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+              <svg viewBox="0 0 400 240" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ai-gradient-budget" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.45" />
+                    <stop offset="55%" stop-color="#818cf8" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-budget)" />
+                <circle cx="80" cy="70" r="32" fill="rgba(56, 189, 248, 0.35)" />
+                <circle cx="320" cy="170" r="44" fill="rgba(129, 140, 248, 0.35)" />
+                <path d="M60 150c40-30 90-30 140 0s100 30 140 0" stroke="rgba(15, 23, 42, 0.4)" stroke-width="3" fill="none" />
+                <path d="M110 60h120m-60 0v120" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" stroke-linecap="round" />
+                <text x="28" y="210" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
+              </svg>
+              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
+                Python
+              </div>
+            </div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card1.title">Budget Tracker</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card1.body">
-              Modern web experience with a focus on speed, clarity, and responsive design.
+              CLI budget manager with JSON storage, expense tracking, and balance snapshots.
             </p>
             <a
               class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
-              href="https://github.com/Rezamollaei?tab=repositories"
+              href="https://github.com/Rezamollaei/Budget_Tracker"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Project One on GitHub"
+              aria-label="View Budget Tracker on GitHub"
               data-i18n="projects.card1.link"
             >
-              GitHub Repository
+              View repository
             </a>
           </article>
 
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card2.title">Project Two</h3>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-amber-100 via-white to-rose-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+              <svg viewBox="0 0 400 240" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ai-gradient-quiz" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4" />
+                    <stop offset="60%" stop-color="#fb7185" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-quiz)" />
+                <rect x="60" y="50" width="130" height="80" rx="18" fill="rgba(251, 113, 133, 0.35)" />
+                <rect x="210" y="110" width="130" height="80" rx="18" fill="rgba(245, 158, 11, 0.35)" />
+                <path d="M90 170h220" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" stroke-linecap="round" />
+                <path d="M150 70l30 30-30 30" stroke="rgba(15, 23, 42, 0.45)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <text x="270" y="70" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
+              </svg>
+              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
+                Python
+              </div>
+            </div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card2.title">Quiz Game</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card2.body">
-              Full-stack prototype connecting a clean UI with secure APIs.
+              Multiple-choice quiz engine with answer validation and instant scoring.
             </p>
             <a
               class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
-              href="https://github.com/Rezamollaei?tab=repositories"
+              href="https://github.com/Rezamollaei/Quiz_Game"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Project Two on GitHub"
+              aria-label="View Quiz Game on GitHub"
               data-i18n="projects.card2.link"
             >
-              GitHub Repository
+              View repository
             </a>
           </article>
 
           <article class="rounded-2xl border border-slate-200/80 bg-white/70 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/80 dark:bg-slate-900/60">
-            <div class="mb-4 h-40 rounded-lg border border-dashed border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800/70"></div>
-            <h3 class="text-lg font-medium" data-i18n="projects.card3.title">Project Three</h3>
+            <div class="project-visual mb-4 h-40 rounded-lg border border-slate-200/80 bg-gradient-to-br from-emerald-100 via-white to-sky-100 dark:border-slate-700 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+              <svg viewBox="0 0 400 240" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ai-gradient-language" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#34d399" stop-opacity="0.4" />
+                    <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.2" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" rx="28" fill="url(#ai-gradient-language)" />
+                <circle cx="110" cy="120" r="46" fill="rgba(52, 211, 153, 0.35)" />
+                <circle cx="260" cy="90" r="34" fill="rgba(56, 189, 248, 0.35)" />
+                <path d="M90 170c30-20 80-20 110 0s70 20 110 0" stroke="rgba(15, 23, 42, 0.35)" stroke-width="3" fill="none" />
+                <path d="M210 60h70" stroke="rgba(15, 23, 42, 0.4)" stroke-width="3" stroke-linecap="round" />
+                <text x="36" y="70" fill="rgba(15, 23, 42, 0.55)" font-size="28" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace">AI</text>
+              </svg>
+              <div class="absolute left-3 top-3 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-600 shadow-sm dark:bg-slate-900/70 dark:text-slate-200">
+                Python
+              </div>
+            </div>
+            <h3 class="text-lg font-medium" data-i18n="projects.card3.title">Language Learning App</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.card3.body">
-              Data-driven application delivering insights with elegant visuals.
+              Spanish flashcard quiz with randomized prompts and score tracking.
             </p>
             <a
               class="mt-4 inline-block text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
+              href="https://github.com/Rezamollaei/Language_Learning_App"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Language Learning App on GitHub"
+              data-i18n="projects.card3.link"
+            >
+              View repository
+            </a>
+          </article>
+        </div>
+        <div class="mt-10 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h3 class="text-lg font-semibold" data-i18n="projects.publicTitle">Public repositories</h3>
+            <a
+              class="text-sm font-medium text-sky-600 transition hover:text-sky-500 dark:text-sky-300 dark:hover:text-sky-200"
               href="https://github.com/Rezamollaei?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View Project Three on GitHub"
-              data-i18n="projects.card3.link"
+              data-i18n="projects.publicAll"
             >
-              GitHub Repository
+              View all on GitHub
             </a>
-          </article>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.publicSubtitle">
+            Quick links to every public repo, from scripts to experiments.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Banking_programm" target="_blank" rel="noopener noreferrer">Banking_programm</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Budget_Tracker" target="_blank" rel="noopener noreferrer">Budget_Tracker</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Calculator" target="_blank" rel="noopener noreferrer">Calculator</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Compres_Decompres_file" target="_blank" rel="noopener noreferrer">Compres_Decompres_file</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Convert_Decimal_to_Binary" target="_blank" rel="noopener noreferrer">Convert_Decimal_to_Binary</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Copy_text_file" target="_blank" rel="noopener noreferrer">Copy_text_file</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Desktop_Cleaner" target="_blank" rel="noopener noreferrer">Desktop_Cleaner</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Encode_Decode" target="_blank" rel="noopener noreferrer">Encode_Decode</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/File_handling" target="_blank" rel="noopener noreferrer">File_handling</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Guess_my_Number" target="_blank" rel="noopener noreferrer">Guess_my_Number</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Hangman" target="_blank" rel="noopener noreferrer">Hangman</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Language_Learning_App" target="_blank" rel="noopener noreferrer">Language_Learning_App</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/League_Maker_inprogress" target="_blank" rel="noopener noreferrer">League_Maker_inprogress</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Need_to_learn" target="_blank" rel="noopener noreferrer">Need_to_learn</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Need_to_learn2" target="_blank" rel="noopener noreferrer">Need_to_learn2</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/PROJECT1" target="_blank" rel="noopener noreferrer">PROJECT1</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Quiz_Game" target="_blank" rel="noopener noreferrer">Quiz_Game</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Read_Write_File" target="_blank" rel="noopener noreferrer">Read_Write_File</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/Rock_paper_scissors_game" target="_blank" rel="noopener noreferrer">Rock_paper_scissors_game</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/TIC_TAC_TOE_GAME" target="_blank" rel="noopener noreferrer">TIC_TAC_TOE_GAME</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/bank" target="_blank" rel="noopener noreferrer">bank</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/football" target="_blank" rel="noopener noreferrer">football</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/model_window" target="_blank" rel="noopener noreferrer">model_window</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/pig_game" target="_blank" rel="noopener noreferrer">pig_game</a>
+            <a class="repo-pill" href="https://github.com/Rezamollaei/pythonProject2" target="_blank" rel="noopener noreferrer">pythonProject2</a>
+          </div>
         </div>
       </section>
 
@@ -403,7 +630,7 @@
       </section>
     </main>
 
-    <footer class="border-t border-slate-200/80 px-6 py-6 text-center text-sm text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
+    <footer class="relative z-10 border-t border-slate-200/80 px-6 py-6 text-center text-sm text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
       <p data-i18n="footer.rights">&copy; 2026 Reza Mollaei. All rights reserved.</p>
     </footer>
 
@@ -447,16 +674,19 @@
           'journey.event4.title': 'Full-stack delivery',
           'journey.event4.body': 'Ship complete web experiences from idea to production with measurable impact.',
           'projects.title': 'Projects',
-          'projects.subtitle': 'A snapshot of recent work and experiments.',
-          'projects.card1.title': 'Project One',
-          'projects.card1.body': 'Modern web experience with a focus on speed, clarity, and responsive design.',
-          'projects.card1.link': 'GitHub Repository',
-          'projects.card2.title': 'Project Two',
-          'projects.card2.body': 'Full-stack prototype connecting a clean UI with secure APIs.',
-          'projects.card2.link': 'GitHub Repository',
-          'projects.card3.title': 'Project Three',
-          'projects.card3.body': 'Data-driven application delivering insights with elegant visuals.',
-          'projects.card3.link': 'GitHub Repository',
+          'projects.subtitle': 'Featured public repositories and experiments.',
+          'projects.card1.title': 'Budget Tracker',
+          'projects.card1.body': 'CLI budget manager with JSON storage, expense tracking, and balance snapshots.',
+          'projects.card1.link': 'View repository',
+          'projects.card2.title': 'Quiz Game',
+          'projects.card2.body': 'Multiple-choice quiz engine with answer validation and instant scoring.',
+          'projects.card2.link': 'View repository',
+          'projects.card3.title': 'Language Learning App',
+          'projects.card3.body': 'Spanish flashcard quiz with randomized prompts and score tracking.',
+          'projects.card3.link': 'View repository',
+          'projects.publicTitle': 'Public repositories',
+          'projects.publicSubtitle': 'Quick links to every public repo, from scripts to experiments.',
+          'projects.publicAll': 'View all on GitHub',
           'skills.title': 'Skills',
           'skills.subtitle': 'Tooling and technologies I use every day.',
           'contact.title': 'Contact',
@@ -517,16 +747,19 @@
           'journey.event4.title': 'Delivery full-stack',
           'journey.event4.body': "Esperienze web complete dall'idea alla produzione con impatto misurabile.",
           'projects.title': 'Progetti',
-          'projects.subtitle': 'Una selezione di lavori recenti e sperimentazioni.',
-          'projects.card1.title': 'Progetto Uno',
-          'projects.card1.body': 'Esperienza web moderna con focus su velocità, chiarezza e design responsive.',
-          'projects.card1.link': 'Repository GitHub',
-          'projects.card2.title': 'Progetto Due',
-          'projects.card2.body': 'Prototipo full-stack che unisce UI pulita e API sicure.',
-          'projects.card2.link': 'Repository GitHub',
-          'projects.card3.title': 'Progetto Tre',
-          'projects.card3.body': 'Applicazione data-driven con insight e visual eleganti.',
-          'projects.card3.link': 'Repository GitHub',
+          'projects.subtitle': 'Repository pubblici in evidenza e sperimentazioni.',
+          'projects.card1.title': 'Budget Tracker',
+          'projects.card1.body': 'Gestore budget da terminale con storage JSON, spese e saldo.',
+          'projects.card1.link': 'Apri repository',
+          'projects.card2.title': 'Quiz Game',
+          'projects.card2.body': 'Quiz a scelta multipla con verifica risposte e punteggio immediato.',
+          'projects.card2.link': 'Apri repository',
+          'projects.card3.title': 'Language Learning App',
+          'projects.card3.body': 'Quiz di flashcard spagnolo con prompt casuali e punteggio.',
+          'projects.card3.link': 'Apri repository',
+          'projects.publicTitle': 'Repository pubblici',
+          'projects.publicSubtitle': 'Link rapidi a tutti i repo pubblici, dagli script agli esperimenti.',
+          'projects.publicAll': 'Vedi tutto su GitHub',
           'skills.title': 'Competenze',
           'skills.subtitle': 'Tecnologie e strumenti che uso ogni giorno.',
           'contact.title': 'Contatti',
@@ -605,6 +838,8 @@
       const setTheme = (theme) => {
         const isDark = theme === 'dark';
         document.documentElement.classList.toggle('dark', isDark);
+        document.body.classList.toggle('dark', isDark);
+        document.documentElement.style.colorScheme = theme;
         themeIcons.forEach((icon) => {
           icon.classList.toggle('hidden', icon.dataset.themeIcon !== theme);
         });
@@ -620,6 +855,37 @@
         const nextTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
         setTheme(nextTheme);
       });
+
+      const motionLayer = document.getElementById('motion-layer');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (motionLayer && !prefersReducedMotion) {
+        const symbols = ['</>', '{}', '[]', '()', '=>', 'AI', 'ML', '01', 'const', 'let', 'var', '++', '&&', '||', '#', ';'];
+        const chipCount = 18;
+
+        for (let i = 0; i < chipCount; i += 1) {
+          const chip = document.createElement('span');
+          const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+          const size = 10 + Math.random() * 12;
+          const duration = 12 + Math.random() * 18;
+          const delay = Math.random() * -20;
+          const rotation = `${Math.random() * 40 - 20}deg`;
+          const drift = `${Math.random() * 40 - 20}px`;
+
+          chip.className = 'motion-chip';
+          chip.textContent = symbol;
+          chip.style.left = `${Math.random() * 100}%`;
+          chip.style.top = `${Math.random() * 100}%`;
+          chip.style.fontSize = `${size}px`;
+          chip.style.setProperty('--duration', `${duration}s`);
+          chip.style.setProperty('--rotation', rotation);
+          chip.style.setProperty('--drift', drift);
+          chip.style.setProperty('--opacity', `${0.25 + Math.random() * 0.4}`);
+          chip.style.animationDelay = `${delay}s`;
+
+          motionLayer.appendChild(chip);
+        }
+      }
 
       const normalizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
       const sanitizeMultiLine = (value) => value.replace(/\r/g, '').trim();
