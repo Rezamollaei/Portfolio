@@ -589,18 +589,18 @@
           <p class="mt-3 text-slate-600 dark:text-slate-300" data-i18n="skills.subtitle">Tooling and technologies I use every day.</p>
         </div>
         <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">HTML5</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">CSS3</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">JavaScript</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">TypeScript</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Tailwind CSS</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">React</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Node.js</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Express</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">SQL</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Docker</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Git</div>
-          <div class="rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Vercel</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">HTML5</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">CSS3</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">JavaScript</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">TypeScript</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Tailwind CSS</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">React</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Node.js</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Express</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">SQL</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Docker</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Git</div>
+          <div class="skill-chip rounded-lg border border-slate-200/80 bg-white/70 px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">Vercel</div>
         </div>
       </section>
 
@@ -971,9 +971,13 @@
 
       const motionLayer = document.getElementById('motion-layer');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      const mobileQuery = window.matchMedia('(max-width: 640px)');
 
-      if (motionLayer && !prefersReducedMotion) {
+      const renderMotionLayer = () => {
+        if (!motionLayer || prefersReducedMotion) {
+          return;
+        }
+        motionLayer.innerHTML = '';
         const fallbackSkillSymbols = [
           'HTML5',
           'CSS3',
@@ -988,7 +992,7 @@
           'Git',
           'Vercel'
         ];
-        const skillSymbols = Array.from(document.querySelectorAll('#skills .grid > div'))
+        const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
           .map((skill) => skill.textContent.trim())
           .filter(Boolean);
         const mobileSymbols = skillSymbols.length ? skillSymbols : fallbackSkillSymbols;
@@ -1014,7 +1018,7 @@
           'let',
           'var'
         ];
-        const symbols = isMobile ? mobileSymbols : defaultSymbols;
+        const symbols = mobileQuery.matches ? mobileSymbols : defaultSymbols;
         const chipCount = 30;
 
         for (let i = 0; i < chipCount; i += 1) {
@@ -1038,6 +1042,15 @@
           chip.style.animationDelay = `${delay}s`;
 
           motionLayer.appendChild(chip);
+        }
+      };
+
+      if (motionLayer && !prefersReducedMotion) {
+        renderMotionLayer();
+        if (typeof mobileQuery.addEventListener === 'function') {
+          mobileQuery.addEventListener('change', renderMotionLayer);
+        } else if (typeof mobileQuery.addListener === 'function') {
+          mobileQuery.addListener(renderMotionLayer);
         }
       }
 
