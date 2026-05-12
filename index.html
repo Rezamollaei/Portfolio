@@ -290,8 +290,7 @@
                 Email
               </p>
               <a class="mt-3 block text-sm text-white" href="mailto:reza.mollaei@email.com"
-                >reza.mollaei@email.com</a
-              >
+                >reza.mollaei@email.com</a>
             </div>
             <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
               <p
@@ -302,17 +301,23 @@
               >
                 LinkedIn
               </p>
-              <a class="mt-3 block text-sm text-white" href="https://www.linkedin.com" target="_blank" rel="noreferrer"
-                >linkedin.com/in/rezamollaei</a
-              >
+              <a
+                class="mt-3 block text-sm text-white"
+                href="https://www.linkedin.com/in/rezamollaei"
+                target="_blank"
+                rel="noreferrer"
+                >linkedin.com/in/rezamollaei</a>
             </div>
             <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
               <p class="text-xs uppercase tracking-[0.2em] text-emerald-400/80" data-i18n data-en="GitHub" data-it="GitHub">
                 GitHub
               </p>
-              <a class="mt-3 block text-sm text-white" href="https://github.com" target="_blank" rel="noreferrer"
-                >github.com/rezamollaei</a
-              >
+              <a
+                class="mt-3 block text-sm text-white"
+                href="https://github.com/rezamollaei"
+                target="_blank"
+                rel="noreferrer"
+                >github.com/rezamollaei</a>
             </div>
           </div>
         </div>
@@ -355,9 +360,7 @@
         button.addEventListener("click", () => setLanguage(button.dataset.lang));
       });
 
-      const defaultLang = document.documentElement.lang || "en";
-      const preferredLang =
-        navigator.language && navigator.language.toLowerCase().startsWith("it") ? "it" : defaultLang;
+      const preferredLang = navigator.language && navigator.language.toLowerCase().startsWith("it") ? "it" : "en";
       setLanguage(preferredLang);
     </script>
   </body>
