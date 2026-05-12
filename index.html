@@ -1012,14 +1012,14 @@
         'let',
         'var'
       ];
-      let currentMotionMode;
+      let currentMotionMode = null;
 
       const renderMotionLayer = () => {
         if (!motionLayer || prefersReducedMotion) {
           return;
         }
         const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
-        if (currentMotionMode !== undefined && nextMode === currentMotionMode && motionLayer.childElementCount) {
+        if (currentMotionMode !== null && nextMode === currentMotionMode && motionLayer.childElementCount) {
           return;
         }
         currentMotionMode = nextMode;
