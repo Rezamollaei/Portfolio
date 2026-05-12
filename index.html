@@ -361,7 +361,7 @@
                 Send message
               </button>
               <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="contact.forwarding">
-                Messages to contact@rezamollaei.dev are forwarded to rmollaei@tulero.it.
+                Messages to contact@rezamollaei.dev are delivered to my primary inbox.
               </p>
             </form>
           </div>
@@ -470,7 +470,7 @@
           'contact.form.messagePlaceholder': 'Tell me about your project...',
           'contact.form.submit': 'Send message',
           'contact.form.emailSubject': 'New message from portfolio',
-          'contact.forwarding': 'Messages to contact@rezamollaei.dev are forwarded to rmollaei@tulero.it.',
+          'contact.forwarding': 'Messages to contact@rezamollaei.dev are delivered to my primary inbox.',
           'contact.directTitle': 'Direct links',
           'contact.directBody': 'Prefer a direct email or social profile? Reach me here.',
           'contact.directEmailLabel': 'Email',
@@ -540,7 +540,7 @@
           'contact.form.messagePlaceholder': 'Raccontami il tuo progetto...',
           'contact.form.submit': 'Invia messaggio',
           'contact.form.emailSubject': 'Nuovo messaggio dal portfolio',
-          'contact.forwarding': 'I messaggi a contact@rezamollaei.dev vengono inoltrati a rmollaei@tulero.it.',
+          'contact.forwarding': 'I messaggi a contact@rezamollaei.dev arrivano alla mia casella principale.',
           'contact.directTitle': 'Link diretti',
           'contact.directBody': 'Preferisci email o profili social? Contattami qui.',
           'contact.directEmailLabel': 'Email',
@@ -621,6 +621,9 @@
         setTheme(nextTheme);
       });
 
+      const sanitizeSingleLine = (value) => value.replace(/[\r\n]+/g, ' ').trim();
+      const sanitizeMultiLine = (value) => value.replace(/\r/g, '').trim();
+
       const contactForm = document.getElementById('contact-form');
       contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -629,9 +632,9 @@
           return;
         }
 
-        const name = document.getElementById('contact-name').value.trim();
-        const email = document.getElementById('contact-email').value.trim();
-        const message = document.getElementById('contact-message').value.trim();
+        const name = sanitizeSingleLine(document.getElementById('contact-name').value);
+        const email = sanitizeSingleLine(document.getElementById('contact-email').value);
+        const message = sanitizeMultiLine(document.getElementById('contact-message').value);
         const dictionary = translations[currentLanguage] || translations.en;
         const subject = dictionary['contact.form.emailSubject'] || 'New message from portfolio';
         const bodyLines = [
