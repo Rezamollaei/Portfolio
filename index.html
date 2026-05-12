@@ -872,8 +872,10 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
+        const MIN_PROJECTS_SCROLL_AMOUNT = 220;
+
         const scrollProjects = (direction) => {
-          const amount = Math.max(projectsCarousel.clientWidth * 0.9, 220);
+          const amount = Math.max(projectsCarousel.clientWidth * 0.9, MIN_PROJECTS_SCROLL_AMOUNT);
           projectsCarousel.scrollBy({
             left: direction * amount,
             behavior: 'smooth'
