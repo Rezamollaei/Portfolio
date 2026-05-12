@@ -1282,8 +1282,12 @@
         const computedProjectCardMinWidth = projectCardSample
           ? parseFloat(window.getComputedStyle(projectCardSample).minWidth)
           : Number.NaN;
-        // Fallback keeps behavior stable if computed min-width is unavailable.
-        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth) ? computedProjectCardMinWidth : 256;
+        const computedCarouselGap = parseFloat(window.getComputedStyle(projectsCarousel).gap);
+        const projectsCarouselGap = Number.isFinite(computedCarouselGap) ? computedCarouselGap : 0;
+        // Fallback keeps behavior stable if computed min-width is unavailable (16rem base card width).
+        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth)
+          ? computedProjectCardMinWidth + projectsCarouselGap
+          : 256;
         // 90% keeps a small overlap so users maintain visual continuity between clicks.
         const PROJECTS_SCROLL_PERCENTAGE = 0.9;
         // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
@@ -1334,86 +1338,72 @@
       const motionLayer = document.getElementById('motion-layer');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const mobileQuery = window.matchMedia('(max-width: 640px)');
-      const fallbackSkillSymbols = [
-        'HTML5',
-        'CSS3',
-        'JavaScript',
-        'TypeScript',
-        'Tailwind CSS',
-        'React',
-        'Node.js',
-        'Express',
-        'SQL',
-        'Docker',
-        'Git',
-        'Vercel'
-      ];
-      const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
-        .map((skill) => skill.textContent.trim())
-        .filter(Boolean);
-      const mobileSymbols = skillSymbols.length ? skillSymbols : fallbackSkillSymbols;
-      const defaultSymbols = [
-        '🐍 Python',
-        '🧮 C',
-        '⚙️ C++',
-        '✨ JS',
-        '🌐 HTML',
-        '🎨 CSS',
-        '🍃 MongoDB',
-        '⚛️ React',
-        '🐙 GitHub',
-        '🐳 Docker',
-        '🗄️ NoSQL',
-        '</>',
-        '{}',
-        '[]',
-        '()',
-        '=>',
-        '01',
-        'const',
-        'let',
-        'var'
-      ];
-      let currentMotionMode = null;
-
-      const renderMotionLayer = () => {
-        if (!motionLayer || prefersReducedMotion) {
-          return;
-        }
-        const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
-        if (currentMotionMode === nextMode) {
-          return;
-        }
-        currentMotionMode = nextMode;
-        motionLayer.innerHTML = '';
-        const symbols = nextMode === 'mobile' ? mobileSymbols : defaultSymbols;
-        const chipCount = 30;
-
-        for (let i = 0; i < chipCount; i += 1) {
-          const chip = document.createElement('span');
-          const symbol = symbols[Math.floor(Math.random() * symbols.length)];
-          const size = 10 + Math.random() * 12;
-          const duration = (12 + Math.random() * 18) * 0.8;
-          const delay = Math.random() * -20;
-          const rotation = `${Math.random() * 40 - 20}deg`;
-          const drift = `${Math.random() * 40 - 20}px`;
-
-          chip.className = 'motion-chip';
-          chip.textContent = symbol;
-          chip.style.left = `${Math.random() * 100}%`;
-          chip.style.top = `${Math.random() * 100}%`;
-          chip.style.fontSize = `${size}px`;
-          chip.style.setProperty('--duration', `${duration}s`);
-          chip.style.setProperty('--rotation', rotation);
-          chip.style.setProperty('--drift', drift);
-          chip.style.setProperty('--opacity', `${0.25 + Math.random() * 0.4}`);
-          chip.style.animationDelay = `${delay}s`;
-
-          motionLayer.appendChild(chip);
-        }
-      };
-
       if (motionLayer && !prefersReducedMotion) {
+        const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
+          .map((skill) => skill.textContent.trim())
+          .filter(Boolean);
+        const mobileSymbols = skillSymbols.length ? skillSymbols : [];
+        const defaultSymbols = [
+          '🐍 Python',
+          '🧮 C',
+          '⚙️ C++',
+          '✨ JS',
+          '🌐 HTML',
+          '🎨 CSS',
+          '🍃 MongoDB',
+          '⚛️ React',
+          '🐙 GitHub',
+          '🐳 Docker',
+          '🗄️ NoSQL',
+          '</>',
+          '{}',
+          '[]',
+          '()',
+          '=>',
+          '01',
+          'const',
+          'let',
+          'var'
+        ];
+        let currentMotionMode = null;
+
+        const renderMotionLayer = () => {
+          const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
+          if (currentMotionMode === nextMode) {
+            return;
+          }
+          currentMotionMode = nextMode;
+          motionLayer.innerHTML = '';
+          const symbols = nextMode === 'mobile' ? mobileSymbols : defaultSymbols;
+          if (!symbols.length) {
+            return;
+          }
+          const chipCount = 30;
+
+          for (let i = 0; i < chipCount; i += 1) {
+            const chip = document.createElement('span');
+            const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            const size = 10 + Math.random() * 12;
+            const duration = (12 + Math.random() * 18) * 0.8;
+            const delay = Math.random() * -20;
+            const rotation = `${Math.random() * 40 - 20}deg`;
+            const drift = `${Math.random() * 40 - 20}px`;
+
+            chip.className = 'motion-chip';
+            chip.textContent = symbol;
+            chip.style.left = `${Math.random() * 100}%`;
+            chip.style.top = `${Math.random() * 100}%`;
+            chip.style.fontSize = `${size}px`;
+            chip.style.setProperty('--duration', `${duration}s`);
+            chip.style.setProperty('--rotation', rotation);
+            chip.style.setProperty('--drift', drift);
+            chip.style.setProperty('--opacity', `${0.25 + Math.random() * 0.4}`);
+            chip.style.animationDelay = `${delay}s`;
+
+            motionLayer.appendChild(chip);
+          }
+        };
+
         renderMotionLayer();
         mobileQuery.addEventListener('change', renderMotionLayer);
       }
