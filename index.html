@@ -872,11 +872,15 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
-        // ~220px matches the minimum repo pill width so each click reveals at least one new full item.
-        const MIN_PROJECTS_SCROLL_AMOUNT = 220;
+        const repoPillSample = projectsCarousel.querySelector('.repo-pill');
+        const computedRepoPillMinWidth = repoPillSample ? parseFloat(window.getComputedStyle(repoPillSample).minWidth) : Number.NaN;
+        // Fallback keeps behavior stable if computed min-width is unavailable.
+        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedRepoPillMinWidth) ? computedRepoPillMinWidth : 220;
+        // 90% keeps a small overlap so users maintain visual continuity between clicks.
         const PROJECTS_SCROLL_PERCENTAGE = 0.9;
         // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
         const SCROLL_BOUNDARY_TOLERANCE = 1;
+        const RESIZE_DEBOUNCE_MS = 100;
 
         const updateProjectsNavState = () => {
           const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
@@ -911,7 +915,11 @@
         projectsPrev.addEventListener('click', () => scrollProjects(-1));
         projectsNext.addEventListener('click', () => scrollProjects(1));
         projectsCarousel.addEventListener('scroll', updateProjectsNavState, { passive: true });
-        window.addEventListener('resize', updateProjectsNavState);
+        let resizeDebounceTimer;
+        window.addEventListener('resize', () => {
+          window.clearTimeout(resizeDebounceTimer);
+          resizeDebounceTimer = window.setTimeout(updateProjectsNavState, RESIZE_DEBOUNCE_MS);
+        });
         updateProjectsNavState();
       }
 
