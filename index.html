@@ -972,53 +972,59 @@
       const motionLayer = document.getElementById('motion-layer');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const mobileQuery = window.matchMedia('(max-width: 640px)');
+      const fallbackSkillSymbols = [
+        'HTML5',
+        'CSS3',
+        'JavaScript',
+        'TypeScript',
+        'Tailwind CSS',
+        'React',
+        'Node.js',
+        'Express',
+        'SQL',
+        'Docker',
+        'Git',
+        'Vercel'
+      ];
+      const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
+        .map((skill) => skill.textContent.trim())
+        .filter(Boolean);
+      const mobileSymbols = skillSymbols.length ? skillSymbols : fallbackSkillSymbols;
+      const defaultSymbols = [
+        '🐍 Python',
+        '🧮 C',
+        '⚙️ C++',
+        '✨ JS',
+        '🌐 HTML',
+        '🎨 CSS',
+        '🍃 MongoDB',
+        '⚛️ React',
+        '🐙 GitHub',
+        '🐳 Docker',
+        '🗄️ NoSQL',
+        '</>',
+        '{}',
+        '[]',
+        '()',
+        '=>',
+        '01',
+        'const',
+        'let',
+        'var'
+      ];
+      let currentMotionMode;
 
       const renderMotionLayer = () => {
         if (!motionLayer || prefersReducedMotion) {
           return;
         }
+        const nextMode = mobileQuery.matches ? 'mobile' : 'desktop';
+        if (nextMode === currentMotionMode && motionLayer.childElementCount) {
+          return;
+        }
+        currentMotionMode = nextMode;
         motionLayer.innerHTML = '';
-        const fallbackSkillSymbols = [
-          'HTML5',
-          'CSS3',
-          'JavaScript',
-          'TypeScript',
-          'Tailwind CSS',
-          'React',
-          'Node.js',
-          'Express',
-          'SQL',
-          'Docker',
-          'Git',
-          'Vercel'
-        ];
-        const skillSymbols = Array.from(document.querySelectorAll('#skills .skill-chip'))
-          .map((skill) => skill.textContent.trim())
-          .filter(Boolean);
-        const mobileSymbols = skillSymbols.length ? skillSymbols : fallbackSkillSymbols;
-        const defaultSymbols = [
-          '🐍 Python',
-          '🧮 C',
-          '⚙️ C++',
-          '✨ JS',
-          '🌐 HTML',
-          '🎨 CSS',
-          '🍃 MongoDB',
-          '⚛️ React',
-          '🐙 GitHub',
-          '🐳 Docker',
-          '🗄️ NoSQL',
-          '</>',
-          '{}',
-          '[]',
-          '()',
-          '=>',
-          '01',
-          'const',
-          'let',
-          'var'
-        ];
-        const symbols = mobileQuery.matches ? mobileSymbols : defaultSymbols;
+        const symbols = nextMode === 'mobile' ? mobileSymbols : defaultSymbols;
         const chipCount = 30;
 
         for (let i = 0; i < chipCount; i += 1) {
