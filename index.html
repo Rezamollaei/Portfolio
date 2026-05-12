@@ -872,13 +872,14 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
-        // Keeps navigation movement meaningful even on very narrow screens.
+        // ~220px matches the minimum repo pill width so each click reveals at least one new full item.
         const MIN_PROJECTS_SCROLL_AMOUNT = 220;
+        const SCROLL_BOUNDARY_TOLERANCE = 1;
 
         const updateProjectsNavState = () => {
           const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
-          const atStart = projectsCarousel.scrollLeft <= 1;
-          const atEnd = projectsCarousel.scrollLeft >= maxScrollLeft - 1;
+          const atStart = projectsCarousel.scrollLeft <= SCROLL_BOUNDARY_TOLERANCE;
+          const atEnd = projectsCarousel.scrollLeft >= maxScrollLeft - SCROLL_BOUNDARY_TOLERANCE;
 
           [projectsPrev, projectsNext].forEach((button) => {
             button.classList.remove('opacity-50', 'cursor-not-allowed');
