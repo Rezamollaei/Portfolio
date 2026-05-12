@@ -205,6 +205,7 @@
       .project-visual {
         position: relative;
         overflow: hidden;
+        height: 8.5rem;
       }
 
       .project-visual svg {
@@ -235,33 +236,56 @@
         opacity: 0.35;
       }
 
-      .repo-pill {
-        display: inline-flex;
-        align-items: center;
-        border-radius: 9999px;
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        border-radius: 1rem;
         border: 1px solid rgba(226, 232, 240, 0.9);
-        background: rgba(255, 255, 255, 0.7);
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #475569;
-        transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+        background: rgba(255, 255, 255, 0.75);
+        color: inherit;
+        text-decoration: none;
+        overflow: hidden;
+        transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
       }
 
-      .repo-pill:hover {
-        border-color: rgba(148, 163, 184, 0.8);
+      .project-card:hover {
+        border-color: rgba(148, 163, 184, 0.9);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      }
+
+      .project-card .project-body {
+        padding: 0.75rem 1rem 1rem;
+      }
+
+      .project-card .project-title {
+        font-size: 0.9rem;
+        font-weight: 600;
         color: #0f172a;
       }
 
-      .dark .repo-pill {
-        border-color: rgba(51, 65, 85, 0.8);
-        background: rgba(15, 23, 42, 0.7);
-        color: #e2e8f0;
+      .project-card .project-meta {
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+        color: #64748b;
       }
 
-      .dark .repo-pill:hover {
-        border-color: rgba(100, 116, 139, 0.8);
+      .dark .project-card {
+        border-color: rgba(51, 65, 85, 0.8);
+        background: rgba(15, 23, 42, 0.7);
+      }
+
+      .dark .project-card:hover {
+        border-color: rgba(100, 116, 139, 0.9);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.5);
+      }
+
+      .dark .project-card .project-title {
         color: #f8fafc;
+      }
+
+      .dark .project-card .project-meta {
+        color: #94a3b8;
       }
 
       .project-carousel {
@@ -273,11 +297,9 @@
         display: none;
       }
 
-      .project-carousel .repo-pill {
-        min-width: 14rem;
-        justify-content: center;
-        padding: 0.75rem 1rem;
-        font-size: 0.875rem;
+      .project-carousel .project-card {
+        min-width: 16rem;
+        flex: 0 0 auto;
       }
 
       #contact {
@@ -552,33 +574,371 @@
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.publicSubtitle">
             Quick links to every public repo, from scripts to experiments.
           </p>
-          <div id="projects-carousel" class="project-carousel mt-4 flex gap-3 overflow-x-auto pb-2">
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Banking_programm" target="_blank" rel="noopener noreferrer">Banking_programm</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Budget_Tracker" target="_blank" rel="noopener noreferrer">Budget_Tracker</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Calculator" target="_blank" rel="noopener noreferrer">Calculator</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Compres_Decompres_file" target="_blank" rel="noopener noreferrer">Compres_Decompres_file</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Convert_Decimal_to_Binary" target="_blank" rel="noopener noreferrer">Convert_Decimal_to_Binary</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Copy_text_file" target="_blank" rel="noopener noreferrer">Copy_text_file</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Desktop_Cleaner" target="_blank" rel="noopener noreferrer">Desktop_Cleaner</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Encode_Decode" target="_blank" rel="noopener noreferrer">Encode_Decode</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/File_handling" target="_blank" rel="noopener noreferrer">File_handling</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Guess_my_Number" target="_blank" rel="noopener noreferrer">Guess_my_Number</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Hangman" target="_blank" rel="noopener noreferrer">Hangman</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Language_Learning_App" target="_blank" rel="noopener noreferrer">Language_Learning_App</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/League_Maker_inprogress" target="_blank" rel="noopener noreferrer">League_Maker_inprogress</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Need_to_learn" target="_blank" rel="noopener noreferrer">Need_to_learn</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Need_to_learn2" target="_blank" rel="noopener noreferrer">Need_to_learn2</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/PROJECT1" target="_blank" rel="noopener noreferrer">PROJECT1</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Portfolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Quiz_Game" target="_blank" rel="noopener noreferrer">Quiz_Game</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Read_Write_File" target="_blank" rel="noopener noreferrer">Read_Write_File</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/Rock_paper_scissors_game" target="_blank" rel="noopener noreferrer">Rock_paper_scissors_game</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/TIC_TAC_TOE_GAME" target="_blank" rel="noopener noreferrer">TIC_TAC_TOE_GAME</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/bank" target="_blank" rel="noopener noreferrer">bank</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/football" target="_blank" rel="noopener noreferrer">football</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/model_window" target="_blank" rel="noopener noreferrer">model_window</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/pig_game" target="_blank" rel="noopener noreferrer">pig_game</a>
-            <a class="repo-pill" href="https://github.com/Rezamollaei/pythonProject2" target="_blank" rel="noopener noreferrer">pythonProject2</a>
+          <div id="projects-carousel" class="project-carousel mt-4 flex gap-4 overflow-x-auto pb-2">
+            <a class="project-card" href="https://github.com/Rezamollaei/Banking_programm" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Banking_programm"
+                  alt="Banking_programm preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Banking_programm</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Budget_Tracker" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Budget_Tracker"
+                  alt="Budget_Tracker preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Budget_Tracker</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Calculator" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Calculator"
+                  alt="Calculator preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Calculator</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Compres_Decompres_file" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Compres_Decompres_file"
+                  alt="Compres_Decompres_file preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Compres_Decompres_file</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Convert_Decimal_to_Binary" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Convert_Decimal_to_Binary"
+                  alt="Convert_Decimal_to_Binary preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Convert_Decimal_to_Binary</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Copy_text_file" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Copy_text_file"
+                  alt="Copy_text_file preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Copy_text_file</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Desktop_Cleaner" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Desktop_Cleaner"
+                  alt="Desktop_Cleaner preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Desktop_Cleaner</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Encode_Decode" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Encode_Decode"
+                  alt="Encode_Decode preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Encode_Decode</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/File_handling" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/File_handling"
+                  alt="File_handling preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">File_handling</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Guess_my_Number" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Guess_my_Number"
+                  alt="Guess_my_Number preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Guess_my_Number</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Hangman" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Hangman"
+                  alt="Hangman preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Hangman</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Language_Learning_App" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Language_Learning_App"
+                  alt="Language_Learning_App preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Language_Learning_App</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/League_Maker_inprogress" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/League_Maker_inprogress"
+                  alt="League_Maker_inprogress preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">League_Maker_inprogress</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Need_to_learn" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Need_to_learn"
+                  alt="Need_to_learn preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Need_to_learn</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Need_to_learn2" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Need_to_learn2"
+                  alt="Need_to_learn2 preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Need_to_learn2</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/PROJECT1" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/PROJECT1"
+                  alt="PROJECT1 preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">PROJECT1</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Portfolio" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Portfolio"
+                  alt="Portfolio preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Portfolio</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Quiz_Game" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Quiz_Game"
+                  alt="Quiz_Game preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Quiz_Game</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Read_Write_File" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Read_Write_File"
+                  alt="Read_Write_File preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Read_Write_File</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/Rock_paper_scissors_game" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/Rock_paper_scissors_game"
+                  alt="Rock_paper_scissors_game preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">Rock_paper_scissors_game</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/TIC_TAC_TOE_GAME" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/TIC_TAC_TOE_GAME"
+                  alt="TIC_TAC_TOE_GAME preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">TIC_TAC_TOE_GAME</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/bank" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/bank"
+                  alt="bank preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">bank</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/football" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/football"
+                  alt="football preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">football</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/model_window" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/model_window"
+                  alt="model_window preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">model_window</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/pig_game" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/pig_game"
+                  alt="pig_game preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">pig_game</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
+            <a class="project-card" href="https://github.com/Rezamollaei/pythonProject2" target="_blank" rel="noopener noreferrer">
+              <div class="project-visual">
+                <img
+                  src="https://opengraph.githubassets.com/1/Rezamollaei/pythonProject2"
+                  alt="pythonProject2 preview"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-body">
+                <p class="project-title">pythonProject2</p>
+                <p class="project-meta">GitHub repository</p>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -918,10 +1278,12 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
-        const repoPillSample = projectsCarousel.querySelector('.repo-pill');
-        const computedRepoPillMinWidth = repoPillSample ? parseFloat(window.getComputedStyle(repoPillSample).minWidth) : Number.NaN;
+        const projectCardSample = projectsCarousel.querySelector('.project-card');
+        const computedProjectCardMinWidth = projectCardSample
+          ? parseFloat(window.getComputedStyle(projectCardSample).minWidth)
+          : Number.NaN;
         // Fallback keeps behavior stable if computed min-width is unavailable.
-        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedRepoPillMinWidth) ? computedRepoPillMinWidth : 220;
+        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth) ? computedProjectCardMinWidth : 220;
         // 90% keeps a small overlap so users maintain visual continuity between clicks.
         const PROJECTS_SCROLL_PERCENTAGE = 0.9;
         // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
