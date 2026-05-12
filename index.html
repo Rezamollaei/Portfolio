@@ -552,23 +552,33 @@
       const langButtons = document.querySelectorAll('[data-lang]');
       let currentLanguage = 'en';
 
+      const resolveLanguage = (lang) => (translations[lang] ? lang : 'en');
+
+      const updateElements = (elements, dictionary, keySelector, applyValue) => {
+        elements.forEach((element) => {
+          const key = keySelector(element);
+          if (dictionary[key]) {
+            applyValue(element, dictionary[key]);
+          }
+        });
+      };
+
       const setLanguage = (lang) => {
-        const dictionary = translations[lang] || translations.en;
-        currentLanguage = translations[lang] ? lang : 'en';
+        currentLanguage = resolveLanguage(lang);
+        const dictionary = translations[currentLanguage];
 
-        translatableElements.forEach((element) => {
-          const key = element.dataset.i18n;
-          if (dictionary[key]) {
-            element.textContent = dictionary[key];
-          }
+        updateElements(translatableElements, dictionary, (element) => element.dataset.i18n, (element, value) => {
+          element.textContent = value;
         });
 
-        placeholderElements.forEach((element) => {
-          const key = element.dataset.i18nPlaceholder;
-          if (dictionary[key]) {
-            element.placeholder = dictionary[key];
+        updateElements(
+          placeholderElements,
+          dictionary,
+          (element) => element.dataset.i18nPlaceholder,
+          (element, value) => {
+            element.placeholder = value;
           }
-        });
+        );
 
         langButtons.forEach((button) => {
           button.setAttribute('aria-pressed', button.dataset.lang === currentLanguage);
@@ -610,13 +620,25 @@
       const contactForm = document.getElementById('contact-form');
       contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
+        }
+
         const name = document.getElementById('contact-name').value.trim();
         const email = document.getElementById('contact-email').value.trim();
         const message = document.getElementById('contact-message').value.trim();
         const dictionary = translations[currentLanguage] || translations.en;
         const subject = dictionary['contact.form.emailSubject'] || 'New message from portfolio';
-        const body = `${dictionary['contact.form.nameLabel']}: ${name || '-'}\n${dictionary['contact.form.emailLabel']}: ${email || '-'}\n\n${dictionary['contact.form.messageLabel']}:\n${message || '-'}`;
+        const bodyLines = [
+          `${dictionary['contact.form.nameLabel']}: ${name || '-'}`,
+          `${dictionary['contact.form.emailLabel']}: ${email || '-'}`,
+          '',
+          `${dictionary['contact.form.messageLabel']}:`,
+          message || '-'
+        ];
 
+        const body = bodyLines.join('\n');
         window.location.href = `mailto:contact@rezamollaei.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       });
     </script>
