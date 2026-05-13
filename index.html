@@ -1588,6 +1588,7 @@
         const defaultProjectDescription = 'Creative project concept';
         const mobileExitAnimationDuration = 350;
         const mobileEnterAnimationDuration = 700;
+        const mobileTotalAnimationDuration = mobileExitAnimationDuration + mobileEnterAnimationDuration;
         const projectImageMap = new Map([
           ['banking_programm', 'assets/project-banking.svg'],
           ['budget_tracker', 'assets/project-budget.svg'],
@@ -1740,7 +1741,6 @@
         let currentProjectIndex = initialCenterIndex;
 
         const updateProjectPositions = () => {
-          currentVisibleCount = getProjectCarouselVisibleCount();
           projectsCarousel.classList.toggle('is-mobile', currentVisibleCount === mobileCarouselVisibleCount);
 
           projectCards.forEach((card) => {
@@ -1807,7 +1807,7 @@
             const activeCard = projectCards[currentProjectIndex];
             const exitClass = direction > 0 ? 'project-exit-to-left' : 'project-exit-to-right';
             const enterClass = direction > 0 ? 'project-enter-from-right' : 'project-enter-from-left';
-            lockProjectMotion(mobileExitAnimationDuration + mobileEnterAnimationDuration);
+            lockProjectMotion(mobileTotalAnimationDuration);
             activeCard.classList.add(exitClass);
             setTimeout(() => {
               currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
@@ -1838,7 +1838,8 @@
         mobileCarouselQuery.addEventListener('change', () => {
           resetProjectMotionClasses();
           clearTimeout(motionCooldownTimer);
-          isProjectMotionLocked = false;
+          releaseProjectMotionLock();
+          currentVisibleCount = getProjectCarouselVisibleCount();
           updateProjectPositions();
         });
       }
