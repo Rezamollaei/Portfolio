@@ -238,6 +238,7 @@
 
       .project-card {
         --project-scale: 0.94;
+        --project-shift: 0px;
         display: none;
         flex-direction: column;
         border-radius: 1rem;
@@ -248,8 +249,9 @@
         overflow: hidden;
         opacity: 0;
         pointer-events: none;
-        transform: scale(var(--project-scale));
-        transition: border-color 200ms ease, transform 300ms ease, box-shadow 300ms ease, opacity 250ms ease;
+        transform: translateX(var(--project-shift)) scale(var(--project-scale));
+        transition: border-color 220ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 350ms ease, opacity 700ms ease;
+        will-change: transform, opacity;
       }
 
       .project-card.is-left,
@@ -262,16 +264,19 @@
 
       .project-card.is-left {
         grid-column: 1;
+        --project-shift: -8%;
       }
 
       .project-card.is-center {
         grid-column: 2;
         --project-scale: 1.05;
+        --project-shift: 0%;
         z-index: 1;
       }
 
       .project-card.is-right {
         grid-column: 3;
+        --project-shift: 8%;
       }
 
       .project-card:hover {
@@ -316,6 +321,7 @@
       }
 
       .project-carousel {
+        position: relative;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1.25rem;
@@ -325,6 +331,90 @@
 
       .project-carousel .project-card {
         min-width: 0;
+      }
+
+      .project-carousel.is-mobile {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .project-carousel.is-mobile .project-card.is-center {
+        grid-column: 1;
+        --project-scale: 1;
+      }
+
+      .project-nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+      }
+
+      .project-nav-button.is-left {
+        left: 0;
+      }
+
+      .project-nav-button.is-right {
+        right: 0;
+      }
+
+      .project-card.project-enter-from-right {
+        animation: project-enter-from-right 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .project-card.project-enter-from-left {
+        animation: project-enter-from-left 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .project-card.project-exit-to-left {
+        animation: project-exit-to-left 350ms ease forwards;
+      }
+
+      .project-card.project-exit-to-right {
+        animation: project-exit-to-right 350ms ease forwards;
+      }
+
+      @keyframes project-enter-from-right {
+        from {
+          opacity: 0;
+          transform: translateX(12%) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      @keyframes project-enter-from-left {
+        from {
+          opacity: 0;
+          transform: translateX(-12%) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      @keyframes project-exit-to-left {
+        from {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-12%) scale(0.96);
+        }
+      }
+
+      @keyframes project-exit-to-right {
+        from {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(12%) scale(0.96);
+        }
       }
 
       #contact {
@@ -352,69 +442,48 @@
         .motion-chip {
           animation: none;
         }
+
+        .project-card {
+          transition: none;
+        }
+
+        .project-card.project-enter-from-right,
+        .project-card.project-enter-from-left,
+        .project-card.project-exit-to-left,
+        .project-card.project-exit-to-right {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .project-carousel {
+          gap: 0.75rem;
+        }
+
+        .project-nav-button.is-left {
+          left: 0.25rem;
+        }
+
+        .project-nav-button.is-right {
+          right: 0.25rem;
+        }
       }
     </style>
   </head>
   <body class="relative bg-slate-100 text-slate-900 antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
     <div id="motion-layer" class="motion-layer" aria-hidden="true"></div>
     <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-800/80 dark:bg-slate-950/85">
-      <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <div>
-          <h1 class="text-lg font-semibold tracking-tight">Reza Mollaei</h1>
-          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="nav.role">Full-Stack Developer</p>
-        </div>
-        <div class="flex flex-wrap items-center gap-4">
-          <ul class="flex flex-wrap items-center gap-4 text-sm text-slate-600 dark:text-slate-300">
-            <li>
-              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#about">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <circle cx="12" cy="8" r="3.5" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20c1.9-4 5-6 7.5-6s5.6 2 7.5 6" />
-                </svg>
-                <span data-i18n="nav.about">About</span>
-              </a>
-            </li>
-            <li>
-              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#journey">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <circle cx="6" cy="18" r="2" />
-                  <circle cx="18" cy="6" r="2" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 18c2.5-5 6-7.5 10-10" />
-                </svg>
-                <span data-i18n="nav.journey">Journey</span>
-              </a>
-            </li>
-            <li>
-              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#projects">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
-                </svg>
-                <span data-i18n="nav.projects">Projects</span>
-              </a>
-            </li>
-            <li>
-              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#skills">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" />
-                </svg>
-                <span data-i18n="nav.skills">Skills</span>
-              </a>
-            </li>
-            <li>
-              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#contact">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M22 8l-10 6L2 8" />
-                </svg>
-                <span data-i18n="nav.contact">Contact</span>
-              </a>
-            </li>
-          </ul>
+      <nav class="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
+        <div class="flex items-start justify-between gap-3 sm:items-center">
+          <div>
+            <h1 class="text-lg font-semibold tracking-tight">Reza Mollaei</h1>
+            <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="nav.role">Full-Stack Developer</p>
+          </div>
           <div class="flex items-center gap-2">
-            <div class="flex items-center rounded-full border border-slate-200 bg-white/70 p-1 text-xs font-semibold uppercase text-slate-500 shadow-sm dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
+            <div class="flex items-center rounded-full border border-slate-200 bg-white/70 p-1 text-[10px] font-semibold uppercase text-slate-500 shadow-sm sm:text-xs dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300">
               <span class="sr-only" data-i18n="nav.language">Language</span>
-              <button class="lang-button rounded-full px-3 py-1" type="button" data-lang="en" aria-pressed="true">EN</button>
-              <button class="lang-button rounded-full px-3 py-1" type="button" data-lang="it" aria-pressed="false">IT</button>
+              <button class="lang-button rounded-full px-2 py-1 sm:px-3" type="button" data-lang="en" aria-pressed="true">EN</button>
+              <button class="lang-button rounded-full px-2 py-1 sm:px-3" type="button" data-lang="it" aria-pressed="false">IT</button>
             </div>
             <button
               id="theme-toggle"
@@ -462,6 +531,52 @@
             </button>
           </div>
         </div>
+        <ul class="mt-3 flex items-center gap-4 overflow-x-auto whitespace-nowrap pb-1 text-sm text-slate-600 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden dark:text-slate-300 sm:mt-4">
+            <li>
+              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#about">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3.5" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20c1.9-4 5-6 7.5-6s5.6 2 7.5 6" />
+                </svg>
+                <span data-i18n="nav.about">About</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#journey">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="6" cy="18" r="2" />
+                  <circle cx="18" cy="6" r="2" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 18c2.5-5 6-7.5 10-10" />
+                </svg>
+                <span data-i18n="nav.journey">Journey</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#projects">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
+                </svg>
+                <span data-i18n="nav.projects">Projects</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#skills">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z" />
+                </svg>
+                <span data-i18n="nav.skills">Skills</span>
+              </a>
+            </li>
+            <li>
+              <a class="inline-flex items-center gap-2 transition hover:text-slate-900 dark:hover:text-white" href="#contact">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M22 8l-10 6L2 8" />
+                </svg>
+                <span data-i18n="nav.contact">Contact</span>
+              </a>
+            </li>
+        </ul>
       </nav>
     </header>
 
@@ -568,39 +683,30 @@
         <div class="mt-8 rounded-2xl border border-slate-200/80 bg-white/70 p-6 shadow-sm dark:border-slate-800/80 dark:bg-slate-900/60">
           <div class="flex flex-wrap items-center justify-between gap-3">
             <h3 class="text-lg font-semibold" data-i18n="projects.publicTitle">Public repositories</h3>
-            <div class="flex items-center gap-2">
-              <button
-                id="projects-prev"
-                class="rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
-                type="button"
-              >
-                <span aria-hidden="true">←</span>
-                <span class="sr-only" data-i18n="projects.prev">Previous projects</span>
-              </button>
-              <button
-                id="projects-next"
-                class="rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
-                type="button"
-              >
-                <span aria-hidden="true">→</span>
-                <span class="sr-only" data-i18n="projects.next">Next projects</span>
-              </button>
-              <a
-                class="text-sm font-medium accent-link"
-                href="https://github.com/Rezamollaei?tab=repositories"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-i18n="projects.publicAll"
-              >
-                View all on GitHub
-              </a>
-            </div>
+            <a
+              class="text-sm font-medium accent-link"
+              href="https://github.com/Rezamollaei?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="projects.publicAll"
+            >
+              View all on GitHub
+            </a>
           </div>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.publicSubtitle">
             Quick links to every public repo, from scripts to experiments.
           </p>
-          <div id="projects-carousel" class="project-carousel mt-6">
-            <a
+          <div class="relative mt-6 px-6 sm:px-10">
+            <button
+              id="projects-prev"
+              class="project-nav-button is-left rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+              type="button"
+            >
+              <span aria-hidden="true">←</span>
+              <span class="sr-only" data-i18n="projects.prev">Previous projects</span>
+            </button>
+            <div id="projects-carousel" class="project-carousel">
+              <a
               class="project-card"
               href="https://github.com/Rezamollaei/Banking_programm"
               target="_blank"
@@ -1100,7 +1206,7 @@
                 <p class="project-meta">Pig dice game with roll/hold mechanics.</p>
               </div>
             </a>
-            <a
+              <a
               class="project-card"
               href="https://github.com/Rezamollaei/pythonProject2"
               target="_blank"
@@ -1119,7 +1225,16 @@
                 <p class="project-title">pythonProject2</p>
                 <p class="project-meta">Python exercises and mini-projects collection.</p>
               </div>
-            </a>
+              </a>
+            </div>
+            <button
+              id="projects-next"
+              class="project-nav-button is-right rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+              type="button"
+            >
+              <span aria-hidden="true">→</span>
+              <span class="sr-only" data-i18n="projects.next">Next projects</span>
+            </button>
           </div>
         </div>
       </section>
@@ -1461,12 +1576,28 @@
       if (projectsCarousel && projectsPrev && projectsNext) {
         const projectCards = Array.from(projectsCarousel.querySelectorAll('.project-card'));
         const projectPositions = ['is-left', 'is-center', 'is-right'];
-        const projectCarouselVisibleCount = 3;
+        const desktopCarouselVisibleCount = 3;
+        const mobileCarouselVisibleCount = 1;
+        const mobileCarouselQuery = window.matchMedia('(max-width: 640px)');
+        const getProjectCarouselVisibleCount = () =>
+          mobileCarouselQuery.matches ? mobileCarouselVisibleCount : desktopCarouselVisibleCount;
         const maxDescriptionLength = 62;
         const descriptionEllipsis = '…';
         const hashMultiplier = 31;
         const defaultProjectTitle = 'Project';
         const defaultProjectDescription = 'Creative project concept';
+        const mobileExitAnimationDuration = 350;
+        const mobileEnterAnimationDuration = 700;
+        const mobileTotalAnimationDuration = mobileExitAnimationDuration + mobileEnterAnimationDuration;
+        const desktopMotionDuration = 700;
+        const projectImageMap = new Map([
+          ['banking_programm', 'assets/project-banking.svg'],
+          ['budget_tracker', 'assets/project-budget.svg'],
+          ['calculator', 'assets/project-calculator.svg']
+        ]);
+        let motionCooldownTimer = null;
+        let isProjectMotionLocked = false;
+        let currentVisibleCount = getProjectCarouselVisibleCount();
 
         const hashTextToNumber = (value) => {
           let hash = 0;
@@ -1506,32 +1637,43 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
               <defs>
                 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="hsl(${hue}, 70%, 55%)" />
-                  <stop offset="100%" stop-color="hsl(${accentHue}, 70%, 45%)" />
+                  <stop offset="0%" stop-color="hsl(${hue}, 58%, 30%)" />
+                  <stop offset="100%" stop-color="hsl(${accentHue}, 72%, 50%)" />
                 </linearGradient>
-                <radialGradient id="glow" cx="0.2" cy="0.2" r="0.8">
-                  <stop offset="0%" stop-color="hsla(${glowHue}, 90%, 80%, 0.75)" />
-                  <stop offset="100%" stop-color="hsla(${glowHue}, 90%, 70%, 0)" />
-                </radialGradient>
               </defs>
-              <rect width="1200" height="630" fill="url(#bg)" />
-              <rect width="1200" height="630" fill="url(#glow)" opacity="0.65" />
-              <circle cx="${orbOneX}" cy="${orbOneY}" r="140" fill="hsla(${accentHue}, 80%, 85%, 0.35)" />
-              <circle cx="${orbTwoX}" cy="${orbTwoY}" r="170" fill="hsla(${hue}, 80%, 85%, 0.25)" />
-              <path d="M80 430 H1120" stroke="hsla(${glowHue}, 70%, 90%, 0.4)" stroke-width="4" stroke-linecap="round" />
-              <text x="80" y="510" font-family="Arial, sans-serif" font-size="64" font-weight="700" fill="rgba(255,255,255,0.9)">
+              <rect width="1200" height="630" rx="42" fill="url(#bg)" />
+              <rect x="84" y="82" width="1032" height="466" rx="30" fill="rgba(15,23,42,0.62)" />
+              <rect x="124" y="122" width="952" height="66" rx="18" fill="rgba(255,255,255,0.18)" />
+              <circle cx="170" cy="155" r="10" fill="rgba(248,250,252,0.75)" />
+              <circle cx="205" cy="155" r="10" fill="rgba(248,250,252,0.52)" />
+              <circle cx="240" cy="155" r="10" fill="rgba(248,250,252,0.35)" />
+              <rect x="124" y="216" width="560" height="292" rx="24" fill="rgba(255,255,255,0.12)" />
+              <rect x="714" y="216" width="362" height="132" rx="24" fill="hsla(${glowHue}, 88%, 82%, 0.2)" />
+              <rect x="714" y="376" width="362" height="132" rx="24" fill="hsla(${accentHue}, 88%, 82%, 0.2)" />
+              <circle cx="${orbOneX}" cy="${orbOneY}" r="120" fill="hsla(${accentHue}, 80%, 85%, 0.16)" />
+              <circle cx="${orbTwoX}" cy="${orbTwoY}" r="140" fill="hsla(${hue}, 80%, 85%, 0.13)" />
+              <path d="M162 380 C280 290, 418 290, 540 380" stroke="hsla(${glowHue}, 75%, 88%, 0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
+              <path d="M162 430 C280 345, 418 345, 540 430" stroke="hsla(${accentHue}, 75%, 88%, 0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
+              <text x="158" y="286" font-family="Arial, sans-serif" font-size="30" font-weight="600" fill="rgba(255,255,255,0.86)">
                 ${safeTitle}
               </text>
-              <text x="80" y="565" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.85)">
+              <text x="158" y="330" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)">
                 ${safeDescription}
-              </text>
-              <text x="1040" y="120" font-family="Arial, sans-serif" font-size="36" font-weight="600" fill="rgba(255,255,255,0.8)">
-                AI
               </text>
             </svg>
           `;
 
           return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg.trim())}`;
+        };
+
+        const getProjectSlug = (card) => {
+          try {
+            const projectUrl = card.getAttribute('href') || '';
+            const urlPath = new URL(projectUrl).pathname;
+            return urlPath.split('/').filter(Boolean).pop()?.toLowerCase() || '';
+          } catch (error) {
+            return '';
+          }
         };
 
         const applyProjectArt = () => {
@@ -1542,8 +1684,10 @@
             if (!image) {
               return;
             }
-            image.src = buildProjectArt(title, description);
-            image.alt = title ? `AI illustration of ${title}` : 'AI illustration for project';
+            const slug = getProjectSlug(card);
+            const mappedImage = projectImageMap.get(slug);
+            image.src = mappedImage || buildProjectArt(title, description);
+            image.alt = title ? `Project preview for ${title}` : 'Project preview';
           });
         };
 
@@ -1563,13 +1707,43 @@
           }
           return projectPositions;
         };
+        const resetProjectMotionClasses = () => {
+          projectsCarousel.classList.remove('is-sliding-next', 'is-sliding-prev');
+          projectCards.forEach((card) => {
+            card.classList.remove(
+              'project-enter-from-right',
+              'project-enter-from-left',
+              'project-exit-to-left',
+              'project-exit-to-right'
+            );
+          });
+        };
+
+        const releaseProjectMotionLock = () => {
+          isProjectMotionLocked = false;
+          setButtonState(projectsPrev, false);
+          setButtonState(projectsNext, false);
+        };
+
+        const lockProjectMotion = (duration) => {
+          isProjectMotionLocked = true;
+          setButtonState(projectsPrev, true);
+          setButtonState(projectsNext, true);
+          clearTimeout(motionCooldownTimer);
+          motionCooldownTimer = setTimeout(() => {
+            releaseProjectMotionLock();
+          }, duration);
+        };
+
         const initialCenteredProjectIndex = 1;
         const wrapIndex = (index, length) => ((index % length) + length) % length;
         const initialCenterIndex =
-          projectCards.length >= projectCarouselVisibleCount ? initialCenteredProjectIndex : 0;
+          projectCards.length >= desktopCarouselVisibleCount ? initialCenteredProjectIndex : 0;
         let currentProjectIndex = initialCenterIndex;
 
         const updateProjectPositions = () => {
+          projectsCarousel.classList.toggle('is-mobile', currentVisibleCount === mobileCarouselVisibleCount);
+
           projectCards.forEach((card) => {
             card.classList.remove(...projectPositions);
             card.setAttribute('aria-hidden', 'true');
@@ -1582,7 +1756,7 @@
             return;
           }
 
-          if (projectCards.length <= projectCarouselVisibleCount) {
+          if (projectCards.length <= currentVisibleCount) {
             const visiblePositions = getVisiblePositionsForCount(projectCards.length);
             projectCards.forEach((card, index) => {
               const positionClass = visiblePositions[index] || 'is-center';
@@ -1595,14 +1769,22 @@
             return;
           }
 
-          const leftIndex = wrapIndex(currentProjectIndex - 1, projectCards.length);
-          const rightIndex = wrapIndex(currentProjectIndex + 1, projectCards.length);
-          const visibleIndices = [leftIndex, currentProjectIndex, rightIndex];
-          const positionMap = new Map([
-            [leftIndex, 'is-left'],
-            [currentProjectIndex, 'is-center'],
-            [rightIndex, 'is-right']
-          ]);
+          let visibleIndices = [];
+          let positionMap = new Map();
+
+          if (currentVisibleCount === mobileCarouselVisibleCount) {
+            visibleIndices = [currentProjectIndex];
+            positionMap = new Map([[currentProjectIndex, 'is-center']]);
+          } else {
+            const leftIndex = wrapIndex(currentProjectIndex - 1, projectCards.length);
+            const rightIndex = wrapIndex(currentProjectIndex + 1, projectCards.length);
+            visibleIndices = [leftIndex, currentProjectIndex, rightIndex];
+            positionMap = new Map([
+              [leftIndex, 'is-left'],
+              [currentProjectIndex, 'is-center'],
+              [rightIndex, 'is-right']
+            ]);
+          }
 
           visibleIndices.forEach((index) => {
             const card = projectCards[index];
@@ -1611,22 +1793,56 @@
             card.tabIndex = 0;
           });
 
-          setButtonState(projectsPrev, false);
-          setButtonState(projectsNext, false);
+          if (!isProjectMotionLocked) {
+            setButtonState(projectsPrev, false);
+            setButtonState(projectsNext, false);
+          }
         };
 
         const moveProject = (direction) => {
-          if (projectCards.length <= projectCarouselVisibleCount) {
+          if (isProjectMotionLocked || projectCards.length <= currentVisibleCount) {
             return;
           }
+
+          if (currentVisibleCount === mobileCarouselVisibleCount) {
+            const activeCard = projectCards[currentProjectIndex];
+            const exitClass = direction > 0 ? 'project-exit-to-left' : 'project-exit-to-right';
+            const enterClass = direction > 0 ? 'project-enter-from-right' : 'project-enter-from-left';
+            lockProjectMotion(mobileTotalAnimationDuration);
+            activeCard.classList.add(exitClass);
+            setTimeout(() => {
+              currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
+              updateProjectPositions();
+              const nextActiveCard = projectCards[currentProjectIndex];
+              nextActiveCard.classList.add(enterClass);
+              setTimeout(() => {
+                resetProjectMotionClasses();
+              }, mobileEnterAnimationDuration);
+            }, mobileExitAnimationDuration);
+            return;
+          }
+
+          resetProjectMotionClasses();
+          projectsCarousel.classList.add(direction > 0 ? 'is-sliding-next' : 'is-sliding-prev');
           currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
           updateProjectPositions();
+          lockProjectMotion(desktopMotionDuration);
+          setTimeout(() => {
+            projectsCarousel.classList.remove('is-sliding-next', 'is-sliding-prev');
+          }, desktopMotionDuration);
         };
 
         applyProjectArt();
         updateProjectPositions();
         projectsPrev.addEventListener('click', () => moveProject(-1));
         projectsNext.addEventListener('click', () => moveProject(1));
+        mobileCarouselQuery.addEventListener('change', () => {
+          resetProjectMotionClasses();
+          clearTimeout(motionCooldownTimer);
+          releaseProjectMotionLock();
+          currentVisibleCount = getProjectCarouselVisibleCount();
+          updateProjectPositions();
+        });
       }
 
       const motionLayer = document.getElementById('motion-layer');
