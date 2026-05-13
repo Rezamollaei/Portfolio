@@ -237,7 +237,7 @@
       }
 
       .project-card {
-        --project-scale: 0.94;
+        --project-scale: 0.9;
         --project-shift: 0px;
         display: none;
         flex-direction: column;
@@ -250,8 +250,10 @@
         opacity: 0;
         pointer-events: none;
         transform: translateX(var(--project-shift)) scale(var(--project-scale));
-        transition: border-color 220ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 350ms ease, opacity 700ms ease;
+        transition: border-color 220ms ease, transform 1150ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 350ms ease, opacity 1150ms ease;
         will-change: transform, opacity;
+        width: 90%;
+        justify-self: center;
       }
 
       .project-card.is-left,
@@ -264,19 +266,19 @@
 
       .project-card.is-left {
         grid-column: 1;
-        --project-shift: -8%;
+        --project-shift: -14%;
       }
 
       .project-card.is-center {
         grid-column: 2;
-        --project-scale: 1.05;
+        --project-scale: 0.95;
         --project-shift: 0%;
         z-index: 1;
       }
 
       .project-card.is-right {
         grid-column: 3;
-        --project-shift: 8%;
+        --project-shift: 14%;
       }
 
       .project-card:hover {
@@ -339,7 +341,7 @@
 
       .project-carousel.is-mobile .project-card.is-center {
         grid-column: 1;
-        --project-scale: 1;
+        --project-scale: 0.9;
       }
 
       .project-nav-button {
@@ -358,19 +360,19 @@
       }
 
       .project-card.project-enter-from-right {
-        animation: project-enter-from-right 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        animation: project-enter-from-right 1100ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .project-card.project-enter-from-left {
-        animation: project-enter-from-left 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        animation: project-enter-from-left 1100ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .project-card.project-exit-to-left {
-        animation: project-exit-to-left 350ms ease forwards;
+        animation: project-exit-to-left 500ms ease forwards;
       }
 
       .project-card.project-exit-to-right {
-        animation: project-exit-to-right 350ms ease forwards;
+        animation: project-exit-to-right 500ms ease forwards;
       }
 
       @keyframes project-enter-from-right {
@@ -715,8 +717,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Banking_programm"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Banking_programm"
                   loading="lazy"
                   decoding="async"
                 />
@@ -735,8 +737,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Budget_Tracker"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Budget_Tracker"
                   loading="lazy"
                   decoding="async"
                 />
@@ -755,8 +757,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Calculator"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Calculator"
                   loading="lazy"
                   decoding="async"
                 />
@@ -775,8 +777,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Compres_Decompres_file"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Compres_Decompres_file"
                   loading="lazy"
                   decoding="async"
                 />
@@ -795,8 +797,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Convert_Decimal_to_Binary"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Convert_Decimal_to_Binary"
                   loading="lazy"
                   decoding="async"
                 />
@@ -815,8 +817,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Copy_text_file"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Copy_text_file"
                   loading="lazy"
                   decoding="async"
                 />
@@ -835,8 +837,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Desktop_Cleaner"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Desktop_Cleaner"
                   loading="lazy"
                   decoding="async"
                 />
@@ -855,8 +857,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Encode_Decode"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Encode_Decode"
                   loading="lazy"
                   decoding="async"
                 />
@@ -875,8 +877,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of File_handling"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of File_handling"
                   loading="lazy"
                   decoding="async"
                 />
@@ -895,8 +897,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Guess_my_Number"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Guess_my_Number"
                   loading="lazy"
                   decoding="async"
                 />
@@ -915,8 +917,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Hangman"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Hangman"
                   loading="lazy"
                   decoding="async"
                 />
@@ -935,8 +937,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Language_Learning_App"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Language_Learning_App"
                   loading="lazy"
                   decoding="async"
                 />
@@ -955,8 +957,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of League_Maker_inprogress"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of League_Maker_inprogress"
                   loading="lazy"
                   decoding="async"
                 />
@@ -975,8 +977,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Need_to_learn"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Need_to_learn"
                   loading="lazy"
                   decoding="async"
                 />
@@ -995,8 +997,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Need_to_learn2"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Need_to_learn2"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1015,8 +1017,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of PROJECT1"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of PROJECT1"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1035,8 +1037,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Portfolio"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Portfolio"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1055,8 +1057,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Quiz_Game"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Quiz_Game"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1075,8 +1077,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Read_Write_File"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Read_Write_File"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1095,8 +1097,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of Rock_paper_scissors_game"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of Rock_paper_scissors_game"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1115,8 +1117,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of TIC_TAC_TOE_GAME"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of TIC_TAC_TOE_GAME"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1135,8 +1137,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of bank"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of bank"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1155,8 +1157,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of football"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of football"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1175,8 +1177,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of model_window"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of model_window"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1195,8 +1197,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of pig_game"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of pig_game"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1215,8 +1217,8 @@
             >
               <div class="project-visual">
                 <img
-                  src="assets/project-ai-fallback.svg"
-                  alt="AI illustration of pythonProject2"
+                  src="assets/project-real-pc.svg"
+                  alt="Project preview of pythonProject2"
                   loading="lazy"
                   decoding="async"
                 />
@@ -1581,90 +1583,23 @@
         const mobileCarouselQuery = window.matchMedia('(max-width: 640px)');
         const getProjectCarouselVisibleCount = () =>
           mobileCarouselQuery.matches ? mobileCarouselVisibleCount : desktopCarouselVisibleCount;
-        const maxDescriptionLength = 62;
-        const descriptionEllipsis = '…';
-        const hashMultiplier = 31;
-        const defaultProjectTitle = 'Project';
-        const defaultProjectDescription = 'Creative project concept';
-        const mobileExitAnimationDuration = 350;
-        const mobileEnterAnimationDuration = 700;
+        const mobileExitAnimationDuration = 500;
+        const mobileEnterAnimationDuration = 1100;
         const mobileTotalAnimationDuration = mobileExitAnimationDuration + mobileEnterAnimationDuration;
-        const desktopMotionDuration = 700;
+        const desktopMotionDuration = 1150;
         const projectImageMap = new Map([
-          ['banking_programm', 'assets/project-banking.svg'],
-          ['budget_tracker', 'assets/project-budget.svg'],
-          ['calculator', 'assets/project-calculator.svg']
+          ['calculator', 'assets/project-real-calculator.svg'],
+          ['guess_my_number', 'assets/project-real-games.svg'],
+          ['hangman', 'assets/project-real-games.svg'],
+          ['quiz_game', 'assets/project-real-games.svg'],
+          ['rock_paper_scissors_game', 'assets/project-real-games.svg'],
+          ['tic_tac_toe_game', 'assets/project-real-games.svg'],
+          ['pig_game', 'assets/project-real-games.svg']
         ]);
+        const defaultProjectImage = 'assets/project-real-pc.svg';
         let motionCooldownTimer = null;
         let isProjectMotionLocked = false;
         let currentVisibleCount = getProjectCarouselVisibleCount();
-
-        const hashTextToNumber = (value) => {
-          let hash = 0;
-          for (let i = 0; i < value.length; i += 1) {
-            hash = (Math.imul(hashMultiplier, hash) + value.charCodeAt(i)) >>> 0;
-          }
-          return hash;
-        };
-
-        const escapeSvgText = (value) =>
-          String(value ?? '')
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&apos;');
-
-        const buildProjectArt = (title, description) => {
-          const normalizedTitle = title || defaultProjectTitle;
-          const normalizedDescription = description || defaultProjectDescription;
-          const seed = hashTextToNumber(`${normalizedTitle}::${normalizedDescription}`);
-          const hue = seed % 360;
-          const accentHue = (hue + 40) % 360;
-          const glowHue = (hue + 80) % 360;
-          const orbOneX = 180 + (seed % 200);
-          const orbOneY = 140 + ((seed >> 3) % 180);
-          const orbTwoX = 980 - ((seed >> 5) % 220);
-          const orbTwoY = 420 - ((seed >> 7) % 160);
-          const trimmedDescription =
-            normalizedDescription.length > maxDescriptionLength
-              ? `${normalizedDescription.slice(0, maxDescriptionLength)}${descriptionEllipsis}`
-              : normalizedDescription;
-          const safeTitle = escapeSvgText(normalizedTitle);
-          const safeDescription = escapeSvgText(trimmedDescription);
-
-          const svg = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-              <defs>
-                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="hsl(${hue}, 58%, 30%)" />
-                  <stop offset="100%" stop-color="hsl(${accentHue}, 72%, 50%)" />
-                </linearGradient>
-              </defs>
-              <rect width="1200" height="630" rx="42" fill="url(#bg)" />
-              <rect x="84" y="82" width="1032" height="466" rx="30" fill="rgba(15,23,42,0.62)" />
-              <rect x="124" y="122" width="952" height="66" rx="18" fill="rgba(255,255,255,0.18)" />
-              <circle cx="170" cy="155" r="10" fill="rgba(248,250,252,0.75)" />
-              <circle cx="205" cy="155" r="10" fill="rgba(248,250,252,0.52)" />
-              <circle cx="240" cy="155" r="10" fill="rgba(248,250,252,0.35)" />
-              <rect x="124" y="216" width="560" height="292" rx="24" fill="rgba(255,255,255,0.12)" />
-              <rect x="714" y="216" width="362" height="132" rx="24" fill="hsla(${glowHue}, 88%, 82%, 0.2)" />
-              <rect x="714" y="376" width="362" height="132" rx="24" fill="hsla(${accentHue}, 88%, 82%, 0.2)" />
-              <circle cx="${orbOneX}" cy="${orbOneY}" r="120" fill="hsla(${accentHue}, 80%, 85%, 0.16)" />
-              <circle cx="${orbTwoX}" cy="${orbTwoY}" r="140" fill="hsla(${hue}, 80%, 85%, 0.13)" />
-              <path d="M162 380 C280 290, 418 290, 540 380" stroke="hsla(${glowHue}, 75%, 88%, 0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
-              <path d="M162 430 C280 345, 418 345, 540 430" stroke="hsla(${accentHue}, 75%, 88%, 0.55)" stroke-width="6" stroke-linecap="round" fill="none" />
-              <text x="158" y="286" font-family="Arial, sans-serif" font-size="30" font-weight="600" fill="rgba(255,255,255,0.86)">
-                ${safeTitle}
-              </text>
-              <text x="158" y="330" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)">
-                ${safeDescription}
-              </text>
-            </svg>
-          `;
-
-          return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg.trim())}`;
-        };
 
         const getProjectSlug = (card) => {
           try {
@@ -1679,14 +1614,13 @@
         const applyProjectArt = () => {
           projectCards.forEach((card) => {
             const title = card.querySelector('.project-title')?.textContent?.trim() || '';
-            const description = card.dataset.projectDescription?.trim() || '';
             const image = card.querySelector('img');
             if (!image) {
               return;
             }
             const slug = getProjectSlug(card);
             const mappedImage = projectImageMap.get(slug);
-            image.src = mappedImage || buildProjectArt(title, description);
+            image.src = mappedImage || defaultProjectImage;
             image.alt = title ? `Project preview for ${title}` : 'Project preview';
           });
         };
