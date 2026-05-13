@@ -1461,6 +1461,7 @@
       if (projectsCarousel && projectsPrev && projectsNext) {
         const projectCards = Array.from(projectsCarousel.querySelectorAll('.project-card'));
         const projectPositions = ['is-left', 'is-center', 'is-right'];
+        const projectCarouselVisibleCount = 3;
         const maxDescriptionLength = 62;
 
         const hashTextToNumber = (value) => {
@@ -1469,11 +1470,11 @@
             hash = (hash << 5) - hash + value.charCodeAt(i);
             hash |= 0;
           }
-          return Math.abs(hash);
+          return hash >>> 0;
         };
 
         const escapeSvgText = (value) =>
-          value
+          String(value ?? '')
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
@@ -1559,7 +1560,7 @@
           }
           return projectPositions;
         };
-        const initialCenterIndex = projectCards.length >= 3 ? 1 : 0;
+        const initialCenterIndex = projectCards.length >= projectCarouselVisibleCount ? 1 : 0;
         let currentProjectIndex = initialCenterIndex;
 
         const updateProjectPositions = () => {
@@ -1575,7 +1576,7 @@
             return;
           }
 
-          if (projectCards.length <= 3) {
+          if (projectCards.length <= projectCarouselVisibleCount) {
             const visiblePositions = getVisiblePositionsForCount(projectCards.length);
             projectCards.forEach((card, index) => {
               const positionClass = visiblePositions[index] || 'is-center';
@@ -1609,7 +1610,7 @@
         };
 
         const moveProject = (direction) => {
-          if (projectCards.length <= 3) {
+          if (projectCards.length <= projectCarouselVisibleCount) {
             return;
           }
           currentProjectIndex = (currentProjectIndex + direction + projectCards.length) % projectCards.length;
