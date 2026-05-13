@@ -237,7 +237,8 @@
       }
 
       .project-card {
-        display: flex;
+        --project-scale: 0.94;
+        display: none;
         flex-direction: column;
         border-radius: 1rem;
         border: 1px solid rgba(226, 232, 240, 0.9);
@@ -245,12 +246,37 @@
         color: inherit;
         text-decoration: none;
         overflow: hidden;
-        transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(var(--project-scale));
+        transition: border-color 200ms ease, transform 300ms ease, box-shadow 300ms ease, opacity 250ms ease;
+      }
+
+      .project-card.is-left,
+      .project-card.is-center,
+      .project-card.is-right {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .project-card.is-left {
+        grid-column: 1;
+      }
+
+      .project-card.is-center {
+        grid-column: 2;
+        --project-scale: 1.05;
+        z-index: 1;
+      }
+
+      .project-card.is-right {
+        grid-column: 3;
       }
 
       .project-card:hover {
         border-color: rgba(148, 163, 184, 0.9);
-        transform: translateY(-4px);
+        transform: translateY(-4px) scale(var(--project-scale));
         box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
       }
 
@@ -277,6 +303,7 @@
 
       .dark .project-card:hover {
         border-color: rgba(100, 116, 139, 0.9);
+        transform: translateY(-4px) scale(var(--project-scale));
         box-shadow: 0 12px 24px rgba(15, 23, 42, 0.5);
       }
 
@@ -289,17 +316,15 @@
       }
 
       .project-carousel {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-
-      .project-carousel::-webkit-scrollbar {
-        display: none;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+        align-items: stretch;
+        overflow: hidden;
       }
 
       .project-carousel .project-card {
-        min-width: 16rem;
-        flex: 0 0 auto;
+        min-width: 0;
       }
 
       #contact {
@@ -574,369 +599,525 @@
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300" data-i18n="projects.publicSubtitle">
             Quick links to every public repo, from scripts to experiments.
           </p>
-          <div id="projects-carousel" class="project-carousel mt-4 flex gap-4 overflow-x-auto pb-2">
-            <a class="project-card" href="https://github.com/Rezamollaei/Banking_programm" target="_blank" rel="noopener noreferrer">
+          <div id="projects-carousel" class="project-carousel mt-6">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Banking_programm"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="CLI banking simulator with accounts and transfers."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Banking_programm"
-                  alt="Preview of Banking_programm GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Banking_programm"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Banking_programm</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">CLI banking simulator with accounts and transfers.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Budget_Tracker" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Budget_Tracker"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Track income, expenses, and monthly savings goals."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Budget_Tracker"
-                  alt="Preview of Budget_Tracker GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Budget_Tracker"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Budget_Tracker</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Track income, expenses, and monthly savings goals.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Calculator" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Calculator"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Responsive calculator for everyday arithmetic."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Calculator"
-                  alt="Preview of Calculator GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Calculator"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Calculator</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Responsive calculator for everyday arithmetic.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Compres_Decompres_file" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Compres_Decompres_file"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Compress and decompress files to save space."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Compres_Decompres_file"
-                  alt="Preview of Compres_Decompres_file GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Compres_Decompres_file"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Compres_Decompres_file</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Compress and decompress files to save space.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Convert_Decimal_to_Binary" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Convert_Decimal_to_Binary"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Convert decimal numbers to binary with steps."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Convert_Decimal_to_Binary"
-                  alt="Preview of Convert_Decimal_to_Binary GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Convert_Decimal_to_Binary"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Convert_Decimal_to_Binary</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Convert decimal numbers to binary with steps.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Copy_text_file" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Copy_text_file"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Copy text files quickly with safe overwrites."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Copy_text_file"
-                  alt="Preview of Copy_text_file GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Copy_text_file"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Copy_text_file</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Copy text files quickly with safe overwrites.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Desktop_Cleaner" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Desktop_Cleaner"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Organize desktop files into tidy folders."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Desktop_Cleaner"
-                  alt="Preview of Desktop_Cleaner GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Desktop_Cleaner"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Desktop_Cleaner</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Organize desktop files into tidy folders.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Encode_Decode" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Encode_Decode"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Encode and decode messages with simple ciphers."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Encode_Decode"
-                  alt="Preview of Encode_Decode GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Encode_Decode"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Encode_Decode</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Encode and decode messages with simple ciphers.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/File_handling" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/File_handling"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Practice file operations: read, write, update."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/File_handling"
-                  alt="Preview of File_handling GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of File_handling"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">File_handling</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Practice file operations: read, write, update.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Guess_my_Number" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Guess_my_Number"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Number guessing game with helpful hints."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Guess_my_Number"
-                  alt="Preview of Guess_my_Number GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Guess_my_Number"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Guess_my_Number</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Number guessing game with helpful hints.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Hangman" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Hangman"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Classic hangman word-guessing challenge."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Hangman"
-                  alt="Preview of Hangman GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Hangman"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Hangman</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Classic hangman word-guessing challenge.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Language_Learning_App" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Language_Learning_App"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Vocabulary practice with lessons and quizzes."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Language_Learning_App"
-                  alt="Preview of Language_Learning_App GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Language_Learning_App"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Language_Learning_App</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Vocabulary practice with lessons and quizzes.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/League_Maker_inprogress" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/League_Maker_inprogress"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Generate sports leagues and match fixtures."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/League_Maker_inprogress"
-                  alt="Preview of League_Maker_inprogress GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of League_Maker_inprogress"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">League_Maker_inprogress</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Generate sports leagues and match fixtures.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Need_to_learn" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Need_to_learn"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Curated list of topics and learning tasks."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Need_to_learn"
-                  alt="Preview of Need_to_learn GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Need_to_learn"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Need_to_learn</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Curated list of topics and learning tasks.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Need_to_learn2" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Need_to_learn2"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Follow-up learning tracker with new topics."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Need_to_learn2"
-                  alt="Preview of Need_to_learn2 GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Need_to_learn2"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Need_to_learn2</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Follow-up learning tracker with new topics.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/PROJECT1" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/PROJECT1"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Starter project exploring core programming basics."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/PROJECT1"
-                  alt="Preview of PROJECT1 GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of PROJECT1"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">PROJECT1</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Starter project exploring core programming basics.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Portfolio" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Personal portfolio website with projects and contact."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Portfolio"
-                  alt="Preview of Portfolio GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Portfolio"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Portfolio</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Personal portfolio website with projects and contact.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Quiz_Game" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Quiz_Game"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Multiple-choice quiz with instant scoring."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Quiz_Game"
-                  alt="Preview of Quiz_Game GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Quiz_Game"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Quiz_Game</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Multiple-choice quiz with instant scoring.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Read_Write_File" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Read_Write_File"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Read and write file data via CLI."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Read_Write_File"
-                  alt="Preview of Read_Write_File GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Read_Write_File"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Read_Write_File</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Read and write file data via CLI.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/Rock_paper_scissors_game" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/Rock_paper_scissors_game"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Rock-paper-scissors game with score tracking."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/Rock_paper_scissors_game"
-                  alt="Preview of Rock_paper_scissors_game GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of Rock_paper_scissors_game"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">Rock_paper_scissors_game</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Rock-paper-scissors game with score tracking.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/TIC_TAC_TOE_GAME" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/TIC_TAC_TOE_GAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Tic-tac-toe game with win detection."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/TIC_TAC_TOE_GAME"
-                  alt="Preview of TIC_TAC_TOE_GAME GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of TIC_TAC_TOE_GAME"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">TIC_TAC_TOE_GAME</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Tic-tac-toe game with win detection.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/bank" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/bank"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Simple bank account manager in code."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/bank"
-                  alt="Preview of bank GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of bank"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">bank</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Simple bank account manager in code.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/football" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/football"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Football match tracker with scores and stats."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/football"
-                  alt="Preview of football GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of football"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">football</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Football match tracker with scores and stats.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/model_window" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/model_window"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Modal window UI demo with animations."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/model_window"
-                  alt="Preview of model_window GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of model_window"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">model_window</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Modal window UI demo with animations.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/pig_game" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/pig_game"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Pig dice game with roll/hold mechanics."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/pig_game"
-                  alt="Preview of pig_game GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of pig_game"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">pig_game</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Pig dice game with roll/hold mechanics.</p>
               </div>
             </a>
-            <a class="project-card" href="https://github.com/Rezamollaei/pythonProject2" target="_blank" rel="noopener noreferrer">
+            <a
+              class="project-card"
+              href="https://github.com/Rezamollaei/pythonProject2"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-project-description="Python exercises and mini-projects collection."
+            >
               <div class="project-visual">
                 <img
-                  src="https://opengraph.githubassets.com/1/Rezamollaei/pythonProject2"
-                  alt="Preview of pythonProject2 GitHub repository"
+                  src="assets/project-ai-fallback.svg"
+                  alt="AI illustration of pythonProject2"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
               <div class="project-body">
                 <p class="project-title">pythonProject2</p>
-                <p class="project-meta">GitHub repository</p>
+                <p class="project-meta">Python exercises and mini-projects collection.</p>
               </div>
             </a>
           </div>
@@ -1278,61 +1459,174 @@
       const projectsNext = document.getElementById('projects-next');
 
       if (projectsCarousel && projectsPrev && projectsNext) {
-        const projectCardSample = projectsCarousel.querySelector('.project-card');
-        const computedProjectCardMinWidth = projectCardSample
-          ? parseFloat(window.getComputedStyle(projectCardSample).minWidth)
-          : Number.NaN;
-        const computedCarouselGap = parseFloat(window.getComputedStyle(projectsCarousel).gap);
-        const projectsCarouselGap = Number.isFinite(computedCarouselGap) ? computedCarouselGap : 0;
-        // Fallback keeps behavior stable if computed min-width is unavailable (16rem base card width).
-        const MIN_PROJECTS_SCROLL_AMOUNT = Number.isFinite(computedProjectCardMinWidth)
-          ? computedProjectCardMinWidth + projectsCarouselGap
-          : 256;
-        // 90% keeps a small overlap so users maintain visual continuity between clicks.
-        const PROJECTS_SCROLL_PERCENTAGE = 0.9;
-        // 1px tolerance avoids false edge detection from sub-pixel/browser scroll rounding.
-        const SCROLL_BOUNDARY_TOLERANCE = 1;
-        const RESIZE_DEBOUNCE_MS = 100;
+        const projectCards = Array.from(projectsCarousel.querySelectorAll('.project-card'));
+        const projectPositions = ['is-left', 'is-center', 'is-right'];
+        const projectCarouselVisibleCount = 3;
+        const maxDescriptionLength = 62;
+        const descriptionEllipsis = '…';
+        const hashMultiplier = 31;
+        const defaultProjectTitle = 'Project';
+        const defaultProjectDescription = 'Creative project concept';
 
-        const updateProjectsNavState = () => {
-          const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
-          const atStart = projectsCarousel.scrollLeft <= SCROLL_BOUNDARY_TOLERANCE;
-          const atEnd = projectsCarousel.scrollLeft >= maxScrollLeft - SCROLL_BOUNDARY_TOLERANCE;
-
-          [projectsPrev, projectsNext].forEach((button) => {
-            button.classList.remove('opacity-50', 'cursor-not-allowed');
-          });
-
-          projectsPrev.disabled = atStart;
-          projectsPrev.setAttribute('aria-disabled', String(atStart));
-          if (atStart) {
-            projectsPrev.classList.add('opacity-50', 'cursor-not-allowed');
+        const hashTextToNumber = (value) => {
+          let hash = 0;
+          for (let i = 0; i < value.length; i += 1) {
+            hash = (Math.imul(hashMultiplier, hash) + value.charCodeAt(i)) >>> 0;
           }
-
-          projectsNext.disabled = atEnd;
-          projectsNext.setAttribute('aria-disabled', String(atEnd));
-          if (atEnd) {
-            projectsNext.classList.add('opacity-50', 'cursor-not-allowed');
-          }
+          return hash;
         };
 
-        const scrollProjects = (direction) => {
-          const amount = Math.max(projectsCarousel.clientWidth * PROJECTS_SCROLL_PERCENTAGE, MIN_PROJECTS_SCROLL_AMOUNT);
-          projectsCarousel.scrollBy({
-            left: direction * amount,
-            behavior: 'smooth'
+        const escapeSvgText = (value) =>
+          String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+
+        const buildProjectArt = (title, description) => {
+          const normalizedTitle = title || defaultProjectTitle;
+          const normalizedDescription = description || defaultProjectDescription;
+          const seed = hashTextToNumber(`${normalizedTitle}::${normalizedDescription}`);
+          const hue = seed % 360;
+          const accentHue = (hue + 40) % 360;
+          const glowHue = (hue + 80) % 360;
+          const orbOneX = 180 + (seed % 200);
+          const orbOneY = 140 + ((seed >> 3) % 180);
+          const orbTwoX = 980 - ((seed >> 5) % 220);
+          const orbTwoY = 420 - ((seed >> 7) % 160);
+          const trimmedDescription =
+            normalizedDescription.length > maxDescriptionLength
+              ? `${normalizedDescription.slice(0, maxDescriptionLength)}${descriptionEllipsis}`
+              : normalizedDescription;
+          const safeTitle = escapeSvgText(normalizedTitle);
+          const safeDescription = escapeSvgText(trimmedDescription);
+
+          const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+              <defs>
+                <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="hsl(${hue}, 70%, 55%)" />
+                  <stop offset="100%" stop-color="hsl(${accentHue}, 70%, 45%)" />
+                </linearGradient>
+                <radialGradient id="glow" cx="0.2" cy="0.2" r="0.8">
+                  <stop offset="0%" stop-color="hsla(${glowHue}, 90%, 80%, 0.75)" />
+                  <stop offset="100%" stop-color="hsla(${glowHue}, 90%, 70%, 0)" />
+                </radialGradient>
+              </defs>
+              <rect width="1200" height="630" fill="url(#bg)" />
+              <rect width="1200" height="630" fill="url(#glow)" opacity="0.65" />
+              <circle cx="${orbOneX}" cy="${orbOneY}" r="140" fill="hsla(${accentHue}, 80%, 85%, 0.35)" />
+              <circle cx="${orbTwoX}" cy="${orbTwoY}" r="170" fill="hsla(${hue}, 80%, 85%, 0.25)" />
+              <path d="M80 430 H1120" stroke="hsla(${glowHue}, 70%, 90%, 0.4)" stroke-width="4" stroke-linecap="round" />
+              <text x="80" y="510" font-family="Arial, sans-serif" font-size="64" font-weight="700" fill="rgba(255,255,255,0.9)">
+                ${safeTitle}
+              </text>
+              <text x="80" y="565" font-family="Arial, sans-serif" font-size="30" fill="rgba(255,255,255,0.85)">
+                ${safeDescription}
+              </text>
+              <text x="1040" y="120" font-family="Arial, sans-serif" font-size="36" font-weight="600" fill="rgba(255,255,255,0.8)">
+                AI
+              </text>
+            </svg>
+          `;
+
+          return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg.trim())}`;
+        };
+
+        const applyProjectArt = () => {
+          projectCards.forEach((card) => {
+            const title = card.querySelector('.project-title')?.textContent?.trim() || '';
+            const description = card.dataset.projectDescription?.trim() || '';
+            const image = card.querySelector('img');
+            if (!image) {
+              return;
+            }
+            image.src = buildProjectArt(title, description);
+            image.alt = title ? `AI illustration of ${title}` : 'AI illustration for project';
           });
         };
 
-        projectsPrev.addEventListener('click', () => scrollProjects(-1));
-        projectsNext.addEventListener('click', () => scrollProjects(1));
-        projectsCarousel.addEventListener('scroll', updateProjectsNavState, { passive: true });
-        let resizeDebounceTimer;
-        window.addEventListener('resize', () => {
-          window.clearTimeout(resizeDebounceTimer);
-          resizeDebounceTimer = window.setTimeout(updateProjectsNavState, RESIZE_DEBOUNCE_MS);
-        });
-        updateProjectsNavState();
+        const setButtonState = (button, isDisabled) => {
+          button.disabled = isDisabled;
+          button.setAttribute('aria-disabled', String(isDisabled));
+          button.classList.toggle('opacity-50', isDisabled);
+          button.classList.toggle('cursor-not-allowed', isDisabled);
+        };
+
+        const getVisiblePositionsForCount = (count) => {
+          if (count === 1) {
+            return ['is-center'];
+          }
+          if (count === 2) {
+            return ['is-left', 'is-right'];
+          }
+          return projectPositions;
+        };
+        const initialCenteredProjectIndex = 1;
+        const wrapIndex = (index, length) => ((index % length) + length) % length;
+        const initialCenterIndex =
+          projectCards.length >= projectCarouselVisibleCount ? initialCenteredProjectIndex : 0;
+        let currentProjectIndex = initialCenterIndex;
+
+        const updateProjectPositions = () => {
+          projectCards.forEach((card) => {
+            card.classList.remove(...projectPositions);
+            card.setAttribute('aria-hidden', 'true');
+            card.tabIndex = -1;
+          });
+
+          if (projectCards.length === 0) {
+            setButtonState(projectsPrev, true);
+            setButtonState(projectsNext, true);
+            return;
+          }
+
+          if (projectCards.length <= projectCarouselVisibleCount) {
+            const visiblePositions = getVisiblePositionsForCount(projectCards.length);
+            projectCards.forEach((card, index) => {
+              const positionClass = visiblePositions[index] || 'is-center';
+              card.classList.add(positionClass);
+              card.setAttribute('aria-hidden', 'false');
+              card.tabIndex = 0;
+            });
+            setButtonState(projectsPrev, true);
+            setButtonState(projectsNext, true);
+            return;
+          }
+
+          const leftIndex = wrapIndex(currentProjectIndex - 1, projectCards.length);
+          const rightIndex = wrapIndex(currentProjectIndex + 1, projectCards.length);
+          const visibleIndices = [leftIndex, currentProjectIndex, rightIndex];
+          const positionMap = new Map([
+            [leftIndex, 'is-left'],
+            [currentProjectIndex, 'is-center'],
+            [rightIndex, 'is-right']
+          ]);
+
+          visibleIndices.forEach((index) => {
+            const card = projectCards[index];
+            card.classList.add(positionMap.get(index));
+            card.setAttribute('aria-hidden', 'false');
+            card.tabIndex = 0;
+          });
+
+          setButtonState(projectsPrev, false);
+          setButtonState(projectsNext, false);
+        };
+
+        const moveProject = (direction) => {
+          if (projectCards.length <= projectCarouselVisibleCount) {
+            return;
+          }
+          currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
+          updateProjectPositions();
+        };
+
+        applyProjectArt();
+        updateProjectPositions();
+        projectsPrev.addEventListener('click', () => moveProject(-1));
+        projectsNext.addEventListener('click', () => moveProject(1));
       }
 
       const motionLayer = document.getElementById('motion-layer');
