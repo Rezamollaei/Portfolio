@@ -1464,11 +1464,12 @@
         const projectCarouselVisibleCount = 3;
         const maxDescriptionLength = 62;
         const descriptionEllipsis = '…';
+        const hashMultiplier = 31;
 
         const hashTextToNumber = (value) => {
           let hash = 0;
           for (let i = 0; i < value.length; i += 1) {
-            hash = (Math.imul(31, hash) + value.charCodeAt(i)) >>> 0;
+            hash = (Math.imul(hashMultiplier, hash) + value.charCodeAt(i)) >>> 0;
           }
           return hash;
         };
