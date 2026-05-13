@@ -1463,14 +1463,14 @@
         const projectPositions = ['is-left', 'is-center', 'is-right'];
         const projectCarouselVisibleCount = 3;
         const maxDescriptionLength = 62;
+        const descriptionEllipsis = '…';
 
         const hashTextToNumber = (value) => {
           let hash = 0;
           for (let i = 0; i < value.length; i += 1) {
-            hash = (hash << 5) - hash + value.charCodeAt(i);
-            hash |= 0;
+            hash = (Math.imul(31, hash) + value.charCodeAt(i)) >>> 0;
           }
-          return hash >>> 0;
+          return hash;
         };
 
         const escapeSvgText = (value) =>
@@ -1494,7 +1494,7 @@
           const orbTwoY = 420 - ((seed >> 7) % 160);
           const trimmedDescription =
             normalizedDescription.length > maxDescriptionLength
-              ? `${normalizedDescription.slice(0, maxDescriptionLength)}…`
+              ? `${normalizedDescription.slice(0, maxDescriptionLength)}${descriptionEllipsis}`
               : normalizedDescription;
           const safeTitle = escapeSvgText(normalizedTitle);
           const safeDescription = escapeSvgText(trimmedDescription);
@@ -1560,7 +1560,10 @@
           }
           return projectPositions;
         };
-        const initialCenterIndex = projectCards.length >= projectCarouselVisibleCount ? 1 : 0;
+        const initialCenteredProjectIndex = 1;
+        const wrapIndex = (index, length) => (index + length) % length;
+        const initialCenterIndex =
+          projectCards.length >= projectCarouselVisibleCount ? initialCenteredProjectIndex : 0;
         let currentProjectIndex = initialCenterIndex;
 
         const updateProjectPositions = () => {
@@ -1589,8 +1592,8 @@
             return;
           }
 
-          const leftIndex = (currentProjectIndex - 1 + projectCards.length) % projectCards.length;
-          const rightIndex = (currentProjectIndex + 1) % projectCards.length;
+          const leftIndex = wrapIndex(currentProjectIndex - 1, projectCards.length);
+          const rightIndex = wrapIndex(currentProjectIndex + 1, projectCards.length);
           const visibleIndices = [leftIndex, currentProjectIndex, rightIndex];
           const positionMap = new Map([
             [leftIndex, 'is-left'],
@@ -1613,7 +1616,7 @@
           if (projectCards.length <= projectCarouselVisibleCount) {
             return;
           }
-          currentProjectIndex = (currentProjectIndex + direction + projectCards.length) % projectCards.length;
+          currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
           updateProjectPositions();
         };
 
