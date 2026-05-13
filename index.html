@@ -1589,6 +1589,7 @@
         const mobileExitAnimationDuration = 350;
         const mobileEnterAnimationDuration = 700;
         const mobileTotalAnimationDuration = mobileExitAnimationDuration + mobileEnterAnimationDuration;
+        const desktopMotionDuration = 700;
         const projectImageMap = new Map([
           ['banking_programm', 'assets/project-banking.svg'],
           ['budget_tracker', 'assets/project-budget.svg'],
@@ -1825,10 +1826,10 @@
           projectsCarousel.classList.add(direction > 0 ? 'is-sliding-next' : 'is-sliding-prev');
           currentProjectIndex = wrapIndex(currentProjectIndex + direction, projectCards.length);
           updateProjectPositions();
-          lockProjectMotion(700);
+          lockProjectMotion(desktopMotionDuration);
           setTimeout(() => {
             projectsCarousel.classList.remove('is-sliding-next', 'is-sliding-prev');
-          }, 700);
+          }, desktopMotionDuration);
         };
 
         applyProjectArt();
