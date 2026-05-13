@@ -1465,6 +1465,8 @@
         const maxDescriptionLength = 62;
         const descriptionEllipsis = '…';
         const hashMultiplier = 31;
+        const defaultProjectTitle = 'Project';
+        const defaultProjectDescription = 'Creative project concept';
 
         const hashTextToNumber = (value) => {
           let hash = 0;
@@ -1483,8 +1485,8 @@
             .replace(/'/g, '&apos;');
 
         const buildProjectArt = (title, description) => {
-          const normalizedTitle = title || 'Project';
-          const normalizedDescription = description || 'Creative project concept';
+          const normalizedTitle = title || defaultProjectTitle;
+          const normalizedDescription = description || defaultProjectDescription;
           const seed = hashTextToNumber(`${normalizedTitle}::${normalizedDescription}`);
           const hue = seed % 360;
           const accentHue = (hue + 40) % 360;
@@ -1562,7 +1564,7 @@
           return projectPositions;
         };
         const initialCenteredProjectIndex = 1;
-        const wrapIndex = (index, length) => (index + length) % length;
+        const wrapIndex = (index, length) => ((index % length) + length) % length;
         const initialCenterIndex =
           projectCards.length >= projectCarouselVisibleCount ? initialCenteredProjectIndex : 0;
         let currentProjectIndex = initialCenterIndex;
