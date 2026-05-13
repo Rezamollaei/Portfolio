@@ -1463,7 +1463,7 @@
         const projectPositions = ['is-left', 'is-center', 'is-right'];
         const maxDescriptionLength = 62;
 
-        const hashText = (value) => {
+        const hashTextToNumber = (value) => {
           let hash = 0;
           for (let i = 0; i < value.length; i += 1) {
             hash = (hash << 5) - hash + value.charCodeAt(i);
@@ -1475,7 +1475,7 @@
         const buildProjectArt = (title, description) => {
           const normalizedTitle = title || 'Project';
           const normalizedDescription = description || 'Creative project concept';
-          const seed = hashText(`${normalizedTitle}::${normalizedDescription}`);
+          const seed = hashTextToNumber(`${normalizedTitle}::${normalizedDescription}`);
           const hue = seed % 360;
           const accentHue = (hue + 40) % 360;
           const glowHue = (hue + 80) % 360;
@@ -1485,7 +1485,7 @@
           const orbTwoY = 420 - ((seed >> 7) % 160);
           const trimmedDescription =
             normalizedDescription.length > maxDescriptionLength
-              ? `${normalizedDescription.slice(0, maxDescriptionLength - 1)}…`
+              ? `${normalizedDescription.slice(0, maxDescriptionLength)}…`
               : normalizedDescription;
 
           const svg = `
@@ -1540,7 +1540,9 @@
           button.classList.toggle('cursor-not-allowed', isDisabled);
         };
 
-        let currentProjectIndex = projectCards.length > 1 ? 1 : 0;
+        const getVisiblePositionsForCount = (count) => (count === 2 ? ['is-left', 'is-right'] : projectPositions);
+        const initialCenterIndex = projectCards.length >= 3 ? 1 : 0;
+        let currentProjectIndex = initialCenterIndex;
 
         const updateProjectPositions = () => {
           projectCards.forEach((card) => {
@@ -1556,7 +1558,7 @@
           }
 
           if (projectCards.length <= 3) {
-            const visiblePositions = projectCards.length === 2 ? ['is-left', 'is-right'] : projectPositions;
+            const visiblePositions = getVisiblePositionsForCount(projectCards.length);
             projectCards.forEach((card, index) => {
               const positionClass = visiblePositions[index] || 'is-center';
               card.classList.add(positionClass);
