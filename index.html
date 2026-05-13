@@ -1540,7 +1540,7 @@
           button.classList.toggle('cursor-not-allowed', isDisabled);
         };
 
-        let currentProjectIndex = Math.min(1, Math.max(projectCards.length - 1, 0));
+        let currentProjectIndex = projectCards.length > 1 ? 1 : 0;
 
         const updateProjectPositions = () => {
           projectCards.forEach((card) => {
@@ -1556,13 +1556,14 @@
           }
 
           if (projectCards.length <= 3) {
+            const visiblePositions = projectCards.length === 2 ? ['is-left', 'is-right'] : projectPositions;
             projectCards.forEach((card, index) => {
-              const positionClass = projectPositions[index] || 'is-center';
+              const positionClass = visiblePositions[index] || 'is-center';
               card.classList.add(positionClass);
               card.setAttribute('aria-hidden', 'false');
               card.tabIndex = 0;
             });
-            const disableNav = projectCards.length <= 1;
+            const disableNav = projectCards.length <= 3;
             setButtonState(projectsPrev, disableNav);
             setButtonState(projectsNext, disableNav);
             return;
