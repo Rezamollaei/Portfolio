@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <script>
       (() => {
+        const DARK_ACCENT = '#38bdf8';
+        const LIGHT_ACCENT = '#0ea5e9';
         const root = document.documentElement;
         const storedTheme = localStorage.getItem('theme');
         const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
@@ -12,8 +14,12 @@
         root.style.colorScheme = theme;
 
         const setFavicon = (currentTheme) => {
-          const color = currentTheme === 'dark' ? '#38bdf8' : '#0ea5e9';
-          const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="44" font-weight="700" fill="${color}">{}</text></svg>`;
+          const color = currentTheme === 'dark' ? DARK_ACCENT : LIGHT_ACCENT;
+          const svg = [
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">',
+            `<text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="44" font-weight="700" fill="${color}">{}</text>`,
+            '</svg>',
+          ].join('');
           const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
           let icon = document.querySelector('link[rel="icon"]');
           if (!icon) {

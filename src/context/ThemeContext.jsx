@@ -6,6 +6,7 @@ const ThemeContext = createContext(null);
 const getInitialTheme = () => {
   const stored = localStorage.getItem('theme');
   if (stored === 'light' || stored === 'dark') return stored;
+  // First visit always starts in dark mode.
   return 'dark';
 };
 
