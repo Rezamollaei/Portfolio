@@ -6,7 +6,8 @@ const ThemeContext = createContext(null);
 const getInitialTheme = () => {
   const stored = localStorage.getItem('theme');
   if (stored === 'light' || stored === 'dark') return stored;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // First visit always starts in dark mode.
+  return 'dark';
 };
 
 export const ThemeProvider = ({ children }) => {
@@ -15,6 +16,7 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.style.colorScheme = theme;
+    window.__setThemeFavicon?.(theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
