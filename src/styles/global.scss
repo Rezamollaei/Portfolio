@@ -1,0 +1,11 @@
+@use './variables';
+@use './reset';
+@use './typography';
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg-primary); color: var(--text-primary); transition: background-color .3s ease, color .3s ease; overflow-x: hidden; }
+main { position: relative; z-index: 1; }
+section { scroll-margin-top: 6rem; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce){ * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } .reveal { opacity:1; transform:none; } }

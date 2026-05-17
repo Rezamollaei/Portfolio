@@ -1,0 +1,9 @@
+.journey { max-width:1200px; margin:0 auto; padding:4rem 1rem; }
+.journey > p { color:var(--text-secondary); margin-top:.6rem; }
+.timeline { margin-top:1.2rem; display:grid; gap:1rem; }
+.item { display:grid; grid-template-columns: 18px 1fr; gap:.8rem; }
+.dot { width:12px; height:12px; border-radius:50%; background:var(--accent); margin-top:.5rem; }
+.card { border:1px solid var(--border); background:var(--card-bg); border-radius:14px; padding:1rem; }
+.card p { color:var(--text-secondary); }
+.card h3 { margin:.3rem 0; }
+@media (min-width:769px){ .timeline{grid-template-columns:1fr 1fr;} .item.left{grid-column:1;} .item.right{grid-column:2;} }
