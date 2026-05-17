@@ -1,0 +1,43 @@
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --accent: #0ea5e9;
+  --accent-hover: #7dd3fc;
+  --border: rgba(226, 232, 240, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --input-bg: #ffffff;
+  --button-bg: #0ea5e9;
+  --button-text: #ffffff;
+  --icon-color: #334155;
+  --badge-bg: rgba(226, 232, 240, 0.6);
+  --footer-bg: #ffffff;
+  --footer-text: #64748b;
+  --shadow: rgba(15, 23, 42, 0.1);
+  --motion-color: rgba(15, 23, 42, 0.16);
+  --motion-glow: rgba(56, 189, 248, 0.22);
+  --motion-grid: rgba(148, 163, 184, 0.35);
+}
+
+[data-theme='dark'] {
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent: #38bdf8;
+  --accent-hover: #bae6fd;
+  --border: rgba(51, 65, 85, 0.8);
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --input-bg: #1e293b;
+  --button-bg: #38bdf8;
+  --button-text: #0f172a;
+  --icon-color: #e2e8f0;
+  --badge-bg: rgba(30, 41, 59, 0.75);
+  --footer-bg: #0f172a;
+  --footer-text: #94a3b8;
+  --shadow: rgba(15, 23, 42, 0.5);
+  --motion-color: rgba(226, 232, 240, 0.2);
+  --motion-glow: rgba(56, 189, 248, 0.35);
+  --motion-grid: rgba(30, 41, 59, 0.6);
+}

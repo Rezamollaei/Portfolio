@@ -1,0 +1,7 @@
+.layer { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.blobs,.grid { position:absolute; inset:0; }
+.blobs { background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 45%), radial-gradient(circle at 82% 15%, color-mix(in srgb, var(--accent-hover) 18%, transparent), transparent 50%), radial-gradient(circle at 12% 82%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 40%); }
+.grid { inset:-10%; opacity:.12; background-image: linear-gradient(var(--motion-grid) 1px, transparent 1px), linear-gradient(90deg, var(--motion-grid) 1px, transparent 1px); background-size: 120px 120px; transform:rotate(-2deg); }
+.chip { position:absolute; color:var(--motion-color); text-shadow:0 0 12px var(--motion-glow); opacity:.42; font-weight:600; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; animation:float-chip ease-in-out infinite; }
+.static { animation:none !important; }
+@keyframes float-chip { 0%,100% { transform:translate3d(0,0,0) rotate(var(--rotation)); } 50% { transform:translate3d(var(--drift), -28px, 0) rotate(calc(var(--rotation) + 8deg)); } }

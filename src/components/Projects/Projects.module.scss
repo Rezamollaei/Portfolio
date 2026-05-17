@@ -1,0 +1,23 @@
+.projects { max-width:1200px; margin:0 auto; padding:4rem 1rem; }
+.projects > p { margin-top:.6rem; color:var(--text-secondary); }
+.wrap { margin-top:1rem; display:grid; grid-template-columns:auto 1fr auto; gap:.5rem; align-items:center; }
+.wrap > button { width:44px; height:44px; border-radius:999px; border:1px solid var(--border); background:var(--card-bg); color:var(--text-primary); }
+.wrap > button:disabled { opacity:.45; }
+.carousel { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); overflow:hidden; gap:.75rem; }
+.card { display:none; border:1px solid var(--border); background:var(--card-bg); border-radius:16px; overflow:hidden; transform:translateX(0) scale(.9); opacity:0; transition: transform 1650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 1650ms cubic-bezier(0.16, 1, 0.3, 1); }
+.visible { display:flex; flex-direction:column; opacity:1; }
+.left { transform:translateX(-8%) scale(.9); }
+.center { transform:translateX(0) scale(1.05); z-index:2; }
+.right { transform:translateX(8%) scale(.9); }
+.card img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+.body { padding:.8rem; display:grid; gap:.5rem; }
+.body p { color:var(--text-secondary); font-size:.9rem; }
+.actions { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+.actions a { text-decoration:none; text-align:center; min-height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; border:1px solid var(--border); background:var(--bg-secondary); color:var(--text-primary); }
+.actions a:first-child { background:var(--accent); color:var(--button-text); border-color:var(--accent); }
+.actions a[aria-disabled='true'] { opacity:.45; cursor:not-allowed; }
+.mobileInRight { animation: mobile-in-right 1600ms cubic-bezier(0.16, 1, 0.3, 1); }
+.mobileInLeft { animation: mobile-in-left 1600ms cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes mobile-in-right { from {opacity:0; transform:translateX(18%) scale(.96);} to {opacity:1; transform:translateX(0) scale(1.05);} }
+@keyframes mobile-in-left { from {opacity:0; transform:translateX(-18%) scale(.96);} to {opacity:1; transform:translateX(0) scale(1.05);} }
+@media (max-width:768px){ .carousel{grid-template-columns:minmax(0,1fr);} .left,.right{display:none !important;} .center{transform:scale(1.02);} }

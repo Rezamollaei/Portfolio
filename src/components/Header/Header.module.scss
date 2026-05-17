@@ -1,0 +1,15 @@
+.header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid transparent; background: color-mix(in srgb, var(--bg-secondary) 85%, transparent); transition: border-color .3s ease, backdrop-filter .3s ease; }
+.scrolled { backdrop-filter: blur(10px); border-bottom-color: var(--border); }
+.inner { max-width: 1200px; margin: 0 auto; min-height: 72px; padding: .8rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand h1 { font-size: 1.1rem; }
+.brand p { color: var(--text-secondary); font-size: .8rem; }
+.navDesktop { display: flex; gap: 1rem; }
+.navDesktop a { color: var(--text-secondary); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.controls { display: flex; align-items: center; gap: .5rem; }
+.langToggle { display: flex; border: 1px solid var(--border); border-radius: 999px; background: var(--card-bg); padding: .2rem; }
+.langToggle button { border: 0; background: transparent; color: var(--text-secondary); border-radius: 999px; min-height: 36px; min-width: 42px; }
+.langToggle button[aria-pressed='true'] { background: var(--accent); color: var(--button-text); }
+.themeButton,.menuButton { min-width: 44px; min-height: 44px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-primary); border-radius: 999px; }
+.menuButton { display: none; }
+.mobileDrawer { display: none; }
+@media (max-width: 768px){ .navDesktop{display:none;} .menuButton{display:inline-flex; align-items:center; justify-content:center;} .mobileDrawer{display:block; max-height:0; overflow:hidden; transition:max-height .35s ease; background:var(--bg-secondary); border-top:1px solid transparent;} .mobileDrawer.open{max-height:100vh; border-top-color:var(--border);} .mobileDrawer nav{display:flex; flex-direction:column; padding:1rem;} .mobileDrawer a{padding:1rem; text-decoration:none; color:var(--text-primary); min-height:44px;} }
