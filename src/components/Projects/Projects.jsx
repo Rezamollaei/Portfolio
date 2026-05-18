@@ -1,11 +1,10 @@
 import styles from './Projects.module.scss';
-import { projectsData, useProjectsCarousel } from './Projects';
+import { projectsData, publicProjectsData, useProjectsCarousel } from './Projects';
 import { useLang } from '../../context/LangContext';
 
 const Projects = () => {
   const { t } = useLang();
   const { active, visible, mobile, next, animating, mobileDir } = useProjectsCarousel(projectsData.length);
-  const publicRepositories = [...projectsData].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <section id="projects" className={styles.projects}>
@@ -58,7 +57,7 @@ const Projects = () => {
           </a>
         </div>
         <ul className={styles.repoItems}>
-          {publicRepositories.map((project) => (
+          {publicProjectsData.map((project) => (
             <li key={project.githubUrl}>
               <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
                 {project.title}
