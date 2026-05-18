@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const symbols = ['🐍 Python', '🧮 C', '⚙️ C++', '✨ JS', '🌐 HTML', '🎨 CSS', '🍃 MongoDB', '⚛️ React', '🐙 GitHub', '🐳 Docker', '🗄️ NoSQL', 'const', 'let', '=>', '{}', '[]'];
+const symbols = ['Python', 'C', 'C++', 'JS', 'HTML', 'CSS', 'MongoDB', 'React', 'GitHub', 'Docker', 'NoSQL', 'const', 'let', '=>', '{}', '[]'];
 
 export const useBackgroundChips = () => {
   const [chips, setChips] = useState([]);

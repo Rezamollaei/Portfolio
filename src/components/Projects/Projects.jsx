@@ -5,6 +5,7 @@ import { useLang } from '../../context/LangContext';
 const Projects = () => {
   const { t } = useLang();
   const { active, visible, mobile, next, animating, mobileDir } = useProjectsCarousel(projectsData.length);
+  const formatTitle = (title) => title.replaceAll('_', ' ');
 
   return (
     <section id="projects" className={styles.projects}>
@@ -25,7 +26,7 @@ const Projects = () => {
               <article key={project.githubUrl} className={`${cls.join(' ')} ${isVisible ? styles.visible : ''}`} aria-hidden={!isVisible}>
                 <img src={project.imageUrl} alt={`Project preview of ${project.title}`} />
                 <div className={styles.body}>
-                  <h3>{project.title}</h3>
+                  <h3 className={styles['project-title']}>{formatTitle(project.title)}</h3>
                   <p>{project.description}</p>
                   <div className={styles.actions}>
                     <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">{t('projects.github')}</a>
@@ -46,28 +47,19 @@ const Projects = () => {
         </div>
         <button type="button" onClick={() => next(1)} disabled={animating} aria-label={t('projects.next')}>→</button>
       </div>
-      <div className={styles.repoList}>
-        <div className={styles.repoListHeader}>
-          <div>
-            <h3>{t('projects.publicTitle')}</h3>
-            <p>{t('projects.publicSubtitle')}</p>
-          </div>
-          <a href="https://github.com/Rezamollaei?tab=repositories" target="_blank" rel="noreferrer noopener">
-            {t('projects.publicAll')}
-          </a>
+        <div className={styles.repoList}>
+          <ul className={styles.repoItems}>
+            {projectsData.map((project) => (
+              <li key={project.githubUrl}>
+                <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
+                  <span className={styles['project-title']}>{formatTitle(project.title)}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className={styles.repoItems}>
-          {projectsData.map((project) => (
-            <li key={project.githubUrl}>
-              <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
-                {project.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  };
 
 export default Projects;
