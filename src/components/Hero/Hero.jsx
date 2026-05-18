@@ -10,7 +10,6 @@ const Hero = () => {
       <p className={`${styles.intro} reveal`} data-delay="0">{t('hero.welcome')}</p>
       <h2 className="reveal" data-delay="1">Reza Mollaei</h2>
       <p className={`${styles.role} reveal`} data-delay="2">{t('hero.role')}</p>
-      <p className={`${styles.tagline} reveal`} data-delay="3">{t('hero.subtitle')}</p>
       <div className={`${styles.chips} reveal`} data-delay="4">
         {chips.map((key) => (
           <span key={key}>{t(key)}</span>
