@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 export const socialLinks = [
-  { key: 'contact.directGitHub', url: 'https://github.com/Rezamollaei' },
-  { key: 'contact.directLinkedIn', url: 'https://www.linkedin.com/in/reza-mollaei/' },
-  { key: 'contact.directEmailLabel', url: 'mailto:contact@rezamollaei.dev' }
+  { key: 'contact.directGitHub', url: 'https://github.com/Rezamollaei', isMailto: false },
+  { key: 'contact.directLinkedIn', url: 'https://www.linkedin.com/in/reza-mollaei/', isMailto: false },
+  { key: 'contact.directEmailLabel', url: 'mailto:contact@rezamollaei.dev', isMailto: true }
 ];
 
 export const useContactForm = (t) => {

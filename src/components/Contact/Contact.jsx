@@ -29,19 +29,16 @@ const Contact = () => {
           <h3>{t('contact.directTitle')}</h3>
           <p>{t('contact.directBody')}</p>
           <div className={styles.socialRow}>
-            {socialLinks.map((link) => {
-              const isMailto = link.url.startsWith('mailto:');
-              return (
-                <a
-                  key={link.key}
-                  href={link.url}
-                  target={isMailto ? undefined : '_blank'}
-                  rel={isMailto ? undefined : 'noreferrer noopener'}
-                >
-                  {t(link.key)}
-                </a>
-              );
-            })}
+            {socialLinks.map((link) => (
+              <a
+                key={link.key}
+                href={link.url}
+                target={link.isMailto ? undefined : '_blank'}
+                rel={link.isMailto ? undefined : 'noreferrer noopener'}
+              >
+                {t(link.key)}
+              </a>
+            ))}
           </div>
         </div>
       </div>
