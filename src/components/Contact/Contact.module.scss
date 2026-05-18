@@ -1,9 +1,12 @@
 .contact { max-width:1200px; margin:0 auto; padding:4rem 1rem; }
 .contact > p { margin-top:.6rem; color:var(--text-secondary); }
-.socialRow { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem; }
+.layout { margin-top:1rem; display:grid; grid-template-columns:2fr 1fr; gap:1rem; align-items:start; }
+.formBox,.linksBox { border:1px solid var(--border); border-radius:16px; background:var(--card-bg); padding:1rem; }
+.socialRow { display:flex; flex-direction:column; gap:.6rem; }
 .socialRow a { min-height:44px; text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:.6rem .95rem; display:inline-flex; align-items:center; color:var(--text-primary); background:var(--card-bg); }
 .socialRow a:hover { border-color:var(--accent); color:var(--accent); }
-.form { margin-top:1rem; display:grid; gap:.5rem; }
+.form { display:grid; gap:.5rem; }
 .form label { color:var(--text-primary); font-size:.92rem; }
 .form input,.form textarea { background:var(--input-bg); border:1px solid var(--border); color:var(--text-primary); border-radius:12px; padding:.7rem .8rem; min-height:44px; }
 .form button { margin-top:.4rem; min-height:44px; border:1px solid var(--accent); border-radius:12px; background:var(--accent); color:var(--button-text); }
+@media (max-width:768px){ .layout{grid-template-columns:1fr;} }
