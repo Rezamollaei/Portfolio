@@ -12,6 +12,7 @@
 .card img { width:100%; aspect-ratio:16/9; object-fit:cover; }
 .body { padding:.8rem; display:grid; gap:.5rem; }
 .body p { color:var(--text-secondary); font-size:.9rem; }
+.project-title { font-size:clamp(0.72rem, 1.8vw, 0.88rem); word-break:break-word; overflow-wrap:anywhere; hyphens:auto; line-height:1.35; }
 .actions { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
 .actions a { text-decoration:none; text-align:center; min-height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; border:1px solid var(--border); background:var(--bg-secondary); color:var(--text-primary); }
 .actions a:first-child { background:var(--accent); color:var(--button-text); border-color:var(--accent); }
@@ -19,13 +20,9 @@
 .mobileInRight { animation: mobile-in-right 1600ms cubic-bezier(0.16, 1, 0.3, 1); }
 .mobileInLeft { animation: mobile-in-left 1600ms cubic-bezier(0.16, 1, 0.3, 1); }
 .repoList { margin-top:1.5rem; border:1px solid var(--border); border-radius:16px; background:var(--card-bg); padding:1rem; display:grid; gap:1rem; }
-.repoListHeader { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
-.repoListHeader h3 { margin:0; }
-.repoListHeader p { margin:.35rem 0 0; color:var(--text-secondary); }
-.repoListHeader a { min-height:44px; padding:.6rem 1rem; border-radius:999px; text-decoration:none; border:1px solid var(--accent); background:var(--accent); color:var(--button-text); display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; }
 .repoItems { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:.65rem; }
-.repoItems a { min-height:44px; padding:.65rem .85rem; border-radius:12px; text-decoration:none; border:1px solid var(--border); background:var(--bg-secondary); color:var(--text-primary); display:flex; align-items:center; justify-content:center; text-align:center; }
-.repoItems a:hover,.repoListHeader a:hover { border-color:var(--accent); }
+.repoItems a { min-height:44px; padding:.65rem .85rem; border-radius:12px; text-decoration:none; border:1px solid var(--border); background:var(--bg-secondary); color:var(--text-primary); display:grid; place-items:center; text-align:center; }
+.repoItems a:hover { border-color:var(--accent); }
 @keyframes mobile-in-right { from {opacity:0; transform:translateX(18%) scale(.96);} to {opacity:1; transform:translateX(0) scale(1.05);} }
 @keyframes mobile-in-left { from {opacity:0; transform:translateX(-18%) scale(.96);} to {opacity:1; transform:translateX(0) scale(1.05);} }
-@media (max-width:768px){ .carousel{grid-template-columns:minmax(0,1fr);} .left,.right{display:none !important;} .center{transform:scale(1.02);} .repoListHeader{flex-direction:column;} .repoListHeader a{width:100%;} }
+@media (max-width:768px){ .carousel{grid-template-columns:minmax(0,1fr);} .left,.right{display:none !important;} .center{transform:scale(1.02);} }
