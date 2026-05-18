@@ -5,7 +5,7 @@ import { useLang } from '../../context/LangContext';
 const Projects = () => {
   const { t } = useLang();
   const { active, visible, mobile, next, animating, mobileDir } = useProjectsCarousel(projectsData.length);
-  const formatTitle = (title) => title.replaceAll('_', ' ');
+  const normalizeProjectTitle = (title) => title.replaceAll('_', ' ');
 
   return (
     <section id="projects" className={styles.projects}>
@@ -26,7 +26,7 @@ const Projects = () => {
               <article key={project.githubUrl} className={`${cls.join(' ')} ${isVisible ? styles.visible : ''}`} aria-hidden={!isVisible}>
                 <img src={project.imageUrl} alt={`Project preview of ${project.title}`} />
                 <div className={styles.body}>
-                  <h3 className={styles['project-title']}>{formatTitle(project.title)}</h3>
+                  <h3 className={styles['project-title']}>{normalizeProjectTitle(project.title)}</h3>
                   <p>{project.description}</p>
                   <div className={styles.actions}>
                     <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">{t('projects.github')}</a>
@@ -52,7 +52,7 @@ const Projects = () => {
             {projectsData.map((project) => (
               <li key={project.githubUrl}>
                 <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
-                  <span className={styles['project-title']}>{formatTitle(project.title)}</span>
+                  <span className={styles['project-title']}>{normalizeProjectTitle(project.title)}</span>
                 </a>
               </li>
             ))}
