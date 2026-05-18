@@ -35,8 +35,6 @@ export const projectsData = [
   imageUrl: '/assets/project-real-pc.svg'
 }));
 
-export const publicProjectsData = projectsData;
-
 const wrap = (i, n) => ((i % n) + n) % n;
 
 export const useProjectsCarousel = (total) => {

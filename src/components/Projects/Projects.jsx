@@ -1,5 +1,5 @@
 import styles from './Projects.module.scss';
-import { projectsData, publicProjectsData, useProjectsCarousel } from './Projects';
+import { projectsData, useProjectsCarousel } from './Projects';
 import { useLang } from '../../context/LangContext';
 
 const Projects = () => {
@@ -57,7 +57,7 @@ const Projects = () => {
           </a>
         </div>
         <ul className={styles.repoItems}>
-          {publicProjectsData.map((project) => (
+          {projectsData.map((project) => (
             <li key={project.githubUrl}>
               <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
                 {project.title}
