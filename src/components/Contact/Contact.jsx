@@ -26,9 +26,18 @@ const Contact = () => {
           </form>
         </div>
         <div className={styles.linksBox}>
+          <h3>{t('contact.directTitle')}</h3>
+          <p>{t('contact.directBody')}</p>
           <div className={styles.socialRow}>
             {socialLinks.map((link) => (
-              <a key={link.key} href={link.url} target="_blank" rel="noreferrer noopener">{t(link.key)}</a>
+              <a
+                key={link.key}
+                href={link.url}
+                target={link.url.startsWith('mailto:') ? undefined : '_blank'}
+                rel={link.url.startsWith('mailto:') ? undefined : 'noreferrer noopener'}
+              >
+                {t(link.key)}
+              </a>
             ))}
           </div>
         </div>

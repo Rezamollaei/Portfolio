@@ -5,6 +5,7 @@ import { useLang } from '../../context/LangContext';
 const Projects = () => {
   const { t } = useLang();
   const { active, visible, mobile, next, animating, mobileDir } = useProjectsCarousel(projectsData.length);
+  const publicRepositories = [...projectsData].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <section id="projects" className={styles.projects}>
@@ -45,6 +46,26 @@ const Projects = () => {
           })}
         </div>
         <button type="button" onClick={() => next(1)} disabled={animating} aria-label={t('projects.next')}>→</button>
+      </div>
+      <div className={styles.repoList}>
+        <div className={styles.repoListHeader}>
+          <div>
+            <h3>{t('projects.publicTitle')}</h3>
+            <p>{t('projects.publicSubtitle')}</p>
+          </div>
+          <a href="https://github.com/Rezamollaei?tab=repositories" target="_blank" rel="noreferrer noopener">
+            {t('projects.publicAll')}
+          </a>
+        </div>
+        <ul className={styles.repoItems}>
+          {publicRepositories.map((project) => (
+            <li key={project.githubUrl}>
+              <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
+                {project.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
