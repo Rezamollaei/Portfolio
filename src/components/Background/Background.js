@@ -1,6 +1,38 @@
 import { useEffect, useState } from 'react';
 
-const symbols = ['Python', 'C', 'C++', 'JS', 'HTML', 'CSS', 'MongoDB', 'React', 'GitHub', 'Docker', 'NoSQL', 'const', 'let', '=>', '{}', '[]'];
+const mobileSymbols = [
+  'Python',
+  'C',
+  'C++',
+  'JavaScript',
+  'HTML',
+  'CSS',
+  'MongoDB',
+  'React',
+  'GitHub',
+  'Docker',
+  'NoSQL',
+  'Matlab',
+  'Node.js',
+  'Linux'
+];
+
+const desktopSymbols = [
+  '🐍 Python',
+  '💻 C',
+  '💻 C++',
+  '🟨 JavaScript',
+  '🌐 HTML',
+  '🎨 CSS',
+  '🍃 MongoDB',
+  '⚛️ React',
+  '🐙 GitHub',
+  '🐳 Docker',
+  '🗄️ NoSQL',
+  '📊 Matlab',
+  '🟢 Node.js',
+  '🐧 Linux'
+];
 
 export const useBackgroundChips = () => {
   const [chips, setChips] = useState([]);
@@ -15,6 +47,7 @@ export const useBackgroundChips = () => {
       const count = mobile ? 15 : 30;
       const minSize = mobile ? 9 : 10;
       const maxSize = mobile ? 18 : 22;
+      const symbols = mobile ? mobileSymbols : desktopSymbols;
       const next = Array.from({ length: count }, (_, i) => ({
         id: i,
         text: symbols[Math.floor(Math.random() * symbols.length)],

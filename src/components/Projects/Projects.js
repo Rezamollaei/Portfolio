@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 export const projectsData = [
   ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm'],
@@ -41,7 +41,12 @@ export const useProjectsCarousel = (total) => {
   const [active, setActive] = useState(1);
   const [mobile, setMobile] = useState(window.matchMedia('(max-width: 768px)').matches);
   const [animating, setAnimating] = useState(false);
-  const [mobileDir, setMobileDir] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const [locked, setLocked] = useState(false);
+  const [exiting, setExiting] = useState(null);
+  const lockTimer = useRef(null);
+  const animTimer = useRef(null);
+  const exitTimer = useRef(null);
 
   useEffect(() => {
     const q = window.matchMedia('(max-width: 768px)');
@@ -52,18 +57,18 @@ export const useProjectsCarousel = (total) => {
   }, []);
 
   const next = (dir) => {
-    if (animating || total < 2) return;
+    if (locked || total < 2) return;
+    if (lockTimer.current) clearTimeout(lockTimer.current);
+    if (animTimer.current) clearTimeout(animTimer.current);
+    if (exitTimer.current) clearTimeout(exitTimer.current);
+    setLocked(true);
     setAnimating(true);
-    if (mobile) {
-      setMobileDir(dir);
-      setTimeout(() => {
-        setActive((prev) => wrap(prev + dir, total));
-        setTimeout(() => setAnimating(false), 1600);
-      }, 500);
-      return;
-    }
+    setDirection(dir);
+    setExiting(active);
     setActive((prev) => wrap(prev + dir, total));
-    setTimeout(() => setAnimating(false), 1650);
+    lockTimer.current = setTimeout(() => setLocked(false), 600);
+    animTimer.current = setTimeout(() => setAnimating(false), 2400);
+    exitTimer.current = setTimeout(() => setExiting(null), 600);
   };
 
   const visible = useMemo(() => {
@@ -71,5 +76,20 @@ export const useProjectsCarousel = (total) => {
     return [wrap(active - 1, total), active, wrap(active + 1, total)];
   }, [active, mobile, total]);
 
-  return { active, visible, mobile, next, animating, mobileDir };
+  useEffect(() => () => {
+    if (lockTimer.current) clearTimeout(lockTimer.current);
+    if (animTimer.current) clearTimeout(animTimer.current);
+    if (exitTimer.current) clearTimeout(exitTimer.current);
+  }, []);
+
+  return {
+    active,
+    visible,
+    mobile,
+    next,
+    animating,
+    direction,
+    exiting,
+    locked
+  };
 };

@@ -9,5 +9,8 @@ export const skills = [
   'React',
   'GitHub',
   'Docker',
-  'NoSQL'
+  'NoSQL',
+  'Matlab',
+  'Node.js',
+  'Linux'
 ];
