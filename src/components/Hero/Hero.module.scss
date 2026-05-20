@@ -1,4 +1,4 @@
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; gap: .8rem; margin-bottom: 0; padding: 2rem 1rem; padding-top: clamp(6rem, 14vh, 10rem); padding-bottom: 0; }
+.hero { min-height: 94vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; gap: .8rem; margin-bottom: 0; padding: 2rem 1rem; padding-top: clamp(6rem, 14vh, 10rem); padding-bottom: 0; }
 .intro { color: var(--accent); text-transform: uppercase; letter-spacing: .3em; font-size: .75rem; }
 .hero h2 { font-size: clamp(2.2rem, 8vw, 4rem); }
 .role,.tagline { color: var(--text-secondary); }
