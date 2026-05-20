@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 export const projectsData = [
   ['Guess_my_Number', 'Number guessing game with helpful hints.', 'https://github.com/Rezamollaei/Guess_my_Number', 'https://guessmynumber.rezamollaei.dev/', 'https://github.com/user-attachments/assets/0d233239-2d3a-40fe-b1ce-a0e45dfd4fb4'],
-  ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm'],
+    ['League_Maker', 'Generate sports leagues and match fixtures.', 'https://github.com/Rezamollaei/League_Maker_inprogress','https://leaguemaker.rezamollaei.dev/',],
+    ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm'],
   ['Budget_Tracker', 'Track income, expenses, and monthly savings goals.', 'https://github.com/Rezamollaei/Budget_Tracker'],
   ['Calculator', 'Responsive calculator for everyday arithmetic.', 'https://github.com/Rezamollaei/Calculator'],
   ['Compres_Decompres_file', 'Compress and decompress files to save space.', 'https://github.com/Rezamollaei/Compres_Decompres_file'],
@@ -13,7 +14,6 @@ export const projectsData = [
   ['File_handling', 'Practice file operations: read, write, update.', 'https://github.com/Rezamollaei/File_handling'],
   ['Hangman', 'Classic hangman word-guessing challenge.', 'https://github.com/Rezamollaei/Hangman'],
   ['Language_Learning_App', 'Vocabulary practice with lessons and quizzes.', 'https://github.com/Rezamollaei/Language_Learning_App'],
-  ['League_Maker_inprogress', 'Generate sports leagues and match fixtures.', 'https://github.com/Rezamollaei/League_Maker_inprogress'],
   ['Need_to_learn', 'Curated list of topics and learning tasks.', 'https://github.com/Rezamollaei/Need_to_learn'],
   ['Need_to_learn2', 'Follow-up learning tracker with new topics.', 'https://github.com/Rezamollaei/Need_to_learn2'],
   ['PROJECT1', 'Starter project exploring core programming basics.', 'https://github.com/Rezamollaei/PROJECT1'],
