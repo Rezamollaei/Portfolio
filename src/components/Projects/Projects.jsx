@@ -19,9 +19,7 @@ const Projects = () => {
   return (
     <section id="projects" className={styles.projects}>
       <h2 className="reveal" data-delay="0">{t('projects.title')}</h2>
-      <p className="reveal" data-delay="1">{t('projects.subtitle')}</p>
-      <h2 className={`${styles.allTitle} reveal`} data-delay="2">{t('projects.allTitle')}</h2>
-      <div className={styles.wrap}>
+      <div className={`${styles.wrap} reveal`} data-delay="1">
         <button type="button" onClick={() => next(-1)} disabled={locked} aria-label={t('projects.prev')}>←</button>
         <div className={styles.carousel}>
           {projectsData.map((project, index) => {
@@ -65,19 +63,20 @@ const Projects = () => {
         </div>
         <button type="button" onClick={() => next(1)} disabled={locked} aria-label={t('projects.next')}>→</button>
       </div>
-        <div className={styles.repoList}>
-          <ul className={styles.repoItems}>
-            {projectsData.map((project) => (
-              <li key={project.githubUrl}>
-                <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
-                  <span className={styles['project-title']}>{normalizeProjectTitle(project.title)}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    );
-  };
+      <h3 className={`${styles.allTitle} reveal`} data-delay="2">{t('projects.allTitle')}</h3>
+      <div className={`${styles.repoList} reveal`} data-delay="3">
+        <ul className={styles.repoItems}>
+          {projectsData.map((project) => (
+            <li key={project.githubUrl}>
+              <a href={project.githubUrl} target="_blank" rel="noreferrer noopener">
+                <span className={styles['project-title']}>{normalizeProjectTitle(project.title)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+};
 
 export default Projects;
