@@ -17,7 +17,16 @@ const Experience = () => {
       <h2 className="reveal" data-delay="0">{t('experience.title')}</h2>
       <div className={`${styles.card} reveal`} data-delay="1">
         <div className={styles.header}>
-          <h3 className={styles.company}>{t('experience.matheria.company')}</h3>
+          <h3 className={styles.company}>
+            <a
+              className={styles.companyLink}
+              href="https://tulero.it/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('experience.matheria.company')}
+            </a>
+          </h3>
           <div className={styles.period}>
             <span>{t('experience.matheria.period')}</span>
             <span className={styles.ongoing}>{t('experience.ongoing')}</span>
