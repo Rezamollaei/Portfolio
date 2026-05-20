@@ -10,7 +10,7 @@ export const projectsData = [
   ['Desktop_Cleaner', 'Organize desktop files into tidy folders.', 'https://github.com/Rezamollaei/Desktop_Cleaner'],
   ['Encode_Decode', 'Encode and decode messages with simple ciphers.', 'https://github.com/Rezamollaei/Encode_Decode'],
   ['File_handling', 'Practice file operations: read, write, update.', 'https://github.com/Rezamollaei/File_handling'],
-  ['Guess_my_Number', 'Number guessing game with helpful hints.', 'https://github.com/Rezamollaei/Guess_my_Number'],
+  ['Guess_my_Number', 'Number guessing game with helpful hints.', 'https://github.com/Rezamollaei/Guess_my_Number', 'https://guessmynumber.rezamollaei.dev/'],
   ['Hangman', 'Classic hangman word-guessing challenge.', 'https://github.com/Rezamollaei/Hangman'],
   ['Language_Learning_App', 'Vocabulary practice with lessons and quizzes.', 'https://github.com/Rezamollaei/Language_Learning_App'],
   ['League_Maker_inprogress', 'Generate sports leagues and match fixtures.', 'https://github.com/Rezamollaei/League_Maker_inprogress'],
@@ -27,11 +27,11 @@ export const projectsData = [
   ['model_window', 'Modal window UI demo with animations.', 'https://github.com/Rezamollaei/model_window'],
   ['pig_game', 'Pig dice game with roll/hold mechanics.', 'https://github.com/Rezamollaei/pig_game'],
   ['pythonProject2', 'Python exercises and mini-projects collection.', 'https://github.com/Rezamollaei/pythonProject2']
-].map(([title, description, githubUrl]) => ({
+].map(([title, description, githubUrl, liveUrl = null]) => ({
   title,
   description,
   githubUrl,
-  liveUrl: null,
+  liveUrl,
   imageUrl: '/assets/project-real-pc.svg'
 }));
 
