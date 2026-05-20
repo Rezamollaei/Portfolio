@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <script>
@@ -9,6 +9,9 @@
         const root = document.documentElement;
         const storedTheme = localStorage.getItem('theme');
         const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
+        if (!storedTheme) {
+          localStorage.setItem('theme', 'dark');
+        }
 
         root.setAttribute('data-theme', theme);
         root.style.colorScheme = theme;

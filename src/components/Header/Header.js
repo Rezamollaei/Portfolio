@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 export const navItems = [
   { href: '#about', key: 'nav.about' },
   { href: '#journey', key: 'nav.journey' },
+  { href: '#experience', key: 'nav.experience' },
   { href: '#projects', key: 'nav.projects' },
   { href: '#skills', key: 'nav.skills' },
   { href: '#contact', key: 'nav.contact' }
