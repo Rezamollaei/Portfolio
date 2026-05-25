@@ -3,15 +3,10 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 const ThemeContext = createContext(null);
 
-const getInitialTheme = () => {
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') return stored;
-  // First visit always starts in dark mode.
-  return 'dark';
-};
-
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem('theme') || 'dark'
+  );
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 export const projectsData = [
   ['Guess_my_Number', 'Number guessing game with helpful hints.', 'https://github.com/Rezamollaei/Guess_my_Number', 'https://guessmynumber.rezamollaei.dev/', 'https://github.com/user-attachments/assets/0d233239-2d3a-40fe-b1ce-a0e45dfd4fb4'],
     ['League_Maker', 'Generate sports leagues and match fixtures.', 'https://github.com/Rezamollaei/League_Maker_inprogress','https://leaguemaker.rezamollaei.dev/','https://github.com/user-attachments/assets/9fbcfa4c-6324-498d-8802-9c66eea9dce3'],
-    ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm'],
+  ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm', null, 'https://github.com/user-attachments/assets/d0ed0dec-d0c7-4c04-8151-2b50fd8e30b3'],
   ['Budget_Tracker', 'Track income, expenses, and monthly savings goals.', 'https://github.com/Rezamollaei/Budget_Tracker'],
   ['Calculator', 'Responsive calculator for everyday arithmetic.', 'https://github.com/Rezamollaei/Calculator'],
   ['Compres_Decompres_file', 'Compress and decompress files to save space.', 'https://github.com/Rezamollaei/Compres_Decompres_file'],

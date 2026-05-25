@@ -19,6 +19,8 @@ const en = {
   'about.title': 'About Me',
   'about.intro': 'I craft end-to-end digital experiences, combining clean interfaces with reliable back-end systems.',
   'about.body': 'I love translating ideas into fast, scalable products with a sharp eye for detail.',
+  'about.university.label': 'University',
+  'about.university.value': 'Computer Science student at Politecnico di Torino',
   'about.focusTitle': 'What I deliver',
   'about.focus1': 'End-to-end product builds from UX to launch.',
   'about.focus2': 'Performance-first interfaces with modern tooling.',

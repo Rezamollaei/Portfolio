@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const socialLinks = [
   { key: 'contact.directGitHub', url: 'https://github.com/Rezamollaei', isMailto: false },
-  { key: 'contact.directLinkedIn', url: 'https://www.linkedin.com/in/reza-mollaei/', isMailto: false },
+  { key: 'contact.directLinkedIn', url: 'https://www.linkedin.com/in/reza-mollaei-3b4b562b0', isMailto: false },
   { key: 'contact.directEmailLabel', url: 'mailto:contact@rezamollaei.dev', isMailto: true }
 ];
 
