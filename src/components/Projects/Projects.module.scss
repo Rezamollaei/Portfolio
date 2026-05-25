@@ -13,7 +13,7 @@
 .enterFromLeft { animation: enter-from-left 2400ms cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 .exitToLeft { animation: exit-to-left 600ms ease forwards; }
 .exitToRight { animation: exit-to-right 600ms ease forwards; }
-.card img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+.card img { width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center; }
 .body { padding:.8rem; display:grid; gap:.5rem; }
 .body p { color:var(--text-secondary); font-size:.9rem; }
 .project-title { font-size:clamp(0.72rem, 1.8vw, 0.88rem); word-break:break-word; overflow-wrap:anywhere; hyphens:auto; line-height:1.35; }

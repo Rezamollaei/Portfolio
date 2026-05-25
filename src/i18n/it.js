@@ -19,6 +19,8 @@ const it = {
   'about.title': 'Su di me',
   'about.intro': 'Creo esperienze digitali end-to-end, unendo interfacce curate a sistemi back-end affidabili.',
   'about.body': 'Mi piace trasformare idee in prodotti veloci e scalabili con grande attenzione ai dettagli.',
+  'about.university.label': 'Università',
+  'about.university.value': 'Studente di Informatica al Politecnico di Torino',
   'about.focusTitle': 'Cosa porto',
   'about.focus1': 'Progetti completi dalla UX al rilascio.',
   'about.focus2': 'Interfacce performanti con tooling moderno.',
