@@ -5,7 +5,7 @@ export const projectsData = [
     ['League_Maker', 'Generate sports leagues and match fixtures.', 'https://github.com/Rezamollaei/League_Maker_inprogress','https://leaguemaker.rezamollaei.dev/','https://github.com/user-attachments/assets/9fbcfa4c-6324-498d-8802-9c66eea9dce3'],
   ['Banking_programm', 'CLI banking simulator with accounts and transfers.', 'https://github.com/Rezamollaei/Banking_programm', 'https://banking.rezamollaei.dev/', 'https://github.com/user-attachments/assets/d0ed0dec-d0c7-4c04-8151-2b50fd8e30b3'],
   ['Budget_Tracker', 'Track income, expenses, and monthly savings goals.', 'https://github.com/Rezamollaei/Budget_Tracker', 'https://budget-tracking.rezamollaei.dev/', '/assets/project-budget-tracker.jpg'],
-  ['Calculator', 'Responsive calculator for everyday arithmetic.', 'https://github.com/Rezamollaei/Calculator'],
+  ['Calculator', 'Responsive calculator for everyday arithmetic.', 'https://github.com/Rezamollaei/Calculator', 'https://calculator.rezamollaei.dev/', '/assets/project-calculator-app.svg'],
   ['Compres_Decompres_file', 'Compress and decompress files to save space.', 'https://github.com/Rezamollaei/Compres_Decompres_file'],
   ['Convert_Decimal_to_Binary', 'Convert decimal numbers to binary with steps.', 'https://github.com/Rezamollaei/Convert_Decimal_to_Binary'],
   ['Copy_text_file', 'Copy text files quickly with safe overwrites.', 'https://github.com/Rezamollaei/Copy_text_file'],
