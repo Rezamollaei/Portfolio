@@ -13,5 +13,7 @@ export const skills = [
   'NoSQL',
   'Matlab',
   'Node.js',
-  'Linux'
+  'Linux',
+  'REST APIs',
+  'SSH'
 ];

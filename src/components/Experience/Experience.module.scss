@@ -7,6 +7,12 @@
 .companyLink:hover { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:.16em; }
 .period { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; font-size:.9rem; color:var(--text-secondary); }
 .ongoing { border:1px solid var(--accent); color:var(--accent); border-radius:999px; padding:.15rem .55rem; font-size:.7rem; font-weight:600; letter-spacing:.02em; }
+.title { font-size:1.05rem; font-weight:600; color:var(--text-primary); }
+.stages { list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:.35rem 1.25rem; font-size:.85rem; color:var(--text-secondary); }
+.summary { color:var(--text-secondary); line-height:1.6; }
+.highlightsTitle { font-size:.8rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+.highlights { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:.6rem 1.5rem; padding-left:1.1rem; line-height:1.5; font-size:.92rem; }
+.highlights li::marker { color:var(--accent); }
 .roles { display:flex; flex-wrap:wrap; gap:.65rem; }
 .role { border:1px solid var(--accent); color:var(--accent); background:var(--card-bg); border-radius:999px; padding:.6rem .9rem; min-height:36px; display:flex; align-items:center; font-size:.85rem; }
 @media (max-width:768px){
